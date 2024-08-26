@@ -1,0 +1,122 @@
+.container-prop-all {
+  display: flex;
+  flex-direction: row;
+  background-color: #7cadb913;
+}
+
+.container-prop-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+  margin: 10px 5%;
+}
+
+.example-full-width {
+    width: 94%;
+    margin: 0px 3%;
+}
+
+.title-register {
+  text-align: center;
+}
+
+.title-input {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+}
+
+.title-input-file {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 0 20px;
+  border-radius: 4px 4px 0 0;
+  background-color: whitesmoke;
+  border-bottom: 1px solid black;
+}
+
+.container-prop-img {
+    display: flex;
+    width: 50%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #44bbda;
+    border-radius: 50% 0 0 50%;
+}
+
+.container-prop-img>img {
+  display: flex;
+  height: 60vh;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+
+.container-prop-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+
+.btn-send {
+  display: flex;
+  background-color: #52b7d1;
+  padding: 10px 20px;
+  margin: 20px 0;
+  border-radius: 5px;
+  border: 1px solid rgb(95, 95, 245);
+  color: white;
+  cursor: pointer;
+}
+
+.btn-send:hover {
+  background-color: #2c89a0;
+}
+
+.info {
+  font-size: 14px;
+}
+
+.title-input-file {
+  background-color: #d7e5e8;
+}
+
+@media screen and (max-width: 768px) { 
+  .container-prop-all {
+    /* height: 100vh; */
+    background-color: #44bcda52;
+  }
+  .container-prop-form {
+    width: 94%;
+    margin: 0 3%;
+  }
+  .container-prop-img {
+    display: none;
+  }
+  .title-input {
+    flex-direction: column;
+  }
+  .title-input-file {
+    background-color: #bbe0e9;
+  }
+  .container-prop-btn {
+    justify-content: center;
+    width: 100%;
+  }
+  .btn-send {
+    width: 90%;
+    justify-content: center;
+  }
+}

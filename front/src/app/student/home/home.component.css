@@ -1,0 +1,10 @@
+.container-prop-student-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.toolbar {
+    display: flex;
+    width: 100%;
+    background-color: var(--color-background-login);
+}

@@ -1,0 +1,81 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+    --color-icons: rgb(255, 255, 255);
+    --color-background-login: #67aa67b0;
+    --color-font-login: rgb(21, 78, 31);
+    --color-background-toolbar: rgb(35, 32, 32);
+    /* --color-background-toolbar: rgba(29, 31, 128, 0.801); */
+    --color-background-toolbar-variant: rgba(16 18 152 / 62%);
+    --color-button-hover: rgba(240, 240, 240, 0.192);
+    --color-background-light-green: rgba(73, 158, 130, 0.719);
+    --color-background-dark-green: rgba(33, 107, 82, 0.719);
+    --color-background-dark-green-no-transparency: rgba(33, 107, 82, 0.979);
+    --color-background-dark-green-1: rgba(2, 133, 89, 0.904);
+    --color-notifications-white-transparent: rgba(255, 255, 255, 0.911);
+    --warn: rgb(173, 15, 15);
+    --font-robot: Roboto, "Helvetica Neue", sans-serif;
+    --color-blue-degraded-1: #D4E6F1;
+    --color-blue-degraded-2: #A9CCE3;
+    --color-blue-degraded-3: #2980B9;
+    --color-blue-degraded-4: #1A5276;
+    --color-blue-degraded-5: #154360;
+}
+
+.button-prop {
+    cursor: pointer;
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 50%;
+}
+
+.button:hover {
+    background-color: var(--color-button-hover);
+}
+
+.button-primary {
+    width: 100%;
+    border-radius: 20px;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.button-primary:hover {
+    background-color: rgba(255, 255, 255, 0.616);
+    box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.103);
+}
+
+.button-primary:focus {
+    outline: none;
+    box-shadow: 0px 0px 20px #262726;
+}
+
+.button-secundary {
+    width: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.center-on-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.floating-messaje {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-notifications-white-transparent);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

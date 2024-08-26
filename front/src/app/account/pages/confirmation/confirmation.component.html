@@ -1,0 +1,19 @@
+<div class="container-prop">
+    <div class="card">
+        <h2 class="center-text">Verificación</h2>
+        <h3>Email: {{email}}</h3>
+        <p>
+            Por favor copie el código enviado a su correo para continuar el proceso.
+        </p>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Código de confirmación</mat-label>
+            <input matInput [(ngModel)]="codeConfirmation" required>
+        </mat-form-field>
+        <a class="resend" (click)="resend()">Reenviar código</a>
+        <button class="button-send" (click)="send()">Enviar</button>
+    </div>
+</div>
+
+<div *ngIf="loading" class="floating-messaje">
+    <mat-spinner></mat-spinner>
+</div>

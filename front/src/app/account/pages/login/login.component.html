@@ -1,0 +1,32 @@
+<div class="container-prop-image-login">
+    <div class="image-login circulo">
+        <img class="image-login-size" src="assets/images/Enthusiastic-pana.svg" alt="">
+    </div>
+    <div class="center-on-screen">
+        <div class="card">
+            <h2 class="h2-sesion">Inicio de sesión</h2>
+            <hr>
+            <form action="">
+                <div class="content-input-logo">
+                    <mat-icon aria-hidden="false" class="logo-input">perm_identity</mat-icon>
+                    <input class="input" type="text" placeholder="Correo" [(ngModel)]="email" name="email">
+                </div>
+                <label [class]="emailError">Correo incorrecto</label>
+                <div class="content-input-logo input-password">
+                    <mat-icon aria-hidden="false" class="logo-input">lock</mat-icon>
+                    <input class="input" [type]="typePassword" placeholder="Contraseña" [(ngModel)]="password" name="password" autocomplete="off">
+                    <mat-icon class="eye-password" (click)="changeTypePassword()">remove_red_eye</mat-icon>
+                </div>
+                <label [class]="passwordError">Password inválida</label>
+                <label class="notification">{{error}}</label>
+                <a [routerLink]="['/account/recovery']">Olvidé mi contraseña</a>
+                <div class="content-input-logo">
+                    <button class="button-primary" (click)="sendData()">
+                        {{!loading?'Enviar':'Cargando ...'}}
+                    </button>
+                </div>
+            </form>
+            <a class="create-account" [routerLink]="['/account/register']">¿No tiene cuenta? Crear ahora</a>
+        </div>
+    </div>
+</div>

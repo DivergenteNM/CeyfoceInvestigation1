@@ -1,0 +1,16 @@
+<ul class="container-prop-items-toolbar">
+    <li class="item-toobal" *ngFor="let tab of generatetabs" [routerLink]="['/platform'+tab.link]"  >
+        <mat-icon aria-hidden="false" aria-label="Example home icon">{{tab.icon}}</mat-icon>
+        <div class="title-toolbar-platform" >{{tab.title}}</div>
+    </li>
+    <mat-icon class="item-toobal mat-icon-toolbar" aria-hidden="false" (click)="dropdownMenu()">
+        perm_identity
+        <div class="floating-element" *ngIf="visibleFloatingMenu">
+            <ul class="list-floating-element">
+                <li class="item-list-floating-element item-toobal" [routerLink]="['/platform/profile']">Perfil</li>
+                <li class="item-list-floating-element item-toobal" (click)="signOff()">Cerrar sesión</li>
+            </ul>
+        </div>
+    </mat-icon>
+    <app-menu-side class="size-menu-side form-responsive"></app-menu-side>
+</ul>

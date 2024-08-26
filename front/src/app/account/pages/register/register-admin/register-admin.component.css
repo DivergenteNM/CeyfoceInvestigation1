@@ -1,0 +1,52 @@
+.container-prop-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgba(133, 150, 130, 0.126);
+}
+
+.title-input {
+    display: flex;
+    width: 40%;
+    margin: 8px 30%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.container-prop-btn {
+    display: flex;
+    width: 30%;
+    margin: 0 35%;
+}
+
+.btn-send {
+    display: flex;
+    width: 100%;
+    background-color: rgba(22, 114, 22, 0.788);
+    border: none;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.btn-send:hover {
+    background-color: rgba(59, 168, 59, 0.788);
+}
+
+@media screen and (max-width: 768px) {
+    .title-input {
+        width: 94%;
+        margin: 10px 3%;
+    }
+    .container-prop-btn {
+        width: 96%;
+        margin: 10px 3%;
+    }
+}

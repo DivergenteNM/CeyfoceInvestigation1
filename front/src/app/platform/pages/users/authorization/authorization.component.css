@@ -1,0 +1,123 @@
+.container-prop-users {
+    /* background-color: red; */
+    width: 100%;
+}
+
+.list-items {
+    display: flex;
+    width: 90%;
+    margin: 20px 5%;
+    padding: 0;
+    /* background-color: green; */
+    flex-direction: column;
+}
+
+.item {
+    display: flex;
+    list-style: none;
+    background-color: var(--color-background-dark-green);
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 10px;
+    font-size: 1.1em;
+    color: white;
+}
+
+.select-list-item {
+    display: flex;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.select-list-item:focus {
+    outline: none;
+}
+
+.container-prop-buttons-scales-create {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 90%;
+    margin: 0 5%;
+}
+
+.button-scales {
+    display: flex;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+}
+
+.button-scales:hover {
+    box-shadow: 1px 1px 5px 1px rgba(90, 85, 85, 0.568);
+}
+
+.button-scales:focus {
+    outline: none;
+    border-color: var(--warn);
+}
+
+.color-green {
+    background-color: var(--color-background-dark-green-1);
+}
+
+.color-azul {
+    background-color: rgba(2, 2, 124, 0.884);
+    color: white;
+}
+
+.center-message-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    margin: 20px 0;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.button-img {
+    cursor: pointer;
+}
+
+.button-img:hover {
+    color: rgba(255, 255, 255, 0.548);
+}
+
+.size-img-permission {
+    max-width: 100vw;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .buttons {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}

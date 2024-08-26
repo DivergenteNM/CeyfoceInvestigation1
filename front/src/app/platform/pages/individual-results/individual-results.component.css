@@ -1,0 +1,80 @@
+.container-prop-search-user {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.h2-container-prop-search-user {
+    margin: 30px 0 10px 0;
+}
+
+.search-user-mat {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-user-mat-form {
+    width: 96%;
+    margin: 10px 2%;
+    position: relative;
+}
+
+.x-close {
+    position: absolute;
+    top: 12px;
+    right: 30px;
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    color: var(--warn);
+    cursor: pointer;
+}
+
+.size-input-scales {
+    font-family: Roboto;
+    display: flex;
+    width: calc(100% - 25px);
+    border-radius: 10px;
+    padding: 10px;
+    border-color: var(--color-background-toolbar);
+    border: 2.5px solid var(--color-background-toolbar);
+    font-size: 1.2em;
+}
+
+.size-input-scales:focus {
+    outline: none;
+    border-color: var(--warn);
+}
+
+.button-rigth {
+    display: flex;
+    width: 96%;
+    margin: 10px 2%;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.color-blue {
+    background-color: var(--color-background-toolbar-variant);
+    color: white;
+}
+
+.color-blue:hover {
+    background-color: var(--color-background-toolbar);
+}
+
+.content-student-results {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-student-results {
+    width: 96%;
+    margin: 0 2%;
+}

@@ -1,0 +1,35 @@
+<div class="container-prop-scale-student">
+    <div *ngIf="loading" class="loading">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="!loading" class="container-prop-scale-data">
+        <div class="information-scale">
+            <h2 class="title">{{scale.title}}</h2>
+            <div class="description-scale">{{scale.description}}</div>
+        </div>
+        <div class="questions-scale">
+            <h3 class="title">Preguntas</h3>
+            <div class="description-scale">
+                <div class="questions" *ngFor="let question of scale.questions;let j=index">
+                    <div>
+                        {{j+1}}. {{question.textQuestion}}
+                    </div>
+                    <div class="container-prop-radio-button">
+                        <mat-radio-group
+                            aria-labelledby="example-radio-group-label"
+                            class="example-radio-group"
+                            [(ngModel)]="answers[j]">
+                            <mat-radio-button class="example-radio-button" *ngFor="let option of optionsType;let i=index" [value]="letters[i]">
+                                {{option}}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-prop-button-send">
+            <button class="send" (click)="sendResults()">{{countScales===1?'Terminar':'Siguiente'}}</button>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,61 @@
+.container-prop-scales-student {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    display: flex;
+    margin-top: 40px;
+}
+
+.container-prop-scales-allowed {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    /* gap: 1%; */
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 20px;
+    width: 200px;
+    background-color: var(--color-blue-degraded-4);
+    color: white;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.card>p {
+    text-align: center;
+}
+
+.loading {  
+    margin: 10%;
+}
+
+.button-answer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-blue-degraded-2);
+    color: var(--color-blue-degraded-4);
+    border: none;
+    padding: 10px 0;
+    margin: 20px 0;
+    width: 100%;
+    border-radius: 20px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.button-answer:hover {
+    background-color: var(--color-blue-degraded-1);
+}

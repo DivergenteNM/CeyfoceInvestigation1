@@ -1,0 +1,123 @@
+<app-filtro></app-filtro>
+<div class="container-prop-results-students">
+    <h2 *ngIf="!activateGraph && !activateExcel">Resultados</h2>
+    <div *ngIf="!activateGraph && !activateExcel" class="container-prop-list-data">
+        <div class="one">
+            <label>Nombre</label>
+        </div>
+        <div class="two">
+            <label>Institución</label>
+        </div>
+        <div class="three">
+            <label>Grado</label>
+        </div>
+        <div class="four">
+            <label>Escalas</label>
+        </div>
+    </div>
+    <div *ngIf="loading" class="container-prop-graph color-transparent">
+        <mat-spinner></mat-spinner>
+    </div>
+    <app-result-student class="student-result" *ngFor="let studentResult of studentResults;let i=index" 
+        [data]="studentResult" [scales]="scales" [typesOfQUalification]="typesOfQUalification" [index]="(i+1)"></app-result-student>
+    <div *ngIf="activateResume && activateAverageScaleInstitutions" class="latest color-blue">
+        <div class="option-to-view-results">
+            <button class="option-results-button" (click)="chageViewResults(1)">Por institución</button>
+            <button class="option-results-button" (click)="chageViewResults(2)">Por escala</button>
+        </div>
+        <div *ngIf="institutionOrScale">
+            <div class="resume" *ngFor="let nameofInstitution of nameOfInstitutions;let i=index">
+                <h3>Medias: {{nameofInstitution}}</h3>
+                <ng-container *ngFor="let scale of scales; let j=index">
+                    <div *ngIf="isSelectedScale(scale.title)">
+                        &#10148; Media {{scale.title}} {{'---- '+totalAverageScaleInstitution[i][j]?(totalAverageScaleInstitution[i][j]|number : '1.2-2'):0}}
+                        <label class="label-info-factor" *ngIf="scale.factors.length>0">Media por factor:</label>
+                        <ul class="list-items-factors">
+                            
+                            <li *ngFor="let factor of scale.factors;let k=index">{{factor}}: {{factorsScaleInstitution[i][j][k]?(factorsScaleInstitution[i][j][k]|number : '1.2-2'):0}}</li>
+                            <hr>
+                        </ul>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div *ngIf="!institutionOrScale">
+            <ng-container *ngFor="let scale of scales; let i=index">
+                <div *ngIf="isSelectedScale(scale.title)" class="table-with-title">
+                    <div class="results-scales-title-center">
+                        <h2>{{scale.title}}</h2>
+                    </div>
+                    <div class="table">
+                        <div class="row" *ngIf="scale">
+                            <div class="column">
+                                Factor / Institucion
+                            </div>
+                            <div class="column" *ngFor="let factor of scale.factors" [title]="factor">
+                                {{factor}}
+                            </div>
+                            <div class="column">
+                                Media de la esc.
+                            </div>
+                        </div>
+                        <div class="row" *ngFor="let institution of nameOfInstitutions;let j=index" [title]="institution">
+                            <div class="column">
+                                {{institution}}
+                            </div>
+                            <div class="column" *ngFor="let factor of scale.factors;let k=index" [title]="institution+' - '+factor">
+                                {{factorsScaleInstitution[j][i][k]?(factorsScaleInstitution[j][i][k]|number : '1.2-2'):0}}
+                            </div>
+                            <div class="column">
+                                {{(totalAverageScaleInstitution[j][i]?(totalAverageScaleInstitution[j][i]|number : '1.2-2'):0)}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <div></div>
+    <div *ngIf="activateResume" class="latest">
+        <div class="resume">
+            <h3 class="title-submodule">Resumen</h3>
+            <ng-container *ngFor="let scale of scales; let i=index">
+                <div *ngIf="isSelectedScale(scale.title)">
+                    &#10148; Media {{scale.title}} {{'---- '+totalAverageScale[i]?(totalAverageScale[i]|number : '1.2-2'):0}}
+                    <label class="label-info-factor" *ngIf="scale.factors.length>0">Media por factor:</label>
+                    <ul class="list-items-factors">
+                        <li *ngFor="let factor of scale.factors;let j=index">{{factor}}: {{factorsScales[i][j]?(factorsScales[i][j]|number : '1.2-2'):0}}</li>
+                        <hr>
+                    </ul>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+<div class="container-prop-button-send">
+    <button *ngIf="activateButtons" class="button-send download" (click)="download()"><mat-icon>cloud_download</mat-icon></button>
+    <button *ngIf="activateButtons" class="button-send graph" (click)="graph()"><mat-icon>bar_chart</mat-icon></button>
+    <button class="button-send" (click)="buttonSend()" (contextmenu)="buttonRight($event)">&#10095;</button>
+</div>
+<div *ngIf="activateExcel" class="container-prop-graph">
+    <h3>Generar archivo de excel</h3>
+    <app-excel [data]="studentsResultsAux" [scales]="scales" [typesOfQUalification]="typesOfQUalification"></app-excel>
+</div>
+<div *ngIf="activateGraph" class="container-prop-graph">
+    <h3>Gráficas</h3>
+    <app-graph class="app-graph"
+        [studentResults]="studentsResultsAux"
+        [scales]="scales"
+        [totalAverageScale]="totalAverageScale"
+        [factorsScales]="factorsScales"
+        [nameOfInstitutions]="nameOfInstitutions"
+        [totalAverageScaleInstitution]="totalAverageScaleInstitution"
+        [factorsScaleInstitution]="factorsScaleInstitution"
+        [numberOfStudents]="numberOfStudents"></app-graph>
+</div>
+
+<div *ngIf="messageActivate" class="floating-messaje">
+    <div>
+        <h2>{{messageTitle}}</h2>
+        <h3>{{messageInfo}}</h3>
+        <button *ngIf="messageButton" class="button-primary color-azul" (click)="closeAlert()">Aceptar</button>
+    </div>
+</div>

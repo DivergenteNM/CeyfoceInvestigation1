@@ -1,0 +1,34 @@
+<div class="container-prop-filter">
+    <button class="button-primary button-secundary blue" (click)="actionSelect()">Filtro +</button>
+    <div class="button-primary button-secundary red"  *ngFor="let button of buttons; let i=index">
+        <button (click)="clickButtons(i)">{{button.name}}</button>
+        <button (click)="delete(i)">x</button>
+    </div>
+</div>
+
+<div class="floating-messaje" *ngIf="activate">
+    <div class="container-prop-elements-floating">
+        <h1>Filtros</h1>
+        <p>Escoja los filtros necesarios para mostrar la información</p>
+        <select [(ngModel)]="optionSelected" class="button-primary">
+            <option [value]="i" *ngFor="let buttonFilter of buttonsFilter; let i=index">{{buttonFilter.name}}</option>
+        </select>
+        <button class="x" (click)="close()">x</button>
+        <button (click)="add()" class="button-primary dark-green">Añadir</button>
+    </div>
+</div>
+
+<div class="floating-messaje" *ngIf="activateSpecific">
+    <div class="container-prop-elements-floating">
+        <h1>Opciones</h1>
+        <p>Escoja una o varias opciones</p>
+        <div *ngFor="let option of options">
+            <label>
+                <input type="checkbox" [checked]="option.checked" [(ngModel)]="option.checked">
+                {{option.name}}
+            </label>
+        </div>
+        <button (click)="check()" class="button-primary dark-green">Aceptar</button>
+        <button class="x" (click)="close()">x</button>
+    </div>
+</div>

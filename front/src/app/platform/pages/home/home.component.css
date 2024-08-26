@@ -1,0 +1,25 @@
+.container-prop-platform-options {
+    display: flex;
+}
+
+.size-menu-side {
+    width: 10%;
+    min-width: 150px;
+    display: flex;
+    min-height: calc(100vh - 44px);
+    height: auto;
+}
+
+.size-component-routing {
+    width: 90%;
+}
+
+@media only screen and (max-width: 600px) {
+    .size-menu-side {
+        display: none;
+    }
+    
+    .size-component-routing {
+        width: 100%;
+    }
+}

@@ -1,0 +1,21 @@
+<div class="container-prop-scales-student">
+    <h1>¡¡¡ Hola, {{name}} !!!</h1>
+    <div class="container-prop-scales-allowed">
+        <div *ngIf="loading" class="loading">
+            <mat-spinner></mat-spinner>
+        </div>
+        <div class="card" *ngIf="getSize()!==0 && !loading">
+            <h2>Escalas</h2>
+            <p>
+                Por favor presione el botón para comenzar, recuerde
+                responder cada pregunta con sinceridad
+            </p>
+            <button class="button-answer" (click)="answer()">Responder ahora</button>
+        </div>    
+        <div *ngIf="getSize()===0 && !loading">
+            <div class="card">
+                No hay escalas disponibles
+            </div>
+        </div>    
+    </div>
+</div>

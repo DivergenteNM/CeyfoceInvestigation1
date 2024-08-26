@@ -1,0 +1,136 @@
+<div class="container-prop-all">
+    <div class="container-prop-form">
+        <h2 class="title-register">Registro estudiante</h2>
+        <div class="title-input">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Nombre completo</mat-label>
+                <input matInput [formControl]="name" type="text">
+                <mat-error *ngIf="name.hasError('text') && !name.hasError('required')">
+                    Ingrese un nombre válido
+                </mat-error>
+                <mat-error *ngIf="name.hasError('required')">
+                    El nombre es <strong>obligatorio</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        
+        <div class="title-input">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Institución</mat-label>
+                <mat-select [formControl]="institution" name="institution">
+                    <mat-option *ngFor="let institution of institutions" [value]="institution.value" (click)="institutionCourses()">
+                        {{institution.viewValue}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="institution.hasError('required')">
+                    Seleccione una opción
+                </mat-error>
+            </mat-form-field>
+        </div>
+        
+        <div class="title-input">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput [formControl]="emailFormControl">
+                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                    Ingrese una dirección de correo válida
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                    El email es <strong>obligatorio</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+    
+        <div class="title-input">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Edad</mat-label>
+                <mat-select [formControl]="selectedAge" name="age">
+                    <mat-option *ngFor="let age of ages" [value]="age.value">
+                        {{age.viewValue}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="selectedAge.hasError('required')">
+                    Seleccione una opción
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Sexo</mat-label>
+                <mat-select [formControl]="selectedSex" name="sex">
+                    <mat-option *ngFor="let s of sex" [value]="s.value">
+                        {{s.viewValue}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="selectedSex.hasError('required')">
+                    Seleccione una opción
+                </mat-error>
+            </mat-form-field>
+        </div>
+    
+        <div class="title-input">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Curso</mat-label>
+                <mat-select [formControl]="selectedCourse" name="course">
+                    <mat-option *ngFor="let course of courses" [value]="course.value">
+                        {{course.viewValue}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="selectedCourse.hasError('required')">
+                    Seleccione una opción
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Sector de residencia</mat-label>
+                <mat-select [formControl]="selectedSector" name="residence">
+                    <mat-option *ngFor="let residence of residences" [value]="residence.value">
+                        {{residence.viewValue}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="selectedSector.hasError('required')">
+                    Seleccione una opción
+                </mat-error>
+            </mat-form-field>
+        </div>
+    
+        <div class="title-input">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Contraseña</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" [formControl]="pass1" type="password" autocomplete="off">
+                <mat-error *ngIf="pass1.hasError('password') && !pass1.hasError('required')">
+                    Ingrese una contraseña válida
+                </mat-error>
+                <mat-error *ngIf="pass1.hasError('required')">
+                    La contraseña es <strong>obligatoria</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Repita su contraseña</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" [formControl]="pass2" type="password" autocomplete="off">
+                <mat-error *ngIf="pass2.hasError('password') && !pass2.hasError('required')">
+                    Ingrese una contraseña válida
+                </mat-error>
+                <mat-error *ngIf="pass2.hasError('required')">
+                    La contraseña es <strong>obligatoria</strong>
+                </mat-error>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+    
+        <div class="title-input-file">
+            <label class="flex info">Adjunte la imagen de permiso de los padres o el acudiente</label>
+            <input class="flex" type="file" [formControl]="file" (change)="handleImage($event)" accept="image/png,image/jpeg,image/jpg">
+            <label class="flex info">Al cargar la imagen se acepta el tratamiento de los datos según la Ley 1581 de 2012</label>
+        </div>
+        <div class="container-prop-btn">
+            <button class="btn-send" (click)="send()">Enviar</button>
+        </div>
+    </div>
+    <div class="container-prop-img">
+        <img src="assets/images/register.png" alt="register">
+    </div>
+</div>
+<div class="floating-messaje" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+</div>

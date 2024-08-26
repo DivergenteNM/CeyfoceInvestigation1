@@ -1,0 +1,19 @@
+<div class="container-prop-menu">
+    <div class="items-menu">
+        <ul class="items-menu-list">
+            <li class="item-d" [routerLink]="['/student']">Inicio</li>
+            <li class="item-d" [routerLink]="['/student/scales']">Escalas</li>
+        </ul>
+    </div>
+    <div class="menu-item-perfil">
+        <mat-icon class="item-toobal mat-icon-toolbar" aria-hidden="false" (click)="dropdownMenu()">
+            perm_identity
+            <div class="floating-element" *ngIf="visibleFloatingMenu">
+                <ul class="list-floating-element">
+                    <li class="item-list-floating-element item-toobal item" [routerLink]="['/student/profile']">Perfil</li>
+                    <li class="item-list-floating-element item-toobal item" (click)="signOff()">Cerrar sesión</li>
+                </ul>
+            </div>
+        </mat-icon>
+    </div>
+</div>

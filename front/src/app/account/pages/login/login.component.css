@@ -1,0 +1,149 @@
+.container-prop-image-login {
+    display: flex;
+    flex-direction: row;
+}
+
+.image-login {
+    width: 0%;
+    display: flex;
+    align-items: center;
+}
+
+.circulo {
+    width: 50%;
+    height: 100vh;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 0 50% 50% 0;
+    background: var(--color-background-login);
+}
+
+.image-login-size {
+    width: 60%;
+    height: 90%;
+    margin-left: 15%;
+}
+
+.card {
+    background-color: var(--color-background-login);
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.h2-sesion {
+    color: var(--color-font-login);
+    font-size: 1.6em;
+    padding: 10px 0 0 0;
+}
+
+.content-input-logo {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0 0 0;
+}
+
+.input {
+    border-radius: 0 10px 10px 0;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+    width: 230px;
+}
+
+.input:focus {
+    border-color: yellow;
+    outline: 0 none;
+}
+
+.input-password {
+    position: relative;
+}
+
+.eye-password {
+    position: absolute;
+    display: flex;
+    /* width: 100%; */
+    height: 40px;
+    /* background-color: red; */
+    right: 5px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: var(--color-font-login);
+}
+
+.logo-input {
+    color: var(--color-font-login);
+    background-color: white;
+    display: flex;
+    border-radius: 10px 0 0 10px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    padding: 0 18px;
+    user-select: none;
+}
+
+.center-on-screen {
+    width: 50%;
+}
+
+.notification {
+    display: flex;
+    color: rgb(189, 15, 15);
+    margin: 5px 0 0px 20px;
+    padding: 0;
+}
+
+.notification-none {
+    display: none;
+}
+
+form>a {
+    display: flex;
+    justify-content: flex-end;
+    /* background-color: red; */
+    margin: 20px 5px 0 0;
+    cursor: pointer;
+    font-size: .9em;
+    text-decoration: none;
+    color: black;
+}
+
+form>a:hover {
+    color: rgb(192, 15, 15);
+}
+
+hr {
+    background: var(--color-font-login);
+    border-color: var(--color-font-login);
+}
+
+.button-primary {
+    font-size: 1.1em;
+}
+
+.create-account {
+    display: flex;
+    text-decoration: none;
+    color: var(--color-font-login);
+    margin: 20px 0 10px 0;
+    justify-content: center;
+    font-size: 1.1em;
+}
+
+.create-account:hover {
+    color: rgb(189, 8, 8);
+}
+
+@media screen and (max-width: 768px) {
+    .image-login {
+        display: none;
+    }
+    
+    .center-on-screen {
+        width: 100%;
+    }
+}

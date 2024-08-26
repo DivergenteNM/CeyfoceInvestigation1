@@ -1,0 +1,19 @@
+<div class="container-prop-question">
+    <div class="response-types">
+        <div class="container-prop-response-type-item">
+            <label>Pregunta {{pruebaIn.index+1}}</label>
+        </div>
+        <div class="container-prop-response-type-item">
+            <label>Tipo de pregunta: </label>
+            <select class="select-question-direct" [(ngModel)]="typeOfQuestion" (change)="send()">
+                <option value="D">Directa</option>
+                <option value="I">Inversa</option>
+            </select>
+            <label>Factor: </label>
+            <select class="select-question-direct" [(ngModel)]="factor" (change)="send()">
+                <option [value]="i" *ngFor="let factor of factors;let i=index">{{factor}}</option>
+            </select>
+        </div>
+    </div>
+    <textarea class="input-question" type="text" [(ngModel)]="textQuestion" (change)="send()"></textarea>
+</div>

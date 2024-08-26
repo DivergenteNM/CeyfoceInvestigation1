@@ -1,0 +1,54 @@
+.container-prop {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(95, 158, 160, 0.137);
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    padding: 20px;
+    border-radius: 30px;
+    background-color: rgba(127, 166, 202, 0.664);
+    /* border: 1px solid black; */
+    box-shadow: 1px 1px 50px 1px rgba(82, 79, 79, 0.507);
+}
+
+.resend {
+    text-align: right;
+    cursor: pointer;
+}
+
+.resend:hover {
+    color: rgb(119, 37, 37);
+}
+
+.center-text {
+    text-align: center;
+}
+
+.button-send {
+    border-radius: 10px;
+    margin: 20px 0;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.button-send:hover {
+    background-color: rgba(240, 240, 240, 0.781);
+}
+
+@media screen and (max-width: 768px) {
+    .container-prop {
+        align-items: flex-start;
+    }
+    .card {
+        width: 98%;
+        margin: 5% 1%;
+    }
+}

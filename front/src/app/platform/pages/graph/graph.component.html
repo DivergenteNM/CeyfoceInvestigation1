@@ -1,0 +1,44 @@
+<div class="container-prop-graphs">
+    <div class="option-to-view-results" *ngIf="admissibleness==='6465asd7#asd-1' || admissibleness==='8435dpe1+nrs-3'">
+        <button class="option-results-button" (click)="chageViewResults(1)">Por institución</button>
+        <button class="option-results-button" (click)="chageViewResults(2)">Por escala</button>
+    </div>
+    <div *ngIf="typeOfPresentation">
+        <div *ngFor="let institution of nameOfInstitutions;let i=index">
+            <div>
+                <h2 class="title-graphs">
+                    {{institution}}
+                </h2>
+                <div class="graph-center" *ngFor="let scale of scales;let j=index">
+                    <div class="row-position" *ngIf="verify(factorsScaleInstitution[i][j])">
+                        <app-individual-graph [barChartLabels]="scale.factors" 
+                                            [data]="factorsScaleInstitution[i][j]"
+                                            [series]="[scale.title]"></app-individual-graph>
+                        <div class="row-data">
+                            <span>Máximo: {{arrayCalcMaxMinDes[j][i].max|number : '1.2-2'}}</span>
+                            <span>Mínimo: {{arrayCalcMaxMinDes[j][i].min|number : '1.2-2'}}</span>
+                            <span>Media: {{totalAverageScaleInstitution[i][j]|number : '1.2-2'}}</span>
+                            <span>Desviación: {{arrayCalcMaxMinDes[j][i].des|number : '1.2-2'}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!typeOfPresentation">
+        <div *ngFor="let scale of scales;let j=index">
+            <h2 class="title-graphs">Media de cada factor por institución - {{scale.title}}</h2>
+            <div class="graph-center">
+                <app-individual-graph [barChartLabels]="scale.factors" 
+                                    [data]="returnNewArrayInstitutions(j)"
+                                    [series]="nameOfInstitutions"></app-individual-graph>
+            </div>
+        </div>
+    </div>
+    <h2 class="title-graphs">Media de cada institución por escala</h2>
+    <div class="graph-center">
+        <app-individual-graph [barChartLabels]="scalesNames" 
+                                [data]="totalAverageScaleInstitution"
+                                [series]="nameOfInstitutions"></app-individual-graph>
+    </div>
+</div>

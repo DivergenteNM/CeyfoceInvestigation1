@@ -1,0 +1,6 @@
+.info-excel {
+    display: flex;
+    margin: 20px 0;
+    font-size: 1.2em;
+    color: var(--warn);
+}

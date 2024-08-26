@@ -1,0 +1,99 @@
+.container-prop-filter {
+    /* background-color: red; */
+    /* background-color: var(--color-background-toolbar); */
+    /* background-color: rgb(90 114 106 / 43%); */
+    display: flex;
+    max-width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+}
+
+.container-prop-filter::-webkit-scrollbar {
+    width: 20px;
+    height: 8px;
+  }
+
+.container-prop-filter::-webkit-scrollbar-thumb {
+    background: rgb(100, 100, 100);
+    border-radius: 10px;
+}
+
+.container-prop-filter::-webkit-scrollbar-thumb:active {
+    background-color: #999999;
+}
+  
+.container-prop-filter::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+  
+   /* Estilos track de scroll */
+.container-prop-filter::-webkit-scrollbar-track {
+    background: #e1e1e1;
+    border-radius: 4px;
+}
+  
+.container-prop-filter::-webkit-scrollbar-track:hover, 
+.container-prop-filter::-webkit-scrollbar-track:active {
+    background: #d4d4d4;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+    user-select: none;
+}
+
+.blue {
+    background-color: var(--color-background-toolbar);
+    margin: 8px 10px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.blue:hover {
+    box-shadow: 1px 1px 1px 1px rgba(255, 255, 255, 0.692);
+    background-color: rgb(88 89 147 / 80%);
+}
+
+.red {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(182 54 54 / 84%);
+    margin: 8px 10px;
+    white-space: nowrap;
+}
+
+.red:hover {
+    background-color: rgba(255, 0, 0, 0.541);
+
+}
+
+.dark-green {
+    background-color: var(--color-background-dark-green);
+    margin: 10px 0;
+}
+
+.container-prop-elements-floating {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: var(--color-background-light-green);
+    /* color: white; */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.x {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    color: black;
+    font-size: 1.3em;
+}

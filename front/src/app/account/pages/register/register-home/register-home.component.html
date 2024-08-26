@@ -1,0 +1,20 @@
+<div class="container-prop-title-card">
+    <div *ngIf="activate" class="title">
+        <h1>Escoja el tipo de Usuario</h1>
+    </div>
+    <div class="container-prop-card-option" *ngIf="activate">
+        <div class="card-option" [routerLink]="['/account/register/student']">
+            <mat-icon class="option-icon-user">account_circle</mat-icon>
+            Estudiante
+        </div>
+        <div class="card-option" [routerLink]="['/account/register/administrator']">
+            <mat-icon class="option-icon-user">assignment_ind</mat-icon>
+            Aliado
+        </div>
+        <div class="card-option" [routerLink]="['/account/register/administrator']">
+            <mat-icon class="option-icon-user">supervised_user_circle</mat-icon>
+            Administrador
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+</div>

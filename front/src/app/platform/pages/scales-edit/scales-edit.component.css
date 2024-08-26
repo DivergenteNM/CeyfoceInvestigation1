@@ -1,0 +1,40 @@
+.container-prop-scales-edit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.size-input-scales {
+    font-family: Roboto;
+    display: flex;
+    width: calc(100% - 50px);
+    border-radius: 10px;
+    padding: 10px;
+    border-color: var(--color-background-toolbar);
+    border: 2.5px solid var(--color-background-toolbar);
+    font-size: 1.2em;
+}
+
+.size-input-scales:focus {
+    outline: none;
+    border-color: var(--warn);
+}
+
+.container-prop-button-scales-edit {
+    /* background-color: red; */
+    display: flex;
+    width: 96%;
+    margin: 20px 0;
+    justify-content: flex-end;
+}
+
+.color-blue {
+    background-color: var(--color-background-toolbar-variant);
+    color: white;
+}
+
+.color-blue:hover {
+    background-color: var(--color-background-toolbar);
+}

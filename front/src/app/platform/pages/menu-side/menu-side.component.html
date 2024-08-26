@@ -1,0 +1,14 @@
+<div class="menu-icon-responsive" (click)="activateMenuResponsive()">
+    <mat-icon [class]="activateResponsive===false?'icon-menu':'transparent'">menu</mat-icon>
+</div>
+<div [class]="activateResponsive===false?'container-prop-menu':'container-prop-menu activate'">
+    <mat-icon [class]="activateResponsive===true?'icon-close':'transparent'" (click)="activateMenuResponsive()">close</mat-icon>
+    <ul class="ul-container-prop-menu">
+        <li *ngFor="let item of itemsApproved" class="li-container-prop-menu" [routerLink]="['/platform'+item.link]">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">{{item.icon}}</mat-icon>
+            <p class="text-menu-side-item">
+                {{item.title}}
+            </p>
+        </li>
+    </ul>
+</div>

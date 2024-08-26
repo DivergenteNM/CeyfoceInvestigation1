@@ -1,0 +1,129 @@
+.container-prop-institutions-create {
+    margin: 20px;
+    width: calc(100% - 40px);
+    font-family: Roboto;
+}
+
+.size-input-institutions {
+    font-family: Roboto;
+    display: flex;
+    width: calc(100% - 25px);
+    border-radius: 10px;
+    padding: 10px;
+    border-color: var(--color-background-toolbar);
+    border: 2.5px solid var(--color-background-toolbar);
+    font-size: 1.2em;
+}
+
+.size-input-institutions:focus {
+    outline: none;
+    border-color: var(--warn);
+}
+
+h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.container-prop-input {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.add-course {
+    font-size: 3em;
+    /* width: 100px; */
+    border-radius: 10px;
+    background-color: var(--color-background-toolbar);
+    color: white;
+    cursor: pointer;
+}
+
+.add-course:hover {
+    background-color: var(--color-background-toolbar-variant);
+}
+
+.add-course:focus {
+    outline: none;
+    border-color: var(--warn);
+}
+
+.size-input-institutions {
+    font-family: Roboto;
+    display: flex;
+    width: calc(100% - 25px);
+    border-radius: 10px;
+    padding: 10px;
+    border-color: var(--color-background-toolbar);
+    border: 2.5px solid var(--color-background-toolbar);
+    font-size: 1.2em;
+}
+
+.size-input-institutions:focus {
+    outline: none;
+    border-color: var(--warn);
+}
+
+.container-prop-buttons-institutions-create {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.button-institutions {
+    display: flex;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+}
+
+.button-institutions:hover {
+    box-shadow: 1px 1px 5px 1px rgba(90, 85, 85, 0.568);
+}
+
+.button-institutions:focus {
+    outline: none;
+    border-color: var(--warn);
+}
+
+.color-green {
+    background-color: var(--color-background-dark-green-1);
+}
+
+.special-size {
+    display: flex;
+    flex-direction: row;
+}
+
+.special-size>input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.special-size>button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.phase-button {
+    font-size: 1em;
+}
+
+.checkbox-permissions {
+    margin: 0 20px;
+    width: 15px;
+    height: 15px;
+}
+
+.x {
+    background-color: transparent;
+    border: 1px solid rgba(129, 127, 127, 0.76);
+    border-radius: 20%;
+    color: red;
+    margin-left: 20px;
+    cursor: pointer;
+}
