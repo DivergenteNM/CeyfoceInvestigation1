@@ -7,46 +7,59 @@ import { IndividualResultsComponent } from './pages/individual-results/individua
 import { ScalesCreateComponent } from './pages/scales-create/scales-create.component';
 import { ScalesEditComponent } from './pages/scales-edit/scales-edit.component';
 import { ScalesResultsComponent } from './pages/scales-results/scales-results.component';
+import { AuthGuard } from './guards/auth.guards';  // Importa AuthGuard
+import { ExcelComponent } from './pages/excel/excel.component';
 
-const routes:Routes = [
+const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
     children: [
       {
+        path: 'scales/excel',
+        component: ExcelComponent,
+        canLoad: [OnlyAdminGuard], // Requiere autenticación y ser admin
+        canActivate: [OnlyAdminGuard]
+      },
+      {
         path: 'scales/create',
         component: ScalesCreateComponent,
-        canLoad: [OnlyAdminGuard],
+        canLoad: [OnlyAdminGuard], // Requiere autenticación y ser admin
         canActivate: [OnlyAdminGuard]
       },
       {
         path: 'scales/edit',
         component: ScalesEditComponent,
-        canLoad: [OnlyAdminGuard],
+        canLoad: [OnlyAdminGuard], // Requiere autenticación y ser admin //AuthGuard
         canActivate: [OnlyAdminGuard]
       },
       {
         path: 'scales/results',
-        component: ScalesResultsComponent
+        component: ScalesResultsComponent,
+        //canActivate: [AuthGuard] // Solo requiere autenticación
       },
       {
         path: 'scales/resultsIndividual',
-        component: IndividualResultsComponent
+        component: IndividualResultsComponent,
+        //canActivate: [AuthGuard] // Solo requiere autenticación
       },
       {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        //canActivate: [AuthGuard] // Solo requiere autenticación
       },
       {
         path: 'institutions',
-        loadChildren: ()=>import('./pages/institutions/institutions.module').then(m=>m.InstitutionsModule),
+        loadChildren: () => import('./pages/institutions/institutions.module').then(m => m.InstitutionsModule),
         canLoad: [OnlyAdminGuard],
-        canActivate: [OnlyAdminGuard]
+        canActivate: [OnlyAdminGuard] // Requiere autenticación y ser admin //AuthGuard
       },
       {
         path: 'users',
-        loadChildren: ()=>import('./pages/users/users.module').then(m=>m.UsersModule)
-      },
+        loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule),
+        //canLoad: [AuthGuard],
+        //canActivate: [AuthGuard]
+      }, 
       {
         path: '**',
         redirectTo: 'scales/results'

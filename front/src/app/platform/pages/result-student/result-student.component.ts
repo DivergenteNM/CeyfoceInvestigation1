@@ -12,7 +12,9 @@ export class ResultStudentComponent implements OnInit {
   @Input() typesOfQUalification;
   @Input() index;
 
-  visible:boolean = false;
+  visible: boolean = false;
+  //Para poder ordenar la nueva lista
+  sortOrder: 'asc' | 'desc' = 'asc';
 
   constructor() { }
 
@@ -20,27 +22,46 @@ export class ResultStudentComponent implements OnInit {
   }
 
   more() {
-    if (this.visible===true) {
-      this.visible = false;
-    }else{
-      this.visible = true;
-    }
+    this.visible = !this.visible;
+    // if (this.visible===true) {
+    //   this.visible = false;
+    // }else{
+    //   this.visible = true;
+    // }
   }
 
-  getIndex(codeScale){
+  getIndex(codeScale) {
     for (let i = 0; i < this.scales.length; i++) {
-      if (this.scales[i].codeScale===codeScale) {
+      if (this.scales[i].codeScale === codeScale) {
         return i;
       }
-      
+
     }
   }
 
-  convertString(chain){
+  convertString(chain) {
     return parseInt(chain);
   }
 
-  typesOfQUalificationSearch(answerForm){
-    return this.typesOfQUalification.find(item=>item.codeType===answerForm).value;
+  typesOfQUalificationSearch(answerForm) {
+    return this.typesOfQUalification.find(item => item.codeType === answerForm).value;
+  }
+ 
+  //función de ordenamiento
+  sortStudents(field: string) {
+    this.data.sort((a, b) => {
+      let valueA = a[field];
+      let valueB = b[field];
+
+      if (field === 'course') {
+        valueA = parseInt(valueA);
+        valueB = parseInt(valueB);
+      }
+
+      if (valueA < valueB) return this.sortOrder === 'asc' ? -1 : 1;
+      if (valueA > valueB) return this.sortOrder === 'asc' ? 1 : -1;
+      return 0;
+    });
+    this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
   }
 }

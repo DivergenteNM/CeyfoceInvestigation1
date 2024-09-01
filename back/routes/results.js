@@ -11,49 +11,55 @@ const processFilters = require('./filterText');
 const TypeQualification = require('../models/typesOfQualification');
 
 /* GET home page. */
-router.post('/students', verifyToken, async function(req, res, next) {
+router.post('/students', verifyToken, async function (req, res, next) {
   const student = req.userId;
-  const {codeScale, resultsScale} = req.body;
-  const userExist = await UserStudent.findById(student, {password:0}).catch(err=>res.status(500).send("Base de datos desconectada"));
-  const scale = await scaleUnique.findOne({codeScale});
-  var valueQualification = await TypeQualification.findOne({codeType:scale.answerForm});
+  const { codeScale, resultsScale } = req.body;
+  const userExist = await UserStudent.findById(student, { password: 0 }).catch(err => res.status(500).send("Base de datos desconectada"));
+  const scale = await scaleUnique.findOne({ codeScale });
+  var valueQualification = await TypeQualification.findOne({ codeType: scale.answerForm });
   valueQualification = valueQualification.value;
 
-  if(userExist && scale){
+  if (userExist && scale) {
     var overallResult = 0;
     var phases = [];
     var aux = 0;
-    
+
     // Cálculo del resultado global
     for (let i = 0; i < scale.questions.length; i++) {
-        aux = 0;
-        if (scale.questions[i].typeOfQuestion === 'D') {
-            aux = resultsScale[i].charCodeAt(0) - 97;
-        } else {
-            aux = parseInt(valueQualification) - (resultsScale[i].charCodeAt(0) - 97);
-        }
-        overallResult += aux;
+      aux = 0;
+      if (scale.questions[i].typeOfQuestion === 'D') {
+        aux = resultsScale[i].charCodeAt(0) - 97;
+      } else {
+        aux = parseInt(valueQualification) - (resultsScale[i].charCodeAt(0) - 97);
+      }
+      overallResult += aux;
     }
+
+    console.log("hola" , {overallResult});
+
+    // // Escalar overallResult al rango de 0 a 100
+    // const maxPossibleScore = scale.questions.length * parseInt(valueQualification);
+    // overallResult = (overallResult / maxPossibleScore) * 100;
 
     // Cálculo de los promedios de las fases
     for (let i = 0; i < scale.factors.length; i++) {
-        aux = 0;
-        let count = 0;
-        for (let j = 0; j < scale.questions.length; j++) {
-            if(i === parseInt(scale.questions[j].factor)){
-                count++;
-                if (scale.questions[j].typeOfQuestion === 'D') {
-                    aux += resultsScale[j].charCodeAt(0) - 97;
-                } else {
-                    aux += parseInt(valueQualification) - (resultsScale[j].charCodeAt(0) - 97);
-                }
-            }
+      aux = 0;
+      let count = 0;
+      for (let j = 0; j < scale.questions.length; j++) {
+        if (i === parseInt(scale.questions[j].factor)) {
+          count++;
+          if (scale.questions[j].typeOfQuestion === 'D') {
+            aux += resultsScale[j].charCodeAt(0) - 97;
+          } else {
+            aux += parseInt(valueQualification) - (resultsScale[j].charCodeAt(0) - 97);
+          }
         }
-        if (count > 0) {
-            phases.push(aux / count); // Asegurarse de no dividir por cero
-        } else {
-            phases.push(0); // O manejar de otra manera si no hay preguntas para el factor
-        }
+      }
+      if (count > 0) {
+        phases.push(aux / count); // Asegurarse de no dividir por cero
+      } else {
+        phases.push(0); // O manejar de otra manera si no hay preguntas para el factor
+      }
     }
 
     const resultStudent = new Results({
@@ -64,20 +70,20 @@ router.post('/students', verifyToken, async function(req, res, next) {
       phases
     });
     await resultStudent.save();
-    res.status('200').json({'info':'¡¡¡ Gracias por responder !!!'})
+    res.status('200').json({ 'info': '¡¡¡ Gracias por responder !!!' })
   } else {
-    res.status('100').json({'info':'Usuario y/o escala no encontrados'});
+    res.status('100').json({ 'info': 'Usuario y/o escala no encontrados' });
   }
 });
 
-router.post('/filter', verifyToken, processFilters, async function(req, res, next) {
+router.post('/filter', verifyToken, processFilters, async function (req, res, next) {
   const idUser = req.userId;
   const arrayPipeline = req.filter;
   var scale = [];
 
-  const userAdmin = await UserAdmin.findById(idUser, {password:0}).catch(err => res.status(500).send("Base de datos desconectada"));
-  const institutionName = await Institutions.find({code: userAdmin.institution},{_id: 0, name: 1});
-  const scalesUniq = await scaleUnique.find({},{_id: 0, codeScale: 1, title: 1});
+  const userAdmin = await UserAdmin.findById(idUser, { password: 0 }).catch(err => res.status(500).send("Base de datos desconectada"));
+  const institutionName = await Institutions.find({ code: userAdmin.institution }, { _id: 0, name: 1 });
+  const scalesUniq = await scaleUnique.find({}, { _id: 0, codeScale: 1, title: 1 });
   for (let i = 0; i < req.body.length; i++) {
     if (req.body[i].name === "Escalas") {
       for (let j = 0; j < req.body[i].options.length; j++) {
@@ -141,77 +147,77 @@ router.post('/filter', verifyToken, processFilters, async function(req, res, nex
           {
             $match: arrayPipeline
           },
-          { $sort : { institution : 1 } }
+          { $sort: { institution: 1 } }
         ]
       )
-      .then(res => {
-        var auxText = [];
-        var residenceSector = []; 
-        var resultsScale = [];
-        var resultsPhases = [];
-        var resultsCodeScale = [];
-        var resultsOverallResult = [];
-        var flagAuth = 0;
-        for (let i = 0; i < res.length; i++) {
-          auxText = [];
-          residenceSector = [];
-          resultsScale = [];
-          resultsPhases = [];
-          resultsCodeScale = [];
-          resultsOverallResult = [];
-          flagAuth = 0;
-          for (let j = 0; j < res[i].resultsCodeScale.length; j++) {
-            for (let k = 0; k < scale.length; k++) {
-              if (res[i].resultsCodeScale[j] === scale[k].codeScale) {
-                auxText.push(scale[k].title);
-                resultsScale.push(res[i].resultsScale[j]);
-                resultsPhases.push(res[i].resultsPhases[j]);
-                resultsCodeScale.push(res[i].resultsCodeScale[j]);
-                resultsOverallResult.push(res[i].resultsOverallResult[j]);
-                flagAuth++;
+        .then(res => {
+          var auxText = [];
+          var residenceSector = [];
+          var resultsScale = [];
+          var resultsPhases = [];
+          var resultsCodeScale = [];
+          var resultsOverallResult = [];
+          var flagAuth = 0;
+          for (let i = 0; i < res.length; i++) {
+            auxText = [];
+            residenceSector = [];
+            resultsScale = [];
+            resultsPhases = [];
+            resultsCodeScale = [];
+            resultsOverallResult = [];
+            flagAuth = 0;
+            for (let j = 0; j < res[i].resultsCodeScale.length; j++) {
+              for (let k = 0; k < scale.length; k++) {
+                if (res[i].resultsCodeScale[j] === scale[k].codeScale) {
+                  auxText.push(scale[k].title);
+                  resultsScale.push(res[i].resultsScale[j]);
+                  resultsPhases.push(res[i].resultsPhases[j]);
+                  resultsCodeScale.push(res[i].resultsCodeScale[j]);
+                  resultsOverallResult.push(res[i].resultsOverallResult[j]);
+                  flagAuth++;
+                }
               }
             }
-          }
 
-          if (auxText.length === 0 || flagAuth !== scale.length) {
-            res.splice(i, 1);
-            i--;
-          } else {
-            res[i] = {
-              ...res[i],
-              resultsScale,
-              resultsPhases,
-              resultsCodeScale,
-              resultsOverallResult,
-              resultsTitleScale: auxText
-            };
+            if (auxText.length === 0 || flagAuth !== scale.length) {
+              res.splice(i, 1);
+              i--;
+            } else {
+              res[i] = {
+                ...res[i],
+                resultsScale,
+                resultsPhases,
+                resultsCodeScale,
+                resultsOverallResult,
+                resultsTitleScale: auxText
+              };
+            }
           }
-        }
-        return res;
-      });
-      res.status(200).json({"studentResults": studentResults});
+          return res;
+        });
+      res.status(200).json({ "studentResults": studentResults });
     } else {
-      res.status('401').json({'info':'Usuario no autorizado'});
+      res.status('401').json({ 'info': 'Usuario no autorizado' });
     }
   } else {
-    res.status('100').json({'info':'Usuario no encontrado'});
+    res.status('100').json({ 'info': 'Usuario no encontrado' });
   }
 });
 
-router.get('/scales', verifyToken, processFilters, async function(req, res, next) {
+router.get('/scales', verifyToken, processFilters, async function (req, res, next) {
   const idUser = req.userId;
 
-  const userAdmin = await UserAdmin.findById(idUser, {password:0}).catch(err => res.status(500).send("Base de datos desconectada"));
+  const userAdmin = await UserAdmin.findById(idUser, { password: 0 }).catch(err => res.status(500).send("Base de datos desconectada"));
   if (userAdmin) {
     if (userAdmin.role === 'SpAdmin' || userAdmin.role === 'Admin' || userAdmin.role === 'Ally') {
-      const scales = await scaleUnique.find({},{codeScale: 1, title: 1, questions: 1, _id: 0, factors: 1, answerForm: 1, baremosMnIg25: 1, baremosMyIg75: 1});
-      const typesOfQualification = await TypeQualification.find({},{codeType: 1, value: 1, _id: 0});
-      res.status(200).json({"scaleResults": scales, "typesOfQualification": typesOfQualification});
+      const scales = await scaleUnique.find({}, { codeScale: 1, title: 1, questions: 1, _id: 0, factors: 1, answerForm: 1, baremosMnIg25: 1, baremosMyIg75: 1 });
+      const typesOfQualification = await TypeQualification.find({}, { codeType: 1, value: 1, _id: 0 });
+      res.status(200).json({ "scaleResults": scales, "typesOfQualification": typesOfQualification });
     } else {
-      res.status('401').json({'info':'Usuario no autorizado'});
+      res.status('401').json({ 'info': 'Usuario no autorizado' });
     }
   } else {
-    res.status('100').json({'info':'Usuario no encontrado'});
+    res.status('100').json({ 'info': 'Usuario no encontrado' });
   }
 });
 

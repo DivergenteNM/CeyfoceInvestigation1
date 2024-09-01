@@ -30,6 +30,11 @@ export class MenuSideComponent implements OnInit {
       'link': '/scales/resultsIndividual',
       'title': 'Individual',
       'icon': 'find_in_page'
+    },
+    {
+      'link': '/scales/excel',
+      'title': 'Excel',
+      'icon': 'find_in_page'
     }
   ];
   itemsInstitutions = [

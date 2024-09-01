@@ -1,3 +1,23 @@
+.info-box {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+    margin: 10px auto;
+    background-color: #849DA2; /* Color de fondo suave */
+    border: 1px solid #ccc; /* Borde gris claro */
+    border-radius: 8px; /* Bordes redondeados */
+    text-align: center; /* Centrar el texto */
+    font-size: 18px; /* Tamaño de fuente */
+    font-weight: bold; /* Negrita */
+    color: #333; /* Color del texto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.3s ease; /* Transición para el efecto hover */
+}
+
+.info-box:hover {
+    transform: scale(1.02); /* Pequeño efecto de aumento al pasar el cursor */
+}
+
 .container-prop-institution-edit {
     display: flex;
     flex-direction: column;

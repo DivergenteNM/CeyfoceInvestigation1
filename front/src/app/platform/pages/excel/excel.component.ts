@@ -9,15 +9,32 @@ import { saveAs } from 'file-saver';
 })
 export class ExcelComponent implements OnInit {
 
-  @Input() data;
+  @Input() data: any[] = [];
   @Input() scales;
   @Input() typesOfQUalification;
   processedData = [];
+  //-yo
+  processedInstitutionData = [];
+  //
   activate: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
+    //---------------------
+    if (!Array.isArray(this.data)) {
+      this.data = [this.data];
+    }
+    
+    if (this.data.length === 0) {
+      console.error('Data is not defined or empty ngOninit');
+      return;
+    }
+
+    //this.processStudentData();
+    //this.processInstitutionData(); // Procesar datos por institución
+
+    //---------
     for (let i = 0; i < this.data.length; i++) {
       var student = {}
       student['nombre'] = this.data[i].name;
@@ -63,6 +80,22 @@ export class ExcelComponent implements OnInit {
 
   generar() {
     this.activate = false;
+    //
+    console.log(this.data);
+    if (!this.data || this.data.length === 0) {
+      console.error("Data is not defined or empty");
+      this.activate = true;
+      return;
+    }
+    if (!Array.isArray(this.data)) {
+      console.error("Data is not an array");
+      this.activate = true;
+      return;
+    }
+    console.log(this.data);
+
+    
+    //
     if (this.data.length > 0) {
       const ws_name = 'SomeSheet';
       const wb: WorkBook = { SheetNames: [], Sheets: {} };

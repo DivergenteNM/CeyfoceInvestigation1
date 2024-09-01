@@ -1,4 +1,9 @@
+<!-- <div class="info-box">
+    Aquí encontrará los usuarios que se han registrado. Verifique los datos, verifique la imagen del permiso y
+    autorice si es estudiante o no
+</div> -->
 <div class="container-prop-users">
+    
     <ul class="list-items">
         <div *ngIf="users.length===0 && !loading" class="item" style="justify-content: center;">Vacio</div>
         <div class="loading" *ngIf="loading"><mat-spinner></mat-spinner></div>
@@ -9,7 +14,8 @@
             <label *ngIf="style==='ally'">
                 {{user.institution}}
             </label>
-            <select class="select-list-item" *ngIf="style==='admin'" [(ngModel)]="user.institution" (change)="changeSelect(i)">
+            <select class="select-list-item" *ngIf="style==='admin'" [(ngModel)]="user.institution"
+                (change)="changeSelect(i)">
                 <option [value]="inst.name" *ngFor="let inst of institutions">{{inst.name}}</option>
             </select>
             <select class="select-list-item" *ngIf="style==='admin'" [(ngModel)]="user.role" (change)="changeSelect(i)">
@@ -20,7 +26,8 @@
             </select>
             <div *ngIf="style==='ally'" class="buttons">
                 <mat-icon class="button-img" (click)="showImage(user)">add_photo_alternate</mat-icon>
-                <select class="select-list-item" *ngIf="style==='ally'" [(ngModel)]="user.role" (change)="changeSelect(i)">
+                <select class="select-list-item" *ngIf="style==='ally'" [(ngModel)]="user.role"
+                    (change)="changeSelect(i)">
                     <option value="student">Estudiante</option>
                     <option value="None">None</option>
                 </select>

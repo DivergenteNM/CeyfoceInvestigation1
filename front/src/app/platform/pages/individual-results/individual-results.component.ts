@@ -74,7 +74,22 @@ export class IndividualResultsComponent implements OnInit {
           for (let i = 0; i < this.scales.length; i++) {
             titles.push(this.scales[i].title)
           }
-          this.data.push({
+          // this.data.push({
+          //   name: res.name,
+          //   age: res.age,
+          //   course: res.course,
+          //   email: res.email,
+          //   sex: res.sex,
+          //   institution: res.institution,
+          //   type: res.type,
+          //   residenceSector: res.residenceSector,
+          //   resultsCodeScale: res.resultsCodeScale,
+          //   resultsOverallResult: res.resultsOverallResult,
+          //   resultsPhases: res.resultsPhases,
+          //   resultsScale: res.resultsScale,
+          //   resultsTitleScale: titles,
+          // })
+          this.data = [{
             name: res.name,
             age: res.age,
             course: res.course,
@@ -88,7 +103,7 @@ export class IndividualResultsComponent implements OnInit {
             resultsPhases: res.resultsPhases,
             resultsScale: res.resultsScale,
             resultsTitleScale: titles,
-          })
+          }]
           for (let i = 0; i < res.codeType.length; i++) {
             this.types.push({
               codeType: res.codeType[i],

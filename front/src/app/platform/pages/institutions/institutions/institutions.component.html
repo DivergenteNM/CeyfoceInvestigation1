@@ -1,4 +1,7 @@
 <div class="container-prop-institutions-create">
+    <div class="info-box">
+        Agregar una nueva institución
+    </div>
     <div class="container-prop-input">
         <h3>Nombre de la institución</h3>
         <input type="text" class="size-input-institutions" [(ngModel)]="name">
@@ -24,7 +27,7 @@
         </select>
     </div>
     <div class="container-prop-input">
-        <h3>Permisos</h3>
+        <h3>Permisos (Que escala se evaluará o se presentará en esa institución)</h3>
         <div *ngFor="let scale of scales;let i=index">
             <input class="checkbox-permissions" type="checkbox" [checked]="scale.checked" (click)="changeChecked(i)">
             <label>{{scale.scale.title}}</label>

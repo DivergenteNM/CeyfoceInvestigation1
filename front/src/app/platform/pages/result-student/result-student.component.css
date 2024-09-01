@@ -1,3 +1,12 @@
+
+.label-result-individual {
+    width: 95px;
+    /* Ajusta el valor según necesites */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .container-prop-result-individual {
     display: flex;
     flex-direction: row;
@@ -13,6 +22,7 @@
 .container-prop-labels-result-individual {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     margin-left: 10px;
 }
@@ -50,6 +60,11 @@
     padding: 5px 8px;
     border-radius: 3px;
     background-color: var(--color-background-dark-green);
+    max-width: 150px;
+    /* Ajusta el valor según necesites */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .float {
@@ -172,32 +187,41 @@ li>label {
     .container-prop-labels-result-individual {
         overflow: hidden;
     }
+
     .two {
         display: none;
     }
+
     .container-prop-questions-result {
         overflow: scroll;
     }
+
     .institutionResponsive {
         display: flex;
     }
+
     .results-scales-factors {
         flex-direction: column;
         width: 100%;
     }
+
     ul>label {
         margin: 5px 0;
         padding-top: 10px;
     }
+
     ul>div {
         margin: 0;
     }
+
     .container-prop-factors-results {
         display: block;
     }
+
     .graph {
         width: 100%;
         margin: 0;
         padding: 0;
     }
 }
+

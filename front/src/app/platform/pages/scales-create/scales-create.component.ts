@@ -12,26 +12,75 @@ export class ScalesCreateComponent implements OnInit {
   code: string = '1';
   title: string = '';
   description: string = '';
-  answerForm:string = '';
-  titlePhase:string = '';
-  factors:string[] = [];
-  questions:any = [];
+  answerForm: string = '';
+  titlePhase: string = '';
+  factors: string[] = [];
+  questions: any = [];
   baremosMnIg25 = 0;
   baremosMyIg75 = 0;
+
+  //
+  editingIndex: number | null = null;
+  isEditing: boolean = false;
+  savePhase() {
+    const trimmedPhase = this.titlePhase.trim();
+    if (trimmedPhase !== '') {
+      // Verificar si el factor ya existe en la lista
+      const factorExists = this.factors.some(factor => factor.toLowerCase() === trimmedPhase.toLowerCase());
+      if (!factorExists) {
+        if (this.editingIndex !== null) {
+          this.factors[this.editingIndex] = trimmedPhase;
+          this.editingIndex = null;
+        } else {
+          this.factors.push(trimmedPhase);
+        }
+        this.titlePhase = '';
+      } else {
+        this.messageActivate = true;
+        this.messageTitle = 'Factor duplicado';
+        this.messageInfo = 'Este factor ya ha sido agregado.';
+        setTimeout(() => {
+          this.messageActivate = false;
+        }, 2500);
+      }
+    }
+  }
+
+
+  editPhase(index: number) {
+    this.titlePhase = this.factors[index];
+    this.editingIndex = index;
+    this.isEditing = true;
+  }
+
+  removePhase(index: number) {
+    this.factors.splice(index, 1);
+    if (this.isEditing && this.editingIndex === index) {
+      this.clearPhaseEditor();
+    }
+  }
+
+  clearPhaseEditor() {
+    this.titlePhase = '';
+    this.isEditing = false;
+    this.editingIndex = null;
+  }
+
+  //
 
   messageActivate: boolean = false;
   messageTitle: string = '';
   messageInfo: string = '';
   messageButton: boolean = false;
 
-  @Input() scale:any;
+  @Input() scale: any;
 
-  constructor(private platformServices:PlatformService, private router: Router) { }
+  constructor(private platformServices: PlatformService, private router: Router) { }
 
   ngOnInit(): void {
-    if(this.scale===undefined){
+    if (this.scale === undefined) {
       const scaleTemp = localStorage.getItem("scaleTemp");
-      if(scaleTemp){
+      if (scaleTemp) {
         const jsonSave = JSON.parse(scaleTemp);
         this.title = jsonSave.title;
         this.description = jsonSave.description;
@@ -42,7 +91,7 @@ export class ScalesCreateComponent implements OnInit {
         this.baremosMyIg75 = jsonSave.baremosMyIg75;
         localStorage.removeItem("scaleTemp");
       }
-    }else {
+    } else {
       this.code = this.scale.codeScale;
       this.title = this.scale.title;
       this.description = this.scale.description;
@@ -55,7 +104,7 @@ export class ScalesCreateComponent implements OnInit {
   }
 
   addFase() {
-    if(this.titlePhase.trim()!==''){
+    if (this.titlePhase.trim() !== '') {
       this.factors.push(this.titlePhase);
       this.titlePhase = '';
     }
@@ -69,7 +118,7 @@ export class ScalesCreateComponent implements OnInit {
     })
   }
 
-  responseQuestionComponent(e){
+  responseQuestionComponent(e) {
     const i = parseInt(e.index);
     this.questions[i] = e.question;
   }
@@ -85,7 +134,7 @@ export class ScalesCreateComponent implements OnInit {
   }
 
   sendScale() {
-    if(this.validate()){
+    if (this.validate()) {
       const sendJson = {
         'title': this.title,
         'description': this.description,
@@ -97,71 +146,87 @@ export class ScalesCreateComponent implements OnInit {
       }
       this.messageActivate = true;
       this.messageTitle = 'Enviando información';
-      this.messageInfo = `Espere un momento ...`;      
-      this.platformServices.sendScale(sendJson,this.code)
+      this.messageInfo = `Espere un momento ...`;
+      this.platformServices.sendScale(sendJson, this.code)
         .subscribe(res => {
           this.messageActivate = true;
           this.messageButton = true;
           this.messageTitle = res.info;
           this.messageInfo = ``;
-        },err=>{
-          if (err.status===500) {
+        }, err => {
+          if (err.status === 500) {
             var errorMessage = '';
             try {
               errorMessage = err.error.error.message;
             } catch (error) {
               errorMessage = '';
             }
-            
-            if(errorMessage==="invalid token"){
-              localStorage.setItem('scaleTemp',`${JSON.stringify(sendJson)}`);
+
+            if (errorMessage === "invalid token") {
+              localStorage.setItem('scaleTemp', `${JSON.stringify(sendJson)}`);
               localStorage.removeItem("auth");
               localStorage.removeItem("admissibleness");
               localStorage.removeItem("name");
               this.messageActivate = true;
               this.messageTitle = 'Usuario incorrecto !!!';
               this.messageInfo = `Vuelva a iniciar sesión`;
-              setInterval(()=>{
+              setInterval(() => {
                 this.router.navigate(['./account']);
-              },4000);
-            }else{
-              localStorage.setItem('scaleTemp',`${JSON.stringify(sendJson)}`);
+              }, 4000);
+            } else {
+              localStorage.setItem('scaleTemp', `${JSON.stringify(sendJson)}`);
               this.messageActivate = true;
               this.messageTitle = 'Error del servidor';
               this.messageInfo = err.error;
-              setInterval(()=>{
+              setInterval(() => {
                 this.router.navigate(['/']);
-              },5000);
+              }, 5000);
             }
-          }else{
+          } else {
             localStorage.removeItem("auth");
             localStorage.removeItem("admissibleness");
             localStorage.removeItem("name");
             this.messageActivate = true;
             this.messageTitle = 'Usuario no autorizado !!!';
             this.messageInfo = `Vuelva a iniciar sesión`;
-            setInterval(()=>{
+            setInterval(() => {
               this.router.navigate(['./account']);
-            },4000);
+            }, 4000);
           }
-        })    
-    }else{
+        })
+    } else {
       this.messageActivate = true;
       this.messageTitle = 'Espacios sin llenar';
       this.messageInfo = `Verifique que todos los espacios estén llenos`;
-      setInterval(()=>{
+      setInterval(() => {
         this.messageActivate = false;
         this.messageButton = false;
-      },5000);
+      }, 5000);
     }
   }
 
-  validate(){
-    if (this.title !== '' && this.description !== '' && this.answerForm !== '' && this.questions.length > 0) {
-      return true;
+  validate() {
+    if (
+        this.title.trim() !== '' &&
+        this.description.trim() !== '' &&
+        this.answerForm !== '' &&
+        this.factors.length > 0 &&
+        this.questions.length > 0 &&
+        this.baremosMnIg25 !== 0 &&
+        this.baremosMyIg75 !== 0
+    ) {
+        return true;
+    } else {
+        this.messageActivate = true;
+        this.messageTitle = 'Espacios sin llenar';
+        this.messageInfo = 'Por favor, complete todos los campos requeridos.';
+        setTimeout(() => {
+            this.messageActivate = false;
+        }, 3000);
+        return false;
     }
-    return false;
-  }
+}
+
 
   closeAlert() {
     this.messageActivate = false;
@@ -169,10 +234,10 @@ export class ScalesCreateComponent implements OnInit {
     this.clearAll();
     // this.router.navigate(['./platform/scales']);
     window.location.reload();
-    
+
   }
 
-  removePhase(i) {
-    this.factors.splice(i,1);
-  }
+  // removePhase(i) {
+  //   this.factors.splice(i,1);
+  // }
 }

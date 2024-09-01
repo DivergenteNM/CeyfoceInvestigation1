@@ -26,7 +26,7 @@ router.post('/login', async function(req, res, next) {
     if (passwordVerify) {
         if(user.emailVerify===''){
         const token = jwt.sign({id: user._id}, key.secret,{
-          expiresIn: 60*60*24*30*6
+          expiresIn: '4h'
         });
         var admissibleness = '';
         if(user.role==="SpAdmin"){
@@ -91,7 +91,7 @@ router.post('/register/student', async function(req, res, next){
     //const newStudent = new UserStudent({name,age,sex,course,residenceSector,institution,email,password,role:'student',emailVerify:'',file});
     const user = await newStudent.save();
     const token = jwt.sign({id: user._id}, key.secret,{
-      expiresIn: 60*60*24*30*6
+      expiresIn: '4h'
     });
     var admissibleness = "sl34mdms#fgd-6";
     res.status('200').json({'auth':token,'admissibleness':admissibleness,'name':user.name})

@@ -121,8 +121,11 @@
         <div class="title-input-file">
             <label class="flex info">Adjunte la imagen de permiso de los padres o el acudiente</label>
             <input class="flex" type="file" [formControl]="file" (change)="handleImage($event)" accept="image/png,image/jpeg,image/jpg">
-            <label class="flex info">Al cargar la imagen se acepta el tratamiento de los datos según la Ley 1581 de 2012</label>
+            <label class="flex info">Al cargar la imagen se acepta el tratamiento de los datos según 
+                <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=49981" target="_blank" rel="noopener noreferrer">Ley 1581 de 2012</a>
+            </label>
         </div>
+        
         <div class="container-prop-btn">
             <button class="btn-send" (click)="send()">Enviar</button>
         </div>

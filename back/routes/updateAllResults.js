@@ -36,7 +36,7 @@ async function updateAllResults(codeScale,scale){
                     }
                 }
             }
-            phases.push(aux/count);
+            phases.push((aux/count)*33);
         }
         await Results.findOneAndUpdate({_id:allResultsScale[m]._id},{$set: {overallResult, phases}});
     }

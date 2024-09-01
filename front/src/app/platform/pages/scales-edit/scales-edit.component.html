@@ -1,6 +1,9 @@
+<div class="info-box">
+    Seleccione una escala para editar o eliminar
+</div>
 <div class="container-prop-scales-edit" *ngIf="activate">
     <select class="size-input-scales" [(ngModel)]="scaleSelect">
-        <option >-- Seleccione una escala --</option>
+        <option>-- Seleccione una escala --</option>
         <option [value]="scale.codeScale" *ngFor="let scale of listScales">{{scale.title}}</option>
     </select>
     <div class="container-prop-button-scales-edit">

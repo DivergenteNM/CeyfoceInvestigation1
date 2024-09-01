@@ -19,6 +19,9 @@ import { GraphComponent } from './pages/graph/graph.component';
 import { IndividualGraphComponent } from './pages/individual-graph/individual-graph.component';
 import { ChartsModule } from 'ng2-charts';
 import { IndividualResultsComponent } from './pages/individual-results/individual-results.component';
+import { LoginAlertComponent } from './guards/components/login-alert/login-alert.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { IndividualResultsComponent } from './pages/individual-results/individua
     ExcelComponent,
     GraphComponent,
     IndividualGraphComponent,
-    IndividualResultsComponent
+    IndividualResultsComponent,
+    LoginAlertComponent
   ],
   exports: [
     ToolbarComponent

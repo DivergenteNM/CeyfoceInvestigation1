@@ -1,13 +1,12 @@
 <div class="container-prop-search-user">
+    <div class="info-box">
+        Seleccione el estudiante para mostrar sus resultados individualmente
+    </div>
     <h2 class="h2-container-prop-search-user">Búsqueda de estudiante por nombre</h2>
     <div class="search-user-mat">
         <mat-form-field class="search-user-mat-form">
-            <input type="text" class="size-input-scales"
-                   aria-label="Number"
-                   matInput
-                   [(ngModel)]="termino"
-                   [matAutocomplete]="auto"
-                   (input)="buscando()">
+            <input type="text" class="size-input-scales" aria-label="Number" matInput [(ngModel)]="termino"
+                [matAutocomplete]="auto" (input)="buscando()">
             <button class="x-close" (click)="delete()">x</button>
             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="search($event)">
                 <mat-option *ngIf="options.length===0 && termino.length>0">
@@ -20,6 +19,7 @@
         </mat-form-field>
     </div>
     <div class="content-student-results" *ngIf="dataStudentFlag">
-        <app-result-student class="app-student-results" [data]="data[0]" [scales]="scales" [typesOfQUalification]="types" [index]="1"></app-result-student>
+        <app-result-student class="app-student-results" [data]="data[0]" [scales]="scales"
+            [typesOfQUalification]="types" [index]="1"></app-result-student>
     </div>
 </div>

@@ -1,4 +1,7 @@
 <div class="container-prop-institution-edit" *ngIf="activate">
+    <div class="info-box">
+        Selecciones la institución que desee editar
+    </div>
     <select class="size-input-institution" [(ngModel)]="institutionSelect">
         <option >-- Seleccione una institución --</option>
         <option [value]="institution.code" *ngFor="let institution of listInstitutions">{{institution.name}}</option>
