@@ -65,6 +65,10 @@ export class IndividualResultsComponent implements OnInit {
                   answerForm: res.answerForm[j],
                   baremosMnIg25: res.baremosMnIg25[j],
                   baremosMyIg75: res.baremosMyIg75[j],
+                  baremosNegativo: res.baremosNegativo[j], //
+                  cualitativoNegativo: res.cualitativoNegativo[j],
+                  cualitativoIntermedio: res.cualitativoIntermedio[j],
+                  cualitativoPositivo: res.cualitativoPositivo[j],
                   codeScale: res.codeScale[j],
                   title: res.title[j],
                 })
@@ -74,22 +78,7 @@ export class IndividualResultsComponent implements OnInit {
           for (let i = 0; i < this.scales.length; i++) {
             titles.push(this.scales[i].title)
           }
-          // this.data.push({
-          //   name: res.name,
-          //   age: res.age,
-          //   course: res.course,
-          //   email: res.email,
-          //   sex: res.sex,
-          //   institution: res.institution,
-          //   type: res.type,
-          //   residenceSector: res.residenceSector,
-          //   resultsCodeScale: res.resultsCodeScale,
-          //   resultsOverallResult: res.resultsOverallResult,
-          //   resultsPhases: res.resultsPhases,
-          //   resultsScale: res.resultsScale,
-          //   resultsTitleScale: titles,
-          // })
-          this.data = [{
+          this.data.push({
             name: res.name,
             age: res.age,
             course: res.course,
@@ -103,7 +92,22 @@ export class IndividualResultsComponent implements OnInit {
             resultsPhases: res.resultsPhases,
             resultsScale: res.resultsScale,
             resultsTitleScale: titles,
-          }]
+          })
+          // this.data = [{
+          //   name: res.name,
+          //   age: res.age,
+          //   course: res.course,
+          //   email: res.email,
+          //   sex: res.sex,
+          //   institution: res.institution,
+          //   type: res.type,
+          //   residenceSector: res.residenceSector,
+          //   resultsCodeScale: res.resultsCodeScale,
+          //   resultsOverallResult: res.resultsOverallResult,
+          //   resultsPhases: res.resultsPhases,
+          //   resultsScale: res.resultsScale,
+          //   resultsTitleScale: titles,
+          // }]
           for (let i = 0; i < res.codeType.length; i++) {
             this.types.push({
               codeType: res.codeType[i],

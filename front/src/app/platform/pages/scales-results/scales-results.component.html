@@ -1,7 +1,14 @@
 <app-filtro></app-filtro>
 <div class="container-prop-results-students">
     <div class="info-box">
-        !!Resultados header !!
+        <p>En esta sección, puedes ver los resultados generales de cada escala. Usa el filtro para seleccionar el tipo
+            de
+            información que necesitas. Asegúrate de elegir al menos una escala para generar los resultados.</p>
+
+        <p> Cuando estés listo, haz clic en el botón rojo en la esquina inferior derecha para obtener los resultados.
+        </p>
+
+
     </div>
     <h2 *ngIf="!activateGraph && !activateExcel">Resultados</h2>
 
@@ -11,7 +18,7 @@
         <p>Amarillo:</p>
         <p>Rojo: </p>
     </div>
-    <div *ngIf="!activateGraph && !activateExcel" class="container-prop-list-data">
+    <div *ngIf="!activateGraph" class="container-prop-list-data">
         <div class="one" (click)="sortStudents('name')">
             <label>Nombre</label>
         </div>
@@ -138,8 +145,5 @@
         <button *ngIf="messageButton" class="button-primary color-azul" (click)="closeAlert()">Aceptar</button>
     </div>
 </div>
-<app-excel
-  [data]="data"
-  [scales]="scales"
-  [typesOfQUalification]="typesOfQUalification">
+<app-excel [data]="data" [scales]="scales" [typesOfQUalification]="typesOfQUalification">
 </app-excel>

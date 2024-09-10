@@ -11,6 +11,10 @@ const scalesAllSchema = new Schema({
     questions: { type: Array, required: true },
     baremosMnIg25: { type: String },
     baremosMyIg75: { type: String },
+    baremosNegativo: { type: Boolean, default: false },
+    cualitativoNegativo: { type: String },
+    cualitativoIntermedio: { type: String },
+    cualitativoPositivo: { type: String },
     fechaRegistro: { type: Date, default: Date(Date.now())}
 });
 

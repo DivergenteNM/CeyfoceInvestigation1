@@ -1,81 +1,47 @@
-<div class="container-prop-data">
-    <div>
-        <fieldset class="field">
-            <legend class="legend">
-              Nombre
-            </legend>
-            <div class="legend-text">{{nombre}}</div>
-        </fieldset>
-    </div>
-    <div>
-        <fieldset class="field">
-            <legend class="legend">
-                Email
-            </legend>
-            <div class="legend-text">{{email}}</div>
-        </fieldset>
-    </div>
-    <div *ngIf="edad">
-        <fieldset class="field">
-            <legend class="legend">
-                Edad
-            </legend>
-            <div class="legend-text">{{edad}}</div>
-        </fieldset>
-    </div>
-    <div *ngIf="sexo">
-        <fieldset class="field">
-            <legend class="legend">
-                Sexo
-            </legend>
-            <div class="legend-text">{{sexo}}</div>
-        </fieldset>
-    </div>
-    <div *ngIf="institucion">
-        <fieldset class="field">
-            <legend class="legend">
-                Institución
-            </legend>
-            <div class="legend-text">{{institucion}}</div>
-        </fieldset>
-    </div>
-    <div *ngIf="curso">
-        <fieldset class="field">
-            <legend class="legend">
-                Curso
-            </legend>
-            <div class="legend-text">{{curso}}</div>
-        </fieldset>
-    </div>
-    <div *ngIf="sectorResidencia">
-        <fieldset class="field">
-            <legend class="legend">
-                Sector de residencia
-            </legend>
-            <div class="legend-text">{{sectorResidencia}}</div>
-        </fieldset>
-    </div>
-    <div>
-        <fieldset class="field">
-            <legend class="legend">
-                Role
-            </legend>
-            <div class="legend-text">{{role}}</div>
-        </fieldset>
-    </div>
-    <div>
-        <fieldset class="field">
-            <legend class="legend">
-                Contraseña
-            </legend>
-            <div class="password">
-                <div class="legend-text">*************</div>
-                <button class="changePassword" (click)="changePassword()">Cambiar</button>
+<div class="profile-container">
+    <div class="profile-card">
+        <div class="profile-field">
+            <span class="profile-label">Nombre</span>
+            <span class="profile-value">{{ nombre }}</span>
+        </div>
+        <div class="profile-field">
+            <span class="profile-label">Email</span>
+            <span class="profile-value">{{ email }}</span>
+        </div>
+        <div class="profile-field" *ngIf="edad">
+            <span class="profile-label">Edad</span>
+            <span class="profile-value">{{ edad }}</span>
+        </div>
+        <div class="profile-field" *ngIf="sexo">
+            <span class="profile-label">Sexo</span>
+            <span class="profile-value">{{ sexo }}</span>
+        </div>
+        <div class="profile-field" *ngIf="institucion">
+            <span class="profile-label">Institución</span>
+            <span class="profile-value">{{ institucion }}</span>
+        </div>
+        <div class="profile-field" *ngIf="curso">
+            <span class="profile-label">Curso</span>
+            <span class="profile-value">{{ curso }}</span>
+        </div>
+        <div class="profile-field" *ngIf="sectorResidencia">
+            <span class="profile-label">Sector de residencia</span>
+            <span class="profile-value">{{ sectorResidencia }}</span>
+        </div>
+        <div class="profile-field">
+            <span class="profile-label">Role</span>
+            <span class="profile-value">{{ role }}</span>
+        </div>
+        <div class="profile-field">
+            <span class="profile-label">Contraseña</span>
+            <div class="password-container">
+                <span class="profile-value">*************</span>
+                <button class="change-password-btn" (click)="changePassword()">Cambiar</button>
             </div>
-        </fieldset>
+        </div>
     </div>
 </div>
 
-<div class="floating-messaje" *ngIf="loading">
+<div class="floating-message" *ngIf="loading">
     <mat-spinner></mat-spinner>
 </div>

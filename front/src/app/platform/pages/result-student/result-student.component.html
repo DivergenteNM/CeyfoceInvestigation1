@@ -4,16 +4,19 @@
         <label class="label-result-individual two">{{data.institution[0]}}</label>
         <label class="label-result-individual three">{{data.course}}</label>
         <div class="label-result-individual four">
-            <label class="label-overall-result" *ngFor="let resultTitle of data.resultsTitleScale;let m=index" 
-            [style]="convertString(data.resultsOverallResult[m])<=convertString(scales[getIndex(data.resultsCodeScale[m])].baremosMnIg25)?
-                'background-color: #bd2c2ce3;'
-            :
-                convertString(data.resultsOverallResult[m])>=convertString(scales[getIndex(data.resultsCodeScale[m])].baremosMyIg75)?
-                    'background-color: #217321eb;'
-                :
-                    'background-color: #ff8d00bf;'"
-            [title]="resultTitle">{{data.resultsOverallResult[m]}}</label>
+            <label class="label-overall-result" *ngFor="let resultTitle of data.resultsTitleScale; let m = index"
+                [ngStyle]="getStyle(m)" [title]="resultTitle">
+                {{ data.resultsOverallResult[m] }}
+            </label>
+
         </div>
+        <!-- 
+        <div class="label-result-individual four">
+            <label class="label-overall-result" *ngFor="let resultTitle of data.resultsTitleScale; let m = index"
+                [ngStyle]="getStyle(m)" [title]="resultTitle">baremos</label>
+
+        </div> -->
+
     </div>
     <button class="button-primary button-secundary float" (click)="more()">{{visible===true?'&#708;':'&#709;'}}</button>
 </div>
@@ -37,7 +40,7 @@
         <ul *ngFor="let scaleStudent of data.resultsCodeScale; let i=index">
             <label class="label-title">&#10095; {{data.resultsTitleScale[i]}}</label>
             <div class="container-prop-questions-result width-special">
-                <li *ngFor="let scaleQuestions of scales[getIndex(scaleStudent)].questions; let j=index" 
+                <li *ngFor="let scaleQuestions of scales[getIndex(scaleStudent)].questions; let j=index"
                     [title]="scaleQuestions.textQuestion">
                     <label>{{j+1}}</label>
                     <label>{{scales[getIndex(scaleStudent)].questions[j].typeOfQuestion==="D"?data.resultsScale[i][j].charCodeAt()-97:typesOfQUalificationSearch(scales[getIndex(scaleStudent)].answerForm)-data.resultsScale[i][j].charCodeAt()+97}}</label>
@@ -46,22 +49,28 @@
                     <label>Total</label>
                     <label>{{data.resultsOverallResult[i]}}</label>
                 </li>
+                
             </div>
+            <div class="qualitative-section">
+                <h3 *ngFor="let resultTitle of data.resultsTitleScale; let m = index" >Cualitativo: {{ getQualitativeMessage(m) }}</h3>
+              </div>
             <label class="label-title">&#10095; Factores</label>
             <div class="results-scales-factors">
                 <div class="width-special">
-                    <div *ngFor="let factor of scales[getIndex(scaleStudent)].factors;let k=index" class="container-prop-factors-results">
+                    <div *ngFor="let factor of scales[getIndex(scaleStudent)].factors;let k=index"
+                        class="container-prop-factors-results">
                         <label>{{factor}}:</label>
                         <label>{{data.resultsPhases[i][k]|number : '1.2-2'}}</label>
                     </div>
                 </div>
                 <div class="container-prop-factors-results graph">
-                    <app-individual-graph [barChartLabels]="scales[getIndex(scaleStudent)].factors" 
-                                        [data]="[data.resultsPhases[i]]"
-                                        [series]="[data.name+' - '+data.resultsTitleScale[i]]"></app-individual-graph>
+                    <app-individual-graph [barChartLabels]="scales[getIndex(scaleStudent)].factors"
+                        [data]="[data.resultsPhases[i]]"
+                        [series]="[data.name+' - '+data.resultsTitleScale[i]]"></app-individual-graph>
                 </div>
             </div>
         </ul>
+        <!-- --por petición borrarlas
         <div class="results-total">
             <label class="label-title">&#10095; Gráfica totales por escala</label>
             <div class="container-prop-factors-results graph">
@@ -69,12 +78,9 @@
                                         [data]="[data.resultsOverallResult]"
                                         [series]="[data.name]"></app-individual-graph>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 
-<app-excel
-  [data]="data"
-  [scales]="scales"
-  [typesOfQUalification]="typesOfQUalification">
+<app-excel [data]="data" [scales]="scales" [typesOfQUalification]="typesOfQUalification">
 </app-excel>

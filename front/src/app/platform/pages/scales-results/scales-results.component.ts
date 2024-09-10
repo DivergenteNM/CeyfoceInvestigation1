@@ -7,8 +7,9 @@ import { PlatformService } from '../../services/platform.service';
   styleUrls: ['./scales-results.component.css']
 })
 export class ScalesResultsComponent implements OnInit {
- //
+ //-----------------------------------------------------------yo
   @Input() data = [];  // Lista de estudiantes
+  //
   currentSortField: string = '';
   sortDirection: boolean = true; // true: ascendente, false: descendente
   sortStudents(field: string) {
@@ -66,7 +67,7 @@ export class ScalesResultsComponent implements OnInit {
 
   activateButtons: boolean = false;
   activateGraph: boolean = false;
-  activateExcel: boolean = false;
+  activateExcel: boolean = true;//
   activateResume: boolean = true;
   loading: boolean = false;
   activateAverageScaleInstitutions: boolean = false;
@@ -93,10 +94,10 @@ export class ScalesResultsComponent implements OnInit {
   constructor(private platformService: PlatformService) { }
 
   ngOnInit(): void {
-
-    if (this.scalesFilter.length === 0) {
-      this.showMessage('Debe seleccionar al menos una escala en el filtro para ver resultados', '');
-    }
+    //no lo veo necesario después del header
+    // if (this.scalesFilter.length === 0) {
+    //   this.showMessage('Debe seleccionar al menos una escala en el filtro para ver resultados', '');
+    // }
     this.platformService.getScalesResults()
       .subscribe(res => {
         this.scales = res.scaleResults;
@@ -110,7 +111,7 @@ export class ScalesResultsComponent implements OnInit {
           for (let j = 0; j < this.scales[i].factors.length; j++) {
             arrayAux.push(0);
           }
-          this.factorsScales.push(arrayAux);
+          this.factorsScales.push(arrayAux); //esto no es la lista de usuarios
         }
       })
 
@@ -129,7 +130,7 @@ export class ScalesResultsComponent implements OnInit {
   buttonSend() {
     this.activateButtons = false;
     this.activateGraph = false;
-    this.activateExcel = false;
+    this.activateExcel = true;
     // this.activateResume = true;
 
     var flagInstitutions = false;
@@ -152,7 +153,7 @@ export class ScalesResultsComponent implements OnInit {
     if (filterElements === null || contFilt === 0) {
       this.messageActivate = true;
       this.messageTitle = "Advertencia";
-      this.messageInfo = "Es necesario que seleccione al menos una escala"
+      this.messageInfo = "Es necesario que seleccione al menos una escala en el filtro arriba a la izquierda"
       this.messageButton = true;
     } else {
       this.loading = true;
@@ -178,7 +179,7 @@ export class ScalesResultsComponent implements OnInit {
         if (filterElements[p].name === "Instituciones" && filterElements[p].options.length > 0) {
           for (let q = 0; q < filterElements[p].options.length; q++) {
             if (filterElements[p].options[q].checked === true) {
-              this.nameOfInstitutions.push(filterElements[p].options[q].name);
+              this.nameOfInstitutions.push(filterElements[p].options[q].name);//da el nombree de las instituciones que salen
             }
           }
           if (this.nameOfInstitutions.length !== 0) {
@@ -200,7 +201,7 @@ export class ScalesResultsComponent implements OnInit {
                 for (let f = 0; f < scales.options.length; f++) {
                   if (scales.options[f].checked === true) {
                     flag = true;
-                    this.scalesFilter.push(scales.options[f].name);
+                    this.scalesFilter.push(scales.options[f].name); //aqui da las escalas que hay en el filtro, ejemplo escala de violencia, escala de estres, etc
                   }
                 }
               }
@@ -314,7 +315,7 @@ export class ScalesResultsComponent implements OnInit {
         arrayAuxAverageScale.push(0);
         arrayAuxFactor = [];
         for (let kndex = 0; kndex < this.scales[jndex].factors.length; kndex++) {
-          arrayAuxFactor.push(0);
+          arrayAuxFactor.push(0); //da la media de las escalas en el resumen de puntajes globales
         }
         arrayAuxScaleInstitution.push(arrayAuxFactor);
       }
@@ -326,7 +327,7 @@ export class ScalesResultsComponent implements OnInit {
 
   fillNumberStudents(size) {
     for (let i = 0; i < size; i++) {
-      this.numberOfStudents.push(0);
+      this.numberOfStudents.push(0); //la cantidad de estudiantes que hay
     }
   }
 

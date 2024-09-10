@@ -105,7 +105,7 @@ export class MenuSideComponent implements OnInit {
       }
     } else if (admissibleness === "1201fpj4/tmq-1") {
       if (path === 's') {
-        const array = [this.itemsScales[2]];
+        const array = [this.itemsScales[2]]; //, this.itemsScales[3]
         this.itemsApproved = array;
       } else if (path === 'u') {
         this.itemsApproved = this.itemsUsers;

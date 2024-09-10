@@ -23,4 +23,11 @@ export class AuthService {
         localStorage.removeItem('authToken');
         this.router.navigate(['/login']);
     }
+    signOff() {
+        localStorage.removeItem("name");
+        localStorage.removeItem("admissibleness");
+        localStorage.removeItem("auth");
+        localStorage.removeItem("scaleTemp");
+        window.location.reload();
+      }
 }

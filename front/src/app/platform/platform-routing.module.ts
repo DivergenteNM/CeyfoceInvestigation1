@@ -36,12 +36,15 @@ const routes: Routes = [
       {
         path: 'scales/results',
         component: ScalesResultsComponent,
+        canLoad: [OnlyAdminGuard], // Requiere autenticación y ser admin //AuthGuard
         //canActivate: [AuthGuard] // Solo requiere autenticación
       },
       {
         path: 'scales/resultsIndividual',
         component: IndividualResultsComponent,
+        canLoad: [OnlyAdminGuard], // Requiere autenticación y ser admin //AuthGuard
         //canActivate: [AuthGuard] // Solo requiere autenticación
+        
       },
       {
         path: 'profile',
@@ -57,7 +60,7 @@ const routes: Routes = [
       {
         path: 'users',
         loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule),
-        //canLoad: [AuthGuard],
+        //canLoad: [OnlyAdminGuard], //AuthGuard
         //canActivate: [AuthGuard]
       }, 
       {

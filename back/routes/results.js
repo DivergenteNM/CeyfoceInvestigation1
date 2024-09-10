@@ -35,7 +35,7 @@ router.post('/students', verifyToken, async function (req, res, next) {
       overallResult += aux;
     }
 
-    console.log("hola" , {overallResult});
+    console.log("hola", { overallResult });
 
     // // Escalar overallResult al rango de 0 a 100
     // const maxPossibleScore = scale.questions.length * parseInt(valueQualification);
@@ -210,15 +210,29 @@ router.get('/scales', verifyToken, processFilters, async function (req, res, nex
   const userAdmin = await UserAdmin.findById(idUser, { password: 0 }).catch(err => res.status(500).send("Base de datos desconectada"));
   if (userAdmin) {
     if (userAdmin.role === 'SpAdmin' || userAdmin.role === 'Admin' || userAdmin.role === 'Ally') {
-      const scales = await scaleUnique.find({}, { codeScale: 1, title: 1, questions: 1, _id: 0, factors: 1, answerForm: 1, baremosMnIg25: 1, baremosMyIg75: 1 });
+      const scales = await scaleUnique.find({}, {
+        codeScale: 1,
+        title: 1,
+        questions: 1,
+        _id: 0,
+        factors: 1,
+        answerForm: 1,
+        baremosMnIg25: 1,
+        baremosMyIg75: 1,
+        baremosNegativo: 1, // Agrega el campo baremosNegativo aquí
+        cualitativoNegativo: 1,
+        cualitativoIntermedio: 1,
+        cualitativoPositivo: 1,
+      });
       const typesOfQualification = await TypeQualification.find({}, { codeType: 1, value: 1, _id: 0 });
       res.status(200).json({ "scaleResults": scales, "typesOfQualification": typesOfQualification });
     } else {
-      res.status('401').json({ 'info': 'Usuario no autorizado' });
+      res.status(401).json({ 'info': 'Usuario no autorizado' }); // Corregido el código de estado a 401
     }
   } else {
-    res.status('100').json({ 'info': 'Usuario no encontrado' });
+    res.status(404).json({ 'info': 'Usuario no encontrado' }); // Corregido el código de estado a 404
   }
 });
+
 
 module.exports = router;

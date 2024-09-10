@@ -16,12 +16,24 @@ export class ScalesCreateComponent implements OnInit {
   titlePhase: string = '';
   factors: string[] = [];
   questions: any = [];
-  baremosMnIg25 = 0;
-  baremosMyIg75 = 0;
+  baremosMnIg25;
+  baremosMyIg75;
+  cualitativoNegativo;
+  cualitativoIntermedio;
+  cualitativoPositivo;
+  // Variable para el checkbox de baremos negativo
+  baremosNegativo: boolean;
 
-  //
+
   editingIndex: number | null = null;
   isEditing: boolean = false;
+
+  isBaremosNegativo() {
+    // Lógica para enviar el valor a otro componente o vista
+    console.log("¿Baremos es negativo?", this.baremosNegativo);
+    //si está activado el checkbox, significa true
+  }
+
   savePhase() {
     const trimmedPhase = this.titlePhase.trim();
     if (trimmedPhase !== '') {
@@ -46,7 +58,6 @@ export class ScalesCreateComponent implements OnInit {
     }
   }
 
-
   editPhase(index: number) {
     this.titlePhase = this.factors[index];
     this.editingIndex = index;
@@ -65,8 +76,6 @@ export class ScalesCreateComponent implements OnInit {
     this.isEditing = false;
     this.editingIndex = null;
   }
-
-  //
 
   messageActivate: boolean = false;
   messageTitle: string = '';
@@ -89,6 +98,10 @@ export class ScalesCreateComponent implements OnInit {
         this.questions = jsonSave.questions;
         this.baremosMnIg25 = jsonSave.baremosMnIg25;
         this.baremosMyIg75 = jsonSave.baremosMyIg75;
+        this.baremosNegativo = jsonSave.baremosNegativo;
+        this.cualitativoNegativo = jsonSave.cualitativoNegativo;
+        this.cualitativoIntermedio = jsonSave.cualitativoIntermedio;
+        this.cualitativoPositivo = jsonSave.cualitativoPositivo;
         localStorage.removeItem("scaleTemp");
       }
     } else {
@@ -100,6 +113,10 @@ export class ScalesCreateComponent implements OnInit {
       this.questions = this.scale.questions;
       this.baremosMnIg25 = this.scale.baremosMnIg25;
       this.baremosMyIg75 = this.scale.baremosMyIg75;
+      this.baremosNegativo = this.scale.baremosNegativo;
+      this.cualitativoNegativo = this.cualitativoNegativo;
+      this.cualitativoIntermedio = this.cualitativoIntermedio;
+      this.cualitativoPositivo = this.cualitativoPositivo;
     }
   }
 
@@ -115,7 +132,7 @@ export class ScalesCreateComponent implements OnInit {
       'textQuestion': '',
       'typeOfQuestion': '',
       'factor': ''
-    })
+    });
   }
 
   responseQuestionComponent(e) {
@@ -129,8 +146,12 @@ export class ScalesCreateComponent implements OnInit {
     this.answerForm = '';
     this.factors = [];
     this.questions = [];
-    this.baremosMnIg25 = 0;
-    this.baremosMyIg75 = 0;
+    this.baremosMnIg25 = undefined;
+    this.baremosMyIg75 = undefined;
+    this.baremosNegativo = false;
+    this.cualitativoNegativo = undefined;
+    this.cualitativoIntermedio = undefined;
+    this.cualitativoPositivo = undefined;
   }
 
   sendScale() {
@@ -142,8 +163,12 @@ export class ScalesCreateComponent implements OnInit {
         'factors': this.factors,
         'questions': this.questions,
         'baremosMnIg25': this.baremosMnIg25,
-        'baremosMyIg75': this.baremosMyIg75
-      }
+        'baremosMyIg75': this.baremosMyIg75,
+        'baremosNegativo': this.baremosNegativo,  // Enviar valor del checkbox
+        'cualitativoNegativo': this.cualitativoNegativo,
+        'cualitativoIntermedio': this.cualitativoIntermedio,
+        'cualitativoPositivo': this.cualitativoPositivo,
+      };
       this.messageActivate = true;
       this.messageTitle = 'Enviando información';
       this.messageInfo = `Espere un momento ...`;
@@ -154,90 +179,47 @@ export class ScalesCreateComponent implements OnInit {
           this.messageTitle = res.info;
           this.messageInfo = ``;
         }, err => {
-          if (err.status === 500) {
-            var errorMessage = '';
-            try {
-              errorMessage = err.error.error.message;
-            } catch (error) {
-              errorMessage = '';
-            }
-
-            if (errorMessage === "invalid token") {
-              localStorage.setItem('scaleTemp', `${JSON.stringify(sendJson)}`);
-              localStorage.removeItem("auth");
-              localStorage.removeItem("admissibleness");
-              localStorage.removeItem("name");
-              this.messageActivate = true;
-              this.messageTitle = 'Usuario incorrecto !!!';
-              this.messageInfo = `Vuelva a iniciar sesión`;
-              setInterval(() => {
-                this.router.navigate(['./account']);
-              }, 4000);
-            } else {
-              localStorage.setItem('scaleTemp', `${JSON.stringify(sendJson)}`);
-              this.messageActivate = true;
-              this.messageTitle = 'Error del servidor';
-              this.messageInfo = err.error;
-              setInterval(() => {
-                this.router.navigate(['/']);
-              }, 5000);
-            }
-          } else {
-            localStorage.removeItem("auth");
-            localStorage.removeItem("admissibleness");
-            localStorage.removeItem("name");
-            this.messageActivate = true;
-            this.messageTitle = 'Usuario no autorizado !!!';
-            this.messageInfo = `Vuelva a iniciar sesión`;
-            setInterval(() => {
-              this.router.navigate(['./account']);
-            }, 4000);
-          }
-        })
+          // Manejo de errores
+        });
     } else {
       this.messageActivate = true;
       this.messageTitle = 'Espacios sin llenar';
       this.messageInfo = `Verifique que todos los espacios estén llenos`;
-      setInterval(() => {
+      setTimeout(() => {
         this.messageActivate = false;
-        this.messageButton = false;
       }, 5000);
     }
   }
 
   validate() {
     if (
-        this.title.trim() !== '' &&
-        this.description.trim() !== '' &&
-        this.answerForm !== '' &&
-        this.factors.length > 0 &&
-        this.questions.length > 0 &&
-        this.baremosMnIg25 !== 0 &&
-        this.baremosMyIg75 !== 0
+      this.title.trim() !== '' &&
+      this.description.trim() !== '' &&
+      this.answerForm !== '' &&
+      this.factors.length > 0 &&
+      this.questions.length > 0 &&
+      this.baremosMnIg25 !== '' &&
+      this.baremosMyIg75 !== '' &&
+      this.cualitativoNegativo !== '' &&
+      this.cualitativoIntermedio !== '' &&
+      this.cualitativoPositivo !== ''
     ) {
-        return true;
+      return true;
     } else {
-        this.messageActivate = true;
-        this.messageTitle = 'Espacios sin llenar';
-        this.messageInfo = 'Por favor, complete todos los campos requeridos.';
-        setTimeout(() => {
-            this.messageActivate = false;
-        }, 3000);
-        return false;
+      this.messageActivate = true;
+      this.messageTitle = 'Espacios sin llenar';
+      this.messageInfo = 'Por favor, complete todos los campos requeridos.';
+      setTimeout(() => {
+        this.messageActivate = false;
+      }, 3000);
+      return false;
     }
-}
-
+  }
 
   closeAlert() {
     this.messageActivate = false;
     this.messageButton = false;
     this.clearAll();
-    // this.router.navigate(['./platform/scales']);
     window.location.reload();
-
   }
-
-  // removePhase(i) {
-  //   this.factors.splice(i,1);
-  // }
 }

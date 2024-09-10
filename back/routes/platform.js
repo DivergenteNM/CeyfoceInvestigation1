@@ -15,30 +15,32 @@ const sendEmailCode = require('./sendEmail');
 router.post('/createScale/:code', verifyToken, async function(req, res, next) {
   var codeScale = req.params.code;
   const editor = req.userId;
-  const {title, description, answerForm, factors, questions, baremosMnIg25, baremosMyIg75} = req.body;
+  const { title, description, answerForm, factors, questions, baremosMnIg25, baremosMyIg75, baremosNegativo, cualitativoNegativo, cualitativoIntermedio, cualitativoPositivo } = req.body; // Añadir baremosNegativo
+
   const userExist = await User.findById(editor, {password:0}).catch(err=>res.status(500).send("Base de datos desconectada"));
-  // console.log(code,title,description,answerForm, questions);
+  
   if(userExist.role==='SpAdmin'){
     if(codeScale==='1'){
       codeScale = random(5, {letters: 'ABCDEFG'});
-      const newScaleAll = new scaleAll({codeScale, title, description, editor, answerForm, factors, questions, baremosMnIg25, baremosMyIg75});
-      const newScaleUnique = new scaleUnique({codeScale, title, description, editor, answerForm, factors, questions, baremosMnIg25, baremosMyIg75});
+      const newScaleAll = new scaleAll({codeScale, title, description, editor, answerForm, factors, questions, baremosMnIg25, baremosMyIg75, baremosNegativo, cualitativoNegativo, cualitativoIntermedio, cualitativoPositivo}); // Incluir baremosNegativo
+      const newScaleUnique = new scaleUnique({codeScale, title, description, editor, answerForm, factors, questions, baremosMnIg25, baremosMyIg75, baremosNegativo, cualitativoNegativo, cualitativoIntermedio, cualitativoPositivo}); // Incluir baremosNegativo
       await newScaleAll.save();
       await newScaleUnique.save();
       res.status('200').json({'info':'¡¡¡ Creación exitosa !!!'})
-    }else{
+    } else {
       //Es edición
-      const newScaleAll = new scaleAll({codeScale, title, description, editor, answerForm, factors ,questions, baremosMnIg25, baremosMyIg75});
-      const newScaleUnique = await scaleUnique.findOneAndUpdate({codeScale},{$set: {title, description, editor, answerForm, factors, questions, baremosMnIg25, baremosMyIg75}});
+      const newScaleAll = new scaleAll({codeScale, title, description, editor, answerForm, factors ,questions, baremosMnIg25, baremosMyIg75, baremosNegativo, cualitativoNegativo, cualitativoIntermedio, cualitativoPositivo}); // Incluir baremosNegativo
+      const newScaleUnique = await scaleUnique.findOneAndUpdate({codeScale}, {$set: {title, description, editor, answerForm, factors, questions, baremosMnIg25, baremosMyIg75, baremosNegativo, cualitativoNegativo, cualitativoIntermedio, cualitativoPositivo}}); // Incluir baremosNegativo
       await newScaleAll.save();
       await newScaleUnique.save();
       res.status('200').json({'info':'¡¡¡ Editado !!!'})
       await updateAllResults(codeScale,newScaleAll);
     }
-  }else {
+  } else {
     res.status('401').json({'info':'Usuario no autorizado'});
   }
 });
+
 
 router.post('/createTypesOfQualification',verifyToken, async function(req,res){
   const {value,text,options} = req.body;
@@ -270,6 +272,10 @@ router.post('/dataStudent', verifyToken, async function(req, res) {
               answerForm: "$scale.answerForm",
               baremosMnIg25: "$scale.baremosMnIg25",
               baremosMyIg75: "$scale.baremosMyIg75",
+              baremosNegativo: "$scale.baremosNegativo", //
+              cualitativoNegativo: "$scale.cualitativoNegativo",
+              cualitativoIntermedio: "$scale.cualitativoIntermedio",
+              cualitativoPositivo: "$scale.cualitativoPositivo",
               codeScale: "$scale.codeScale",
               title: "$scale.title",
               codeType: "$typesQ.codeType",

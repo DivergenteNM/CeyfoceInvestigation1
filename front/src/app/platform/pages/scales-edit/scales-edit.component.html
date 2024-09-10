@@ -1,5 +1,5 @@
 <div class="info-box">
-    Seleccione una escala para editar o eliminar
+    Seleccione una escala para editar
 </div>
 <div class="container-prop-scales-edit" *ngIf="activate">
     <select class="size-input-scales" [(ngModel)]="scaleSelect">
@@ -8,7 +8,24 @@
     </select>
     <div class="container-prop-button-scales-edit">
         <button class="button-primary button-secundary color-blue" (click)="edit()">Editar</button>
-        <button (click)="deleteScale(scale.id)">Eliminar Escala</button>
+        <!-- <button (click)="deleteScale(scale.code)">Eliminar Escala</button> -->
     </div>
 </div>
 <app-scales-create *ngIf="!activate" [scale]="scale"></app-scales-create>
+
+
+
+<!-- <div class="info-box">
+    Seleccione una escala para editar o eliminar
+</div>
+<div class="container-prop-scales-edit" *ngIf="activate">
+    <select class="size-input-scales" [(ngModel)]="scaleSelect">
+        <option [ngValue]="null">-- Seleccione una escala --</option>
+        <option *ngFor="let scale of listScales" [ngValue]="scale">{{scale.title}}</option>
+    </select>
+    <div class="container-prop-button-scales-edit">
+        <button class="button-primary button-secundary color-blue" (click)="edit()">Editar</button>
+        <button (click)="deleteScale()">Eliminar Escala</button>
+    </div>
+</div>
+<app-scales-create *ngIf="!activate" [scale]="scale"></app-scales-create> -->

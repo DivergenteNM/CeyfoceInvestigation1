@@ -134,6 +134,13 @@ ul>div {
     padding-left: 15px;
 }
 
+.qualitative-section h3 {
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: normal;
+    color: #fff;
+  }
+
 li {
     display: flex;
     flex-direction: column;

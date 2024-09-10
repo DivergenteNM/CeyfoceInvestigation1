@@ -20,6 +20,12 @@ export class AuthGuard implements CanActivate {
             // Esperar a que el usuario cierre la ventana emergente
             dialogRef.afterClosed().subscribe(() => {
                 this.router.navigate(['./account/login']); // Redirige después de cerrar la ventana
+                //no debería
+                // localStorage.removeItem("name");
+                // localStorage.removeItem("admissibleness");
+                // localStorage.removeItem("auth");
+                // localStorage.removeItem("scaleTemp");
+                // window.location.reload();
             });
 
             return false;
