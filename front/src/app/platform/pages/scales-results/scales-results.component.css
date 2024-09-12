@@ -316,3 +316,43 @@
         justify-content: start;
     }
 }
+
+
+.latest-summary {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    background-color: var(--color-background-light-green);
+    border-radius: 10px;
+    padding: 25px;
+    margin-top: 40px;
+}
+
+.resume-summary {
+    display: flex;
+    flex-direction: column;
+}
+
+.resume-summary>h3 {
+    text-align: center;
+    font-size: 20px;
+}
+
+.result-graph-container {
+    display: flex;
+    justify-content: space-between; /* Espacio entre el resultado y la gráfica */
+    margin-bottom: 20px; /* Espacio entre bloques */
+}
+
+.result-info {
+    flex: 1; /* Ocupa el espacio restante */
+}
+
+.container-prop-factors-results {
+    flex: 1; /* Ocupa el espacio restante */
+}
+
+.graph {
+    width: 100%; /* Asegura que la gráfica ocupe todo el espacio disponible */
+    height: 320px; /* Ajusta la altura de la gráfica según lo necesites */
+}

@@ -7,7 +7,8 @@ import { PlatformService } from '../../services/platform.service';
   styleUrls: ['./scales-results.component.css']
 })
 export class ScalesResultsComponent implements OnInit {
- //-----------------------------------------------------------yo
+  //-----------------------------------------------------------yo
+
   @Input() data = [];  // Lista de estudiantes
   //
   currentSortField: string = '';
@@ -377,3 +378,4 @@ export class ScalesResultsComponent implements OnInit {
     this.activateResume = false;
   }
 }
+

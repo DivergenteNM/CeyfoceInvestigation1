@@ -14,9 +14,9 @@
 
     <div class="semaforo-info">
         <h3>El significado de cada color es:</h3>
-        <p>Verde:</p>
-        <p>Amarillo:</p>
-        <p>Rojo: </p>
+        <p>Verde: Algo positivo</p>
+        <p>Amarillo: Algo que se debe tener preocupación</p>
+        <p>Rojo: Algo con signo de alerta y con urgencia de ayuda</p>
     </div>
     <div *ngIf="!activateGraph" class="container-prop-list-data">
         <div class="one" (click)="sortStudents('name')">
@@ -119,6 +119,35 @@
             </ng-container>
         </div>
     </div>
+    <div *ngIf="activateResume" class="latest-summary">
+        <div class="resume-summary">
+            <h3 class="title-submodule">Resumen puntajes globales de las instituciones</h3>
+            <ng-container *ngFor="let scale of scales; let i=index">
+                <div *ngIf="isSelectedScale(scale.title)" class="result-graph-container">
+                    <div class="result-info">
+                        &#10148; Media {{scale.title}} {{'---- ' + (totalAverageScale[i] ? (totalAverageScale[i] |
+                        number : '1.2-2') : 0)}}
+                        <label class="label-info-factor" *ngIf="scale.factors.length > 0">Media por factor:</label>
+                        <ul class="list-items-factors">
+                            <li *ngFor="let factor of scale.factors; let j=index">{{factor}}:
+                                {{factorsScales[i][j] ? (factorsScales[i][j] | number : '1.2-2') : 0}}</li>
+                        </ul>
+                    </div>
+
+                    <!-- Canvas for chart -->
+                    <div class="container-prop-factors-results graph">
+                        <app-individual-graph [barChartLabels]="scale.factors" [data]="[factorsScales[i]]"
+                            [series]="[scale.title]" [horizontal]="false">
+                        </app-individual-graph>
+                    </div>
+                    <hr>
+
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+
 </div>
 <div class="container-prop-button-send">
     <button *ngIf="activateButtons" class="button-send download"

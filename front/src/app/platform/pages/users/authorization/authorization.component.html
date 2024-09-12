@@ -3,54 +3,59 @@
     autorice si es estudiante o no
 </div> -->
 <div class="container-prop-users">
-    
     <ul class="list-items">
-        <div *ngIf="users.length===0 && !loading" class="item" style="justify-content: center;">Vacio</div>
+        <div *ngIf="users.length === 0 && !loading" class="item" style="justify-content: center;">Vacio</div>
         <div class="loading" *ngIf="loading"><mat-spinner></mat-spinner></div>
-        <li class="item" *ngFor="let user of users;let i=index">
-            <label>
-                {{user.name}}
-            </label>
-            <label *ngIf="style==='ally'">
-                {{user.institution}}
-            </label>
-            <select class="select-list-item" *ngIf="style==='admin'" [(ngModel)]="user.institution"
-                (change)="changeSelect(i)">
-                <option [value]="inst.name" *ngFor="let inst of institutions">{{inst.name}}</option>
+        <li class="item" *ngFor="let user of users; let i = index">
+          <label class="column name">{{ user.name }}</label>
+      
+          <!-- Condicional para mostrar 'institution' -->
+          <label class="column institution" *ngIf="style === 'ally'">{{ user.institution }}</label>
+      
+          <!-- Select para cambiar 'institution' (solo admin) -->
+          <select class="select-list-item column" *ngIf="style === 'admin'" [(ngModel)]="user.institution" (change)="changeSelect(i)">
+            <option [value]="inst.name" *ngFor="let inst of institutions">{{ inst.name }}</option>
+          </select>
+      
+          <!-- Select para cambiar 'role' -->
+          <select class="select-list-item column" *ngIf="style === 'admin'" [(ngModel)]="user.role" (change)="changeSelect(i)">
+            <option value="SpAdmin">SuperAdmin</option>
+            <option value="Admin">Administrador</option>
+            <option value="Ally">Aliado</option>
+            <option value="None">Ninguno</option>
+          </select>
+      
+          <!-- Sección de botones -->
+          <div *ngIf="style === 'ally'" class="buttons column">
+            <mat-icon class="button-img" (click)="showImage(user)">add_photo_alternate</mat-icon>
+            <select class="select-list-item column" [(ngModel)]="user.role" (change)="changeSelect(i)">
+              <option value="student">Estudiante</option>
+              <option value="None">None</option>
             </select>
-            <select class="select-list-item" *ngIf="style==='admin'" [(ngModel)]="user.role" (change)="changeSelect(i)">
-                <option value="SpAdmin">SuperAdmin</option>
-                <option value="Admin">Administrador</option>
-                <option value="Ally">Aliado</option>
-                <option value="None">Ninguno</option>
-            </select>
-            <div *ngIf="style==='ally'" class="buttons">
-                <mat-icon class="button-img" (click)="showImage(user)">add_photo_alternate</mat-icon>
-                <select class="select-list-item" *ngIf="style==='ally'" [(ngModel)]="user.role"
-                    (change)="changeSelect(i)">
-                    <option value="student">Estudiante</option>
-                    <option value="None">None</option>
-                </select>
-            </div>
+          </div>
         </li>
-    </ul>
+      </ul>
+      
+
     <div class="container-prop-buttons-scales-create">
         <button class="button-scales color-green" (click)="sendData()">Guardar</button>
     </div>
 </div>
 
-<div *ngIf="messageActivate" class="floating-messaje">
+<!-- Mensaje flotante -->
+<div *ngIf="messageActivate" class="floating-message">
     <div>
         <h2>{{messageTitle}}</h2>
-        <div class="center-message-info" *ngIf="messageInfo===''">
+        <div class="center-message-info" *ngIf="messageInfo === ''">
             <mat-spinner></mat-spinner>
         </div>
-        <h3 class="center-message-info" *ngIf="messageInfo!==''">{{messageInfo}}</h3>
+        <h3 class="center-message-info" *ngIf="messageInfo !== ''">{{messageInfo}}</h3>
         <button class="button-primary color-azul" (click)="closeAlert()">Aceptar</button>
     </div>
 </div>
 
-<div *ngIf="imageActive" class="floating-messaje">
+<!-- Ventana emergente para imagen -->
+<div *ngIf="imageActive" class="floating-message">
     <mat-icon class="close" (click)="close()">close</mat-icon>
-    <img class="size-img-permission" [src]="url" alt="">
+    <img class="size-img-permission" [src]="url" alt="Imagen del usuario">
 </div>

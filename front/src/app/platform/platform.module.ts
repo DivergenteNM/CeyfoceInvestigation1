@@ -22,6 +22,9 @@ import { IndividualResultsComponent } from './pages/individual-results/individua
 import { LoginAlertComponent } from './guards/components/login-alert/login-alert.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 
 @NgModule({
   declarations: [

@@ -10,7 +10,7 @@
             <button class="x-close" (click)="delete()">x</button>
             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="search($event)">
                 <mat-option *ngIf="options.length===0 && termino.length>0">
-                    No se a encontrado ' {{termino}} '
+                    No se ha encontrado '{{termino}}'
                 </mat-option>
                 <mat-option *ngFor="let option of options" [value]="option">
                     {{option}}
@@ -20,6 +20,6 @@
     </div>
     <div class="content-student-results" *ngIf="dataStudentFlag">
         <app-result-student class="app-student-results" [data]="data[0]" [scales]="scales"
-            [typesOfQUalification]="types" [index]="1"></app-result-student>
+            [typesOfQualification]="types" [index]="1"></app-result-student>
     </div>
 </div>

@@ -25,30 +25,57 @@
 
 .list-items {
     display: flex;
+    flex-direction: column;
     width: 90%;
     margin: 20px 5%;
     padding: 0;
-    /* background-color: green; */
-    flex-direction: column;
 }
 
 .item {
     display: flex;
-    list-style: none;
-    background-color: var(--color-background-dark-green);
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
     margin: 10px 0;
+    background-color: var(--color-background-dark-green);
     border-radius: 10px;
     font-size: 1.1em;
     color: white;
+    list-style: none;
 }
 
+.column {
+    flex: 1;
+    padding: 5px 10px;
+    text-align: left;
+}
+
+/* Ajusta el ancho específico de cada columna */
+.column.name {
+    flex: 4; /* Más espacio para el nombre */
+}
+
+.column.institution {
+    flex: 1; /* Espacio para la institución */
+}
+
+.column.select-list-item {
+    flex: 1; /* Ajustar el espacio para los selectores */
+}
+
+/* Estilo de los selectores */
 .select-list-item {
-    display: flex;
     border-radius: 10px;
     padding: 5px;
+    width: 100%;
+}
+
+/* Flexibilidad para botones */
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 .select-list-item:focus {

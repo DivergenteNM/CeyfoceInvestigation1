@@ -49,11 +49,12 @@
                     <label>Total</label>
                     <label>{{data.resultsOverallResult[i]}}</label>
                 </li>
-                
+
             </div>
+            <!-- Muestra el mensaje cualitativo únicamente para la escala actual -->
             <div class="qualitative-section">
-                <h3 *ngFor="let resultTitle of data.resultsTitleScale; let m = index" >Cualitativo: {{ getQualitativeMessage(m) }}</h3>
-              </div>
+                <h3>Cualitativo: {{ getQualitativeMessage(i) }}</h3>
+            </div>
             <label class="label-title">&#10095; Factores</label>
             <div class="results-scales-factors">
                 <div class="width-special">
@@ -82,5 +83,5 @@
     </div>
 </div>
 
-<app-excel [data]="data" [scales]="scales" [typesOfQUalification]="typesOfQUalification">
-</app-excel>
+<!-- <app-excel [data]="data" [scales]="scales" [typesOfQUalification]="typesOfQUalification">
+</app-excel> -->

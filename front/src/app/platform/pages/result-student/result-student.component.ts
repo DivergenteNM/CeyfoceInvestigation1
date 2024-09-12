@@ -28,18 +28,9 @@ export class ResultStudentComponent implements OnInit {
     }
 
     const baremosNegativo = scale.baremosNegativo;
-    // const cualitativoNegativo = scale.cualitativoNegativo;
-    // const cualitativoIntermedio = scale.cualitativoIntermedio;
-    // const cualitativoPositivo = scale.cualitativoPositivo;
-
     const result = this.convertString(this.data.resultsOverallResult[m]);
     const baremosMnIg25 = this.convertString(scale.baremosMnIg25);
     const baremosMyIg75 = this.convertString(scale.baremosMyIg75);
-    //console.log("Objeto scale:", scale);
-
-    // console.log("cualitativo: ", cualitativoNegativo);
-    // console.log("cualitativo: ", cualitativoIntermedio);
-    // console.log("cualitativo: ", cualitativoPositivo);
 
     if (baremosNegativo) {
       if (result <= baremosMnIg25) {
@@ -56,8 +47,6 @@ export class ResultStudentComponent implements OnInit {
       }
       return { 'background-color': '#ff8d00bf' }; // Color default sin baremosNegativo
     }
-
-
   }
 
   getQualitativeMessage(m: number): string {
