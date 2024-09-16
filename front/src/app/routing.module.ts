@@ -9,6 +9,11 @@ const adm = localStorage.getItem('admissibleness');
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+  {
+    path: 'home',
     component: HomePrincipalComponent,
     pathMatch: 'full',
   },

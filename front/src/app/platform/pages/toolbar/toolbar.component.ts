@@ -9,17 +9,22 @@ export class ToolbarComponent implements OnInit {
 
   tabs = [
     {
-      'link': '/scales',
+      'link': '/home',
+      'title': 'Inicio',
+      'icon': 'home'
+    },
+    {
+      'link': '/platform/scales',
       'title': 'Escalas',
       'icon': 'assessment'
     },
     {
-      'link': '/institutions',
+      'link': '/platform/institutions',
       'title': 'Instituciones',
       'icon': 'store'
     },
     {
-      'link': '/users',
+      'link': '/platform/users',
       'title': 'Usuarios',
       'icon': 'supervised_user_circle'
     }

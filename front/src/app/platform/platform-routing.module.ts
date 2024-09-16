@@ -9,12 +9,22 @@ import { ScalesEditComponent } from './pages/scales-edit/scales-edit.component';
 import { ScalesResultsComponent } from './pages/scales-results/scales-results.component';
 import { AuthGuard } from './guards/auth.guards';  // Importa AuthGuard
 import { ExcelComponent } from './pages/excel/excel.component';
+import { HomePrincipalComponent } from '../components/home-principal/home-principal.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
     children: [
+      {
+        path: 'home',
+        redirectTo: '',
+        pathMatch: 'full'
+      },
+      {
+        path: 'home',
+        component: HomePrincipalComponent
+      },
       {
         path: 'scales/excel',
         component: ExcelComponent,
@@ -66,6 +76,7 @@ const routes: Routes = [
       {
         path: '**',
         redirectTo: 'scales/results'
+        
       }
     ]
   }
