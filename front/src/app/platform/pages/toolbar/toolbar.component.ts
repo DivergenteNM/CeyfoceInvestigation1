@@ -40,16 +40,24 @@ export class ToolbarComponent implements OnInit {
     if (admissibleness==='6465asd7#asd-1') {
       this.generatetabs = this.tabs;
     }else if(admissibleness==="1201fpj4/tmq-1"){
-      const array = [this.tabs[0],this.tabs[2]];
+      const array = [this.tabs[0],this.tabs[1],this.tabs[3]];
       this.generatetabs = array;
     }else if(admissibleness==="8435dpe1+nrs-3"){
-      const array = [this.tabs[0]];
+      const array = [this.tabs[0],this.tabs[1]];
       this.generatetabs = array;
     }
   }
 
   dropdownMenu() {
     this.visibleFloatingMenu = !this.visibleFloatingMenu;
+  }
+
+  showMenu(): void {
+    this.visibleFloatingMenu = true;
+  }
+
+  hideMenu(): void {
+    this.visibleFloatingMenu = false;
   }
 
   signOff() {

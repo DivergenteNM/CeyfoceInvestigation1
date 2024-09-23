@@ -13,8 +13,6 @@ export class ResultStudentComponent implements OnInit {
   @Input() index;
 
   visible: boolean = false;
-  //Para poder ordenar la nueva lista
-  sortOrder: 'asc' | 'desc' = 'asc';
 
   constructor() { }
 
@@ -88,6 +86,7 @@ export class ResultStudentComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.sortResults();
   }
 
   more() {
@@ -98,9 +97,6 @@ export class ResultStudentComponent implements OnInit {
     //   this.visible = true;
     // }
   }
-
-
-
 
   getIndex(codeScale) {
     for (let i = 0; i < this.scales.length; i++) {
@@ -119,21 +115,17 @@ export class ResultStudentComponent implements OnInit {
     return this.typesOfQUalification.find(item => item.codeType === answerForm).value;
   }
 
-  //función de ordenamiento
-  sortStudents(field: string) {
-    this.data.sort((a, b) => {
-      let valueA = a[field];
-      let valueB = b[field];
+  //metodo para ordenar los resultados de cada estudiante por orden alfabetico de la escala de resultados
+  sortResults(): void {
+    const sortedIndices = this.data.resultsTitleScale
+      .map((title, index) => ({ title, index }))
+      .sort((a, b) => a.title.localeCompare(b.title))
+      .map(item => item.index);
 
-      if (field === 'course') {
-        valueA = parseInt(valueA);
-        valueB = parseInt(valueB);
-      }
-
-      if (valueA < valueB) return this.sortOrder === 'asc' ? -1 : 1;
-      if (valueA > valueB) return this.sortOrder === 'asc' ? 1 : -1;
-      return 0;
-    });
-    this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+    this.data.resultsTitleScale = sortedIndices.map(index => this.data.resultsTitleScale[index]);
+    this.data.resultsOverallResult = sortedIndices.map(index => this.data.resultsOverallResult[index]);
+    this.data.resultsCodeScale = sortedIndices.map(index => this.data.resultsCodeScale[index]);
+    this.data.resultsScale = sortedIndices.map(index => this.data.resultsScale[index]);
+    this.data.resultsPhases = sortedIndices.map(index => this.data.resultsPhases[index]);
   }
 }

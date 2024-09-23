@@ -1,47 +1,60 @@
-<div class="container-prop-institutions-create">
+<body>
     <div class="info-box">
         Agregar una nueva institución
     </div>
-    <div class="container-prop-input">
-        <h3>Nombre de la institución</h3>
-        <input type="text" class="size-input-institutions" [(ngModel)]="name">
-    </div>
-    <div class="container-prop-input">
-        <h3>Cursos aprobados</h3>
-        <div class="special-size">
-            <input class="size-input-institutions" type="text" placeholder="Ej: 7-1" [(ngModel)]="newCourse"> 
-            <button class="add-course phase-button" (click)="addCourse()">Añadir</button>
+    <div class="container-prop-institutions-create">
+        
+        <div class="container-prop-input">
+            <h3>Nombre de la institución</h3>
+            <input type="text" class="size-input-institutions" [(ngModel)]="name">
         </div>
-        <ul *ngIf="courses.length>0">
-            <li *ngFor="let course of courses;let i=index">
-                {{course}} <button class="x" (click)="removeCourse(i)">X</button>
-            </li>
-        </ul>
-    </div>
-    <div class="container-prop-input">
-        <h3>Tipo de institución</h3>
-        <select class="size-input-institutions" style="width: 100%;" [(ngModel)]="typeOfInstitution">
-            <option></option>
-            <option value="Pública">Pública</option>
-            <option value="Privada">Privada</option>
-        </select>
-    </div>
-    <div class="container-prop-input">
-        <h3>Permisos (Que escala se evaluará o se presentará en esa institución)</h3>
-        <div *ngFor="let scale of scales;let i=index">
-            <input class="checkbox-permissions" type="checkbox" [checked]="scale.checked" (click)="changeChecked(i)">
-            <label>{{scale.scale.title}}</label>
+        <div class="container-prop-input">
+            <h3>Cursos aprobados</h3>
+            <div class="special-size">
+                <input class="size-input-institutions" type="text" placeholder="Ej: 7-1" [(ngModel)]="newCourse"> 
+                <button class="add-course phase-button" (click)="addCourse()">Añadir</button>
+            </div>
+            <ul *ngIf="courses.length>0">
+                <li *ngFor="let course of courses;let i=index">
+                    {{course}} <button class="x" (click)="removeCourse(i)">X</button>
+                </li>
+            </ul>
+        </div>
+        <div class="container-prop-input">
+            <h3>Tipo de institución</h3>
+            <select class="size-input-institutions" style="width: 100%;" [(ngModel)]="typeOfInstitution">
+                <option></option>
+                <option value="Pública">Pública</option>
+                <option value="Privada">Privada</option>
+            </select>
+        </div>
+        <div class="container-prop-input">
+            <h3>Permisos (Que escala se evaluará o se presentará en esa institución)</h3>
+            <!-- <div *ngFor="let scale of scales;let i=index">
+                <input class="checkbox-permissions" type="checkbox" [checked]="scale.checked" (click)="changeChecked(i)">
+                <label>{{scale.scale.title}}</label>
+            </div> -->
+            <div class="container-checkbox" *ngFor="let scale of scales;let i=index">
+                <input type="checkbox" [id]="'input-' + i" class="check-input" [checked]="scale.checked" (click)="changeChecked(i)">
+                <label [for]="'input-' + i" class="checkbox">
+                    <svg viewBox="0 0 22 16" fill="none">
+                        <path d="M1 6.85L8.09677 14L21 1" />
+                    </svg>
+                </label>
+                <span>{{scale.scale.title}}</span>
+            </div>
+        </div>
+       
+        <div class="container-prop-buttons-institutions-create">
+            <button class="button-institutions color-green" (click)="sendInstitution()">{{institution?'Actualizar':'Crear'}}</button>
         </div>
     </div>
-    <div class="container-prop-buttons-institutions-create">
-        <button class="button-institutions color-green" (click)="sendInstitution()">{{institution?'Actualizar':'Crear'}}</button>
+    
+    <div *ngIf="messageActivate" class="floating-messaje">
+        <div>
+            <h2>{{messageTitle}}</h2>
+            <h3>{{messageInfo}}</h3>
+            <button *ngIf="messageButton" class="button-primary color-azul" (click)="closeAlert()">Aceptar</button>
+        </div>
     </div>
-</div>
-
-<div *ngIf="messageActivate" class="floating-messaje">
-    <div>
-        <h2>{{messageTitle}}</h2>
-        <h3>{{messageInfo}}</h3>
-        <button *ngIf="messageButton" class="button-primary color-azul" (click)="closeAlert()">Aceptar</button>
-    </div>
-</div>
+</body>

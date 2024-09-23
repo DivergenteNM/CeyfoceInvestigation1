@@ -1,98 +1,110 @@
-<div class="info-box">
-    Crear una nueva escala
-</div>
-<div class="container-prop-scales-create">
-
-    <div class="container-prop-input">
-        <h3>Título</h3>
-        <input type="text" class="size-input-scales" [(ngModel)]="title" placeholder="Agregue el titulo de la  escala">
+<body>
+    <div class="info-box">
+        Crear una nueva escala
     </div>
-    <div class="container-prop-input">
-        <h3>Descripción</h3>
-        <!-- <input type=""> -->
-        <textarea name="" id="" rows="5" class="size-input-scales" [(ngModel)]="description"
-            placeholder="Agregue una breve explicación de la  escala"></textarea>
-    </div>
-    <div class="container-prop-input">
-        <h3>Forma de respuesta</h3>
-        <!-- <input type="text" class="size-input-scales"> -->
-        <select class="size-input-scales" style="width: 100%;" [(ngModel)]="answerForm">
-            <option></option>
-            <option value="0">Escala: Totalmente en desacuerdo, En desacuerdo, De acuerdo, Totalmente de acuerdo
-                (0,1,2,3)</option>
-            <option value="1">Escala: Nunca, Casi nunca, De vez en cuando, Casi siempre, Siempre (0,1,2,3,4)</option>
-            <option value="2">Escala: Muy en desacuerdo, En desacuerdo, Ni acuerdo ni desacuerdo, De acuerdo, Muy de
-                acuerdo (0,1,2,3,4)</option>
-        </select>
-    </div>
-    <div class="container-prop-input">
-        <h3>Factores (explicación de que es un factor)</h3>
-        <div class="special-size">
-            <input class="size-input-scales" type="text" [(ngModel)]="titlePhase" placeholder="Añada un nuevo factor">
-            <button class="add-question phase-button" (click)="savePhase()">
-                {{isEditing ? 'Editar' : 'Añadir'}}
-            </button>
+    <div class="container-prop-scales-create">
+    
+        <div class="container-prop-input">
+            <h3>Título</h3>
+            <input type="text" class="size-input-scales" [(ngModel)]="title" placeholder="Agregue el titulo de la  escala">
         </div>
-        <ul *ngIf="factors.length > 0">
-            <li *ngFor="let factor of factors; let i = index">
-                {{factor}}
-                <button (click)="editPhase(i)" class="edit">Editar</button>
-                <button (click)="removePhase(i)" class="x">X</button>
-            </li>
-        </ul>
-    </div>
-
-    <div class="container-prop-input">
-        <h3>Preguntas</h3>
-        <div *ngFor="let question of questions; let i=index">
-            <app-pregunta [pruebaIn]="{'index':i,'question':question,'factors':factors}"
-                (jsonSend)="responseQuestionComponent($event)"></app-pregunta>
+        <div class="container-prop-input">
+            <h3>Descripción</h3>
+            <!-- <input type=""> -->
+            <textarea name="" id="" rows="5" class="size-input-scales" [(ngModel)]="description"
+                placeholder="Agregue una breve explicación de la  escala"></textarea>
         </div>
-        <button class="add-question" (click)="addQuestion()">+ Agregar una nueva pregunta</button>
-    </div>
-    <div class="container-prop-input">
-        <h3>Baremos (explicar que es un baremos)</h3>
-        <div class="special-size-baremos">
-            <input class="size-input-scales" type="text"
-                placeholder="Nivel bajo: percentiles de 1 A 25 MENOR O IGUAL A ..." [(ngModel)]="baremosMnIg25">
-            <input class="size-input-scales" type="text"
-                placeholder="Nivel alto: percentiles de 75 A 99 MAYOR O IGUAL A ..." [(ngModel)]="baremosMyIg75">
+        <div class="container-prop-input">
+            <h3>Forma de respuesta</h3>
+            <!-- <input type="text" class="size-input-scales"> -->
+            <select class="size-input-scales cursorPointer" style="width: 100%;" [(ngModel)]="answerForm">
+                <option></option>
+                <option value="0">Escala: Totalmente en desacuerdo, En desacuerdo, De acuerdo, Totalmente de acuerdo
+                    (0,1,2,3)</option>
+                <option value="1">Escala: Nunca, Casi nunca, De vez en cuando, Casi siempre, Siempre (0,1,2,3,4)</option>
+                <option value="2">Escala: Muy en desacuerdo, En desacuerdo, Ni acuerdo ni desacuerdo, De acuerdo, Muy de
+                    acuerdo (0,1,2,3,4)</option>
+            </select>
+        </div>
+        <div class="container-prop-input">
+            <h3>Factores</h3>
+            <div class="special-size">
+                <input class="size-input-scales" type="text" [(ngModel)]="titlePhase" placeholder="Añadir un nuevo factor">
+                <button class="add-question phase-button" (click)="savePhase()">
+                    {{isEditing ? 'Editar' : 'Añadir'}}
+                </button>
+            </div>
+            <ul *ngIf="factors.length > 0">
+                <li *ngFor="let factor of factors; let i = index">
+                    {{factor}}
+                    <button (click)="editPhase(i)" class="edit">Editar</button>
+                    <button (click)="removePhase(i)" class="x">X</button>
+                </li>
+            </ul>
+        </div>
+    
+        <div class="container-prop-input">
+            <h3>Preguntas</h3>
+            <div *ngFor="let question of questions; let i=index">
+                <app-pregunta [pruebaIn]="{'index':i,'question':question,'factors':factors}"
+                    (jsonSend)="responseQuestionComponent($event)"></app-pregunta>
+            </div>
+            <button class="add-question" (click)="addQuestion()">+ Agregar una nueva pregunta</button>
+        </div>
+        <div class="container-prop-input">
+            <h3>Baremos</h3>
+            <div class="special-size-baremos">
+                <input class="size-input-scales" type="text"
+                    placeholder="Nivel bajo: percentiles de 1 A 25 MENOR O IGUAL A ..." [(ngModel)]="baremosMnIg25">
+                <input class="size-input-scales" type="text"
+                    placeholder="Nivel alto: percentiles de 75 A 99 MAYOR O IGUAL A ..." [(ngModel)]="baremosMyIg75">
+            </div>
+        </div>
+    
+        <!-- <div>
+            <label for="miCheckbox">¿Baremos Negativo?</label>
+            <input type="checkbox" id="miCheckbox" [checked]="baremosNegativo" (change)="toggleBaremosNegativo($event)">
+        </div> -->
+    
+        <!-- <div>
+            <label for="miCheckbox">¿Baremos negativo?</label>
+            <input  class="cursorPointer" type="checkbox" id="miCheckbox" [(ngModel)]="baremosNegativo" (change)="isBaremosNegativo()">
+        </div> -->
+
+        <div class="container-checkbox">
+            <span> ¿Baremos Negativo? </span>
+            <input type="checkbox" id="miCheckbox" class="check-input" [(ngModel)]="baremosNegativo" (change)="isBaremosNegativo()">
+            <label for="miCheckbox" class="checkbox">
+                <svg viewBox="0 0 22 16" fill="none">
+                    <path d="M1 6.85L8.09677 14L21 1" />
+                </svg>
+            </label>
+        </div>
+    
+        <div class="container-prop-input">
+            <h3>Resultados cualitativos resumen</h3>
+            <div class="special-size-baremos">
+                <input class="size-input-scales" type="text"
+                    placeholder="Nivel rojo" [(ngModel)]="cualitativoNegativo">
+                <input class="size-input-scales" type="text"
+                    placeholder="Nivel amarillo" [(ngModel)]="cualitativoIntermedio">
+                <input class="size-input-scales" type="text"
+                    placeholder="Nivel Verde" [(ngModel)]="cualitativoPositivo">
+            </div>
+        </div>
+    
+    
+        <div class="container-prop-buttons-scales-create">
+            <button class="button-scales color-red" (click)="clearAll()">Limpiar</button>
+            <button class="button-scales color-green" (click)="sendScale()">{{scale?'Editar':'Crear'}}</button>
         </div>
     </div>
-
-    <!-- <div>
-        <label for="miCheckbox">¿Baremos Negativo?</label>
-        <input type="checkbox" id="miCheckbox" [checked]="baremosNegativo" (change)="toggleBaremosNegativo($event)">
-    </div> -->
-
-    <div>
-        <label for="miCheckbox">¿Baremos negativo?</label>
-        <input type="checkbox" id="miCheckbox" [(ngModel)]="baremosNegativo" (change)="isBaremosNegativo()">
-    </div>
-
-    <div class="container-prop-input">
-        <h3>Resultados cualitativos resumen</h3>
-        <div class="special-size-baremos">
-            <input class="size-input-scales" type="text"
-                placeholder="Nivel rojo" [(ngModel)]="cualitativoNegativo">
-            <input class="size-input-scales" type="text"
-                placeholder="Nivel amarillo" [(ngModel)]="cualitativoIntermedio">
-            <input class="size-input-scales" type="text"
-                placeholder="Nivel Verde" [(ngModel)]="cualitativoPositivo">
+    
+    <div *ngIf="messageActivate" class="floating-messaje">
+        <div>
+            <h2>{{messageTitle}}</h2>
+            <h3>{{messageInfo}}</h3>
+            <button *ngIf="messageButton" class="button-primary color-azul" (click)="closeAlert()">Aceptar</button>
         </div>
     </div>
-
-
-    <div class="container-prop-buttons-scales-create">
-        <button class="button-scales color-red" (click)="clearAll()">Limpiar</button>
-        <button class="button-scales color-green" (click)="sendScale()">{{scale?'Editar':'Crear'}}</button>
-    </div>
-</div>
-
-<div *ngIf="messageActivate" class="floating-messaje">
-    <div>
-        <h2>{{messageTitle}}</h2>
-        <h3>{{messageInfo}}</h3>
-        <button *ngIf="messageButton" class="button-primary color-azul" (click)="closeAlert()">Aceptar</button>
-    </div>
-</div>
+</body>

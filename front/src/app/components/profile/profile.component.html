@@ -1,4 +1,4 @@
-<div class="profile-container">
+<!-- <div class="profile-container">
     <div class="profile-card">
         <div class="profile-field">
             <span class="profile-label">Nombre</span>
@@ -40,8 +40,71 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="floating-message" *ngIf="loading">
     <mat-spinner></mat-spinner>
 </div>
+
+
+<body>
+    <div class="profile-container">
+        <div class="sidebar">
+            <div>
+                <h2>{{ nombre }}</h2>
+                <p>{{ role }}</p>
+            </div>
+            <div class="user-stats">
+                <div class="stat-item" *ngIf="curso">
+                    <div class="stat-value">{{ curso }}</div>
+                    <div class="stat-label">Curso</div>
+                </div>
+                <div class="stat-item" *ngIf="edad">
+                    <div class="stat-value">{{ edad }}</div>
+                    <div class="stat-label">Edad</div>
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            <h1>Información del Perfil</h1>
+            <div class="info-group">
+                <h2>Datos Personales</h2>
+                <div class="info-item">
+                    <label>Nombre</label>
+                    <p>{{ nombre }}</p>
+                </div>
+                <div class="info-item" *ngIf="sexo">
+                    <label>Sexo</label>
+                    <p>{{ sexo }}</p>
+                </div>
+                <div class="info-item">
+                    <label>Email</label>
+                    <p>{{ email }}</p>
+                </div>
+                <div class="info-item" *ngIf="sectorResidencia">
+                    <label>Sector de Residencia</label>
+                    <p>{{ sectorResidencia }}</p>
+                </div>
+            </div>
+            <div class="info-group">
+                <h2>Información Profesional</h2>
+                <div class="info-item" *ngIf="institucion">
+                    <label>Institución</label>
+                    <p>{{ institucion }}</p>
+                </div>
+                <div class="info-item">
+                    <label>Role</label>
+                    <p>{{ role }}</p>
+                </div>
+            </div>
+            <div class="info-group">
+                <h2>Seguridad</h2>
+                <div class="info-item">
+                    <label>Contraseña</label>
+                    <p>••••••••••</p>
+                </div>
+            </div>
+            <button class="edit-btn" (click)="changePassword()">Editar Contraseña</button>
+        </div>
+    </div>
+</body>

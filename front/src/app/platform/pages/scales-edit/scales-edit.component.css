@@ -1,22 +1,22 @@
+body{
+    background-color: #F4F1EB;
+}
+
 .info-box {
     width: 100%;
     max-width: 100%;
     padding: 20px;
-    margin: 10px auto;
-    background-color: #849DA2; /* Color de fondo suave */
+    margin-bottom: 10px auto;
+    background-color: #8C8FAD; /* Color de fondo suave */
     border: 1px solid #ccc; /* Borde gris claro */
     border-radius: 2px; /* Bordes redondeados */
     text-align: center; /* Centrar el texto */
     font-size: 18px; /* Tamaño de fuente */
-    font-weight: bold; /* Negrita */
-    color: #333; /* Color del texto */
+    color: #ffffff; /* Color del texto */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
     transition: transform 0.3s ease; /* Transición para el efecto hover */
 }
 
-.info-box:hover {
-    transform: scale(1.02); /* Pequeño efecto de aumento al pasar el cursor */
-}
 
 .container-prop-scales-edit {
     display: flex;
@@ -34,12 +34,16 @@
     padding: 10px;
     border-color: var(--color-background-toolbar);
     border: 2.5px solid var(--color-background-toolbar);
+    text-align: center; /* Centra el texto de la opción seleccionada */
+    text-align-last: center; /* Centra el texto de la opción seleccionada en algunos navegadores */
+    -moz-text-align-last: center; /* Centra el texto de la opción seleccionada en Firefox */
     font-size: 1.2em;
+    cursor: pointer;
 }
 
 .size-input-scales:focus {
     outline: none;
-    border-color: var(--warn);
+    border-color: #44749d;
 }
 
 .container-prop-button-scales-edit {

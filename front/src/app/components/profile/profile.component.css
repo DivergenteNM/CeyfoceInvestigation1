@@ -1,4 +1,4 @@
-.profile-container {
+/* .profile-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,4 +65,148 @@
     padding: 20px;
     border-radius: 8px;
     z-index: 1000;
+} */
+
+/* ----------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.profile-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.sidebar {
+    background-color: #4a69bd;
+    color: white;
+    padding: 40px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-content {
+    padding: 40px;
+    width: 70%;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #4a69bd;
+}
+
+.info-group {
+    margin-bottom: 30px;
+}
+
+.info-group h2 {
+    font-size: 1.2em;
+    color: #4a69bd;
+    margin-bottom: 10px;
+}
+
+.info-item {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.info-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.info-item label {
+    display: block;
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.info-item p {
+    font-size: 1.1em;
+    color: #333;
+}
+
+.edit-btn {
+    background-color: #4a69bd;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover {
+    background-color: #3c5aa6;
+}
+
+.user-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: white;
+}
+
+.stat-label {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+    }
+
+    .sidebar,
+    .main-content {
+        width: 100%;
+    }
 }

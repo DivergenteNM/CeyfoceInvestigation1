@@ -18,11 +18,10 @@ export class ScalesCreateComponent implements OnInit {
   questions: any = [];
   baremosMnIg25;
   baremosMyIg75;
+  baremosNegativo: boolean;
   cualitativoNegativo;
   cualitativoIntermedio;
   cualitativoPositivo;
-  // Variable para el checkbox de baremos negativo
-  baremosNegativo: boolean;
 
 
   editingIndex: number | null = null;
@@ -132,7 +131,7 @@ export class ScalesCreateComponent implements OnInit {
       'textQuestion': '',
       'typeOfQuestion': '',
       'factor': ''
-    });
+    })//quien sabe si va el punto y coma
   }
 
   responseQuestionComponent(e) {
@@ -167,7 +166,7 @@ export class ScalesCreateComponent implements OnInit {
         'baremosNegativo': this.baremosNegativo,  // Enviar valor del checkbox
         'cualitativoNegativo': this.cualitativoNegativo,
         'cualitativoIntermedio': this.cualitativoIntermedio,
-        'cualitativoPositivo': this.cualitativoPositivo,
+        'cualitativoPositivo': this.cualitativoPositivo
       };
       this.messageActivate = true;
       this.messageTitle = 'Enviando información';
@@ -191,21 +190,20 @@ export class ScalesCreateComponent implements OnInit {
     }
   }
 
-  validate() {
+    validate(): boolean {
+    // Validación de campos requeridos
     if (
-      this.title.trim() !== '' &&
-      this.description.trim() !== '' &&
-      this.answerForm !== '' &&
-      this.factors.length > 0 &&
-      this.questions.length > 0 &&
-      this.baremosMnIg25 !== '' &&
-      this.baremosMyIg75 !== '' &&
-      this.cualitativoNegativo !== '' &&
-      this.cualitativoIntermedio !== '' &&
-      this.cualitativoPositivo !== ''
+      this.title.trim() === '' ||
+      this.description.trim() === '' ||
+      this.answerForm === '' ||
+      this.factors.length === 0 ||
+      this.questions.length === 0 ||
+      this.baremosMnIg25 === '' ||
+      this.baremosMyIg75 === '' ||
+      this.cualitativoNegativo === '' ||
+      this.cualitativoIntermedio === '' ||
+      this.cualitativoPositivo === ''
     ) {
-      return true;
-    } else {
       this.messageActivate = true;
       this.messageTitle = 'Espacios sin llenar';
       this.messageInfo = 'Por favor, complete todos los campos requeridos.';
@@ -214,6 +212,31 @@ export class ScalesCreateComponent implements OnInit {
       }, 3000);
       return false;
     }
+  
+    // Validación de baremos
+    if (this.baremosMnIg25 > this.baremosMyIg75) {
+      this.messageActivate = true;
+      this.messageTitle = 'Error en baremos';
+      this.messageInfo = 'El valor de MnIg25 no puede ser mayor que MyIg75.';
+      setTimeout(() => {
+        this.messageActivate = false;
+      }, 3000);
+      return false;
+    }
+  
+    // Validación de baremos negativos
+    if (this.baremosMnIg25 < 0) {
+      this.messageActivate = true;
+      this.messageTitle = 'Error en baremos';
+      this.messageInfo = 'El valor de MnIg25 no puede ser negativo.';
+      setTimeout(() => {
+        this.messageActivate = false;
+      }, 3000);
+      return false;
+    }
+  
+    // Si todas las validaciones pasan, retorna true
+    return true;
   }
 
   closeAlert() {

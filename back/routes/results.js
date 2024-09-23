@@ -219,7 +219,7 @@ router.get('/scales', verifyToken, processFilters, async function (req, res, nex
         answerForm: 1,
         baremosMnIg25: 1,
         baremosMyIg75: 1,
-        baremosNegativo: 1, // Agrega el campo baremosNegativo aquí
+        baremosNegativo: 1, // Agregamos el campo baremosNegativo aquí
         cualitativoNegativo: 1,
         cualitativoIntermedio: 1,
         cualitativoPositivo: 1,

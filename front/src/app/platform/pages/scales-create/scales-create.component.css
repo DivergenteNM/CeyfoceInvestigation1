@@ -1,21 +1,25 @@
+body {
+    background-color: #F4F1EB;
+}
+
 .info-box {
     width: 100%;
     max-width: 100%;
     padding: 20px;
-    margin: 10px auto;
-    background-color: #849DA2; /* Color de fondo suave */
+    margin-bottom: 10px auto;
+    background-color: #76A5AF ; /* Color de fondo suave #8C8FAD*/
     border: 1px solid #ccc; /* Borde gris claro */
-    border-radius: 8px; /* Bordes redondeados */
+    border-radius: 2px; /* Bordes redondeados */
     text-align: center; /* Centrar el texto */
     font-size: 18px; /* Tamaño de fuente */
-    font-weight: bold; /* Negrita */
-    color: #333; /* Color del texto */
+    color: #ffffff; /* Color del texto */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
     transition: transform 0.3s ease; /* Transición para el efecto hover */
 }
 
-.info-box:hover {
-    transform: scale(1.02); /* Pequeño efecto de aumento al pasar el cursor */
+.cursorPointer {
+    cursor: pointer;
+    
 }
 
 .container-prop-scales-create {
@@ -33,14 +37,17 @@
     border-color: var(--color-background-toolbar);
     border: 2.5px solid var(--color-background-toolbar);
     font-size: 1.2em;
+    text-align: center;
 }
 
 .size-input-scales:focus {
     outline: none;
-    border-color: var(--warn);
+    border-color: #44749d;
 }
 
 h3 {
+    color: #2D2D2D;
+    font-size: 1.1em;
     margin: 0;
     padding: 0;
 }
@@ -49,26 +56,27 @@ h3 {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
 .add-question {
-    font-size: 2em;
+    font-size: 1.3em;
     /* width: 100px; */
     border-radius: 10px;
-    background-color: var(--color-background-toolbar);
-    color: white;
+    background-color: #76A5AF;
+    color: #F4F4F4;
     cursor: pointer;
-    padding: 10px 0;
+    padding: 5px 0;
 }
 
 .add-question:hover {
-    background-color: var(--color-background-toolbar-variant);
+    background-color: #8C8FAD;
 }
 
 .add-question:focus {
     outline: none;
-    border-color: var(--warn);
+    border-color: #76A5AF;
 }
 
 .container-prop-buttons-scales-create {
@@ -80,14 +88,18 @@ h3 {
 .button-scales {
     display: flex;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 30px;
     border-radius: 10px;
     cursor: pointer;
     color: white;
+    box-shadow: 0 0 10px #000000;
+    transition: filter 0.3s, scale 0.8s;
 }
 
 .button-scales:hover {
     box-shadow: 1px 1px 5px 1px rgba(90, 85, 85, 0.568);
+    filter: saturate(80%);
+    scale: 1.2;
 }
 
 .button-scales:focus {
@@ -100,7 +112,7 @@ h3 {
 }
 
 .color-green {
-    background-color: var(--color-background-dark-green-1);
+    background-color: #78bd91;
 }
 
 .color-azul {
@@ -130,6 +142,7 @@ h3 {
 }
 
 .phase-button {
+    padding: 3px 35px;
     font-size: 1em;
 }
 
@@ -140,4 +153,81 @@ h3 {
     color: red;
     margin-left: 20px;
     cursor: pointer;
+}
+
+
+/* Estilos para el checkbox */
+.container-checkbox {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-checkbox span {
+    font-size: 1.2em;
+    margin-right: 1rem;
+}
+
+.check-input {
+    display: none;
+}
+
+.checkbox {
+    width: 25px;
+    height: 25px;
+    border: 2px solid black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 3px;
+    transition: all 0.3s;
+}
+
+.checkbox svg {
+    width: 20px;
+    height: 20px;
+}
+
+.check-input:checked + .checkbox {
+    background: #26bfbf;
+    border: 2px solid #26bfbf;
+}
+
+.check-input:checked + .checkbox svg path {
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    stroke: #fff;
+    stroke-width: 3;
+    animation: check 4s forwards;
+}
+
+.checkbox::before {
+    content: "";
+    background: #26bfbf66;
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    display: block;
+    width: 60px;
+    height: 60px;
+    z-index: -1;
+}
+
+.check-input:checked + .checkbox::before {
+    animation: ripple 0.3s;
+}
+
+@keyframes check {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(1);
+    }
 }

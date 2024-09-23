@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlatformService } from '../../services/platform.service';
 import { Router } from '@angular/router'; // Importa Router para la navegación
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-scales-edit',
@@ -35,9 +36,15 @@ export class ScalesEditComponent implements OnInit {
 
   deleteScale(): void {
     if (this.scaleSelect !== '-- Seleccione una escala --') {
-      this.platformServices.deleteScale(this.scaleSelect).subscribe(response => {
-        // Navega a otra ruta o actualiza la lista de escalas después de la eliminación
-        this.router.navigate(['/scales']);
+      this.platformServices.deleteScale(this.scaleSelect).subscribe({
+        next: response => {
+          // Navega a otra ruta o actualiza la lista de escalas después de la eliminación
+          this.router.navigate(['/scales']);
+        },
+        error: (error: HttpErrorResponse) => {
+          console.error('Error al eliminar la escala:', error);
+          alert('Error al eliminar la escala. Por favor, inténtelo de nuevo.');
+        }
       });
     }
   }

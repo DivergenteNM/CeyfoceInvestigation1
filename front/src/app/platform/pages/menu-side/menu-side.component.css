@@ -1,9 +1,11 @@
+
+
 .menu-icon-responsive {
     display: none;
 }
 
 .container-prop-menu {
-    background-color: var(--color-background-toolbar-variant);
+    background-color: #b8aa95;
     width: 100%;
     display: flex;
     /* height: calc(100vh - 44px); */
@@ -25,11 +27,13 @@
     padding: 5px 10px;
     margin: 10px;
     align-items: center;
-    color: white;
+    color: #5e5a54;
+    cursor: pointer;
 }
 
 .li-container-prop-menu:hover {
     background-color: var(--color-button-hover);
+    
 }
 
 .text-menu-side-item {
@@ -87,4 +91,13 @@
         top: 10px;
         right: 10px;
     }
+}
+
+.body {
+    border-radius: 8px;
+}
+
+
+.active-link {
+    background-color: #a8957f; /* Color de fondo para el enlace activo */
 }

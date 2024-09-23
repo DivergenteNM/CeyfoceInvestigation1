@@ -3,6 +3,8 @@
     /* background-color: var(--color-background-toolbar); */
     /* background-color: rgb(90 114 106 / 43%); */
     display: flex;
+    justify-content: center;
+    align-items: center;
     max-width: 100%;
     flex-direction: row;
     overflow-x: auto;
@@ -47,7 +49,7 @@ button {
 }
 
 .blue {
-    background-color: var(--color-background-toolbar);
+    background-color: #5e5a54;
     margin: 8px 10px;
     flex-wrap: nowrap;
     white-space: nowrap;
@@ -63,7 +65,7 @@ button {
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
-    background-color: rgb(182 54 54 / 84%);
+    background-color: #b8aa95;
     margin: 8px 10px;
     white-space: nowrap;
 }

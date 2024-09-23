@@ -1,13 +1,13 @@
-<ul class="container-prop-items-toolbar">
-    <li class="item-toobal" *ngFor="let tab of generatetabs" [routerLink]="[tab.link]"  >
+<ul class="container-prop-items-toolbar body">
+    <li class="item-toobal" *ngFor="let tab of generatetabs" [routerLink]="[tab.link]" routerLinkActive="active-link">
         <mat-icon aria-hidden="false" aria-label="Example home icon">{{tab.icon}}</mat-icon>
-        <div class="title-toolbar-platform" >{{tab.title}}</div>
+        <div class="title-toolbar-platform">{{tab.title}}</div>
     </li>
-    <mat-icon class="item-toobal mat-icon-toolbar" aria-hidden="false" (click)="dropdownMenu()">
+    <mat-icon class="item-toobal mat-icon-toolbar" aria-hidden="false" (click)="dropdownMenu()" >
         perm_identity
         <div class="floating-element" *ngIf="visibleFloatingMenu">
             <ul class="list-floating-element">
-                <li class="item-list-floating-element item-toobal" [routerLink]="['/platform/profile']">Perfil</li>
+                <li class="item-list-floating-element item-toobal" [routerLink]="['/platform/profile']" routerLinkActive="active-link">Perfil</li>
                 <li class="item-list-floating-element item-toobal" (click)="signOff()">Cerrar sesión</li>
             </ul>
         </div>

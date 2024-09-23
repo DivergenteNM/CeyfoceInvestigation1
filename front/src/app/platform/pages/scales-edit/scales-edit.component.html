@@ -1,31 +1,34 @@
-<div class="info-box">
-    Seleccione una escala para editar
-</div>
-<div class="container-prop-scales-edit" *ngIf="activate">
-    <select class="size-input-scales" [(ngModel)]="scaleSelect">
-        <option>-- Seleccione una escala --</option>
-        <option [value]="scale.codeScale" *ngFor="let scale of listScales">{{scale.title}}</option>
-    </select>
-    <div class="container-prop-button-scales-edit">
-        <button class="button-primary button-secundary color-blue" (click)="edit()">Editar</button>
-        <!-- <button (click)="deleteScale(scale.code)">Eliminar Escala</button> -->
+<body>
+    <div class="info-box">
+        Seleccione una escala para editar
     </div>
-</div>
-<app-scales-create *ngIf="!activate" [scale]="scale"></app-scales-create>
-
-
-
-<!-- <div class="info-box">
-    Seleccione una escala para editar o eliminar
-</div>
-<div class="container-prop-scales-edit" *ngIf="activate">
-    <select class="size-input-scales" [(ngModel)]="scaleSelect">
-        <option [ngValue]="null">-- Seleccione una escala --</option>
-        <option *ngFor="let scale of listScales" [ngValue]="scale">{{scale.title}}</option>
-    </select>
-    <div class="container-prop-button-scales-edit">
-        <button class="button-primary button-secundary color-blue" (click)="edit()">Editar</button>
-        <button (click)="deleteScale()">Eliminar Escala</button>
+    <div class="container-prop-scales-edit" *ngIf="activate">
+        <select class="size-input-scales" [(ngModel)]="scaleSelect">
+            <option>-- Seleccione una escala --</option>
+            <option [value]="scale.codeScale" *ngFor="let scale of listScales">{{scale.title}}</option>
+        </select>
+        <div class="container-prop-button-scales-edit">
+            <button class="button-primary button-secundary color-blue" (click)="edit()">Editar</button>
+            <!-- <button (click)="deleteScale(scale.code)">Eliminar Escala</button> -->
+        </div>
     </div>
-</div>
-<app-scales-create *ngIf="!activate" [scale]="scale"></app-scales-create> -->
+    <app-scales-create *ngIf="!activate" [scale]="scale"></app-scales-create>
+    
+    
+    
+    <!-- <div class="info-box">
+        Seleccione una escala para editar o eliminar
+    </div>
+    <div class="container-prop-scales-edit" *ngIf="activate">
+        <select class="size-input-scales" [(ngModel)]="scaleSelect">
+            <option [ngValue]="null">-- Seleccione una escala --</option>
+            <option *ngFor="let scale of listScales" [ngValue]="scale">{{scale.title}}</option>
+        </select>
+        <div class="container-prop-button-scales-edit">
+            <button class="button-primary button-secundary color-blue" (click)="edit()">Editar</button>
+            <button (click)="deleteScale()">Eliminar Escala</button>
+        </div>
+    </div>
+    <app-scales-create *ngIf="!activate" [scale]="scale"></app-scales-create> -->
+    
+</body>

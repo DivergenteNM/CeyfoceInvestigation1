@@ -1,27 +1,27 @@
+body {
+    background-color: #F4F1EB;
+}
+
 .info-box {
     width: 100%;
     max-width: 100%;
     padding: 20px;
-    margin: 10px auto;
-    background-color: #849DA2; /* Color de fondo suave */
+    margin-bottom: 10px auto;
+    background-color: #76A5AF ; /* Color de fondo suave #8C8FAD*/
     border: 1px solid #ccc; /* Borde gris claro */
-    border-radius: 8px; /* Bordes redondeados */
+    border-radius: 2px; /* Bordes redondeados */
     text-align: center; /* Centrar el texto */
     font-size: 18px; /* Tamaño de fuente */
-    font-weight: bold; /* Negrita */
-    color: #333; /* Color del texto */
+    color: #ffffff; /* Color del texto */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
     transition: transform 0.3s ease; /* Transición para el efecto hover */
-}
-
-.info-box:hover {
-    transform: scale(1.02); /* Pequeño efecto de aumento al pasar el cursor */
 }
 
 .container-prop-institutions-create {
     margin: 20px;
     width: calc(100% - 40px);
     font-family: Roboto;
+    text-align: center;
 }
 
 .size-input-institutions {
@@ -33,11 +33,12 @@
     border-color: var(--color-background-toolbar);
     border: 2.5px solid var(--color-background-toolbar);
     font-size: 1.2em;
+    cursor: pointer;
 }
 
 .size-input-institutions:focus {
     outline: none;
-    border-color: var(--warn);
+    border-color: #44749d;
 }
 
 h3 {
@@ -55,19 +56,20 @@ h3 {
 .add-course {
     font-size: 3em;
     /* width: 100px; */
-    border-radius: 10px;
-    background-color: var(--color-background-toolbar);
+    border-radius: 10px;   
+    background-color: #76A5AF;
     color: white;
     cursor: pointer;
+    padding: 5px 0;
 }
 
 .add-course:hover {
-    background-color: var(--color-background-toolbar-variant);
+    background-color: #8C8FAD;
 }
 
 .add-course:focus {
     outline: none;
-    border-color: var(--warn);
+    border-color: #76A5AF;
 }
 
 .size-input-institutions {
@@ -83,7 +85,7 @@ h3 {
 
 .size-input-institutions:focus {
     outline: none;
-    border-color: var(--warn);
+    border-color: #44749d;
 }
 
 .container-prop-buttons-institutions-create {
@@ -130,6 +132,7 @@ h3 {
 }
 
 .phase-button {
+    padding: 3px 35px;
     font-size: 1em;
 }
 
@@ -137,6 +140,7 @@ h3 {
     margin: 0 20px;
     width: 15px;
     height: 15px;
+    cursor: pointer;
 }
 
 .x {
@@ -146,4 +150,79 @@ h3 {
     color: red;
     margin-left: 20px;
     cursor: pointer;
+}
+
+/* estilos del checkbox */
+
+.container-checkbox {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+}
+
+.container-checkbox span {
+    margin-left: 1rem;
+}
+
+.check-input {
+    display: none;
+}
+
+.checkbox {
+    width: 25px;
+    height: 25px;
+    border: 2px solid #4f4c4c;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 3px;
+    transition: all 0.3s;
+}
+
+.checkbox svg {
+    width: 20px;
+    height: 20px;
+}
+
+.check-input:checked + .checkbox {
+    background: #26bfbf;
+    border: 2px solid #26bfbf;
+}
+
+.check-input:checked + .checkbox svg path {
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    stroke: #fff;
+    stroke-width: 3;
+    animation: check 4s forwards;
+}
+
+.checkbox::before {
+    content: "";
+    background: #26bfbf66;
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    display: block;
+    width: 60px;
+    height: 60px;
+    z-index: -1;
+}
+
+.check-input:checked + .checkbox::before {
+    animation: ripple 0.3s;
+}
+
+@keyframes check {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(1);
+    }
 }

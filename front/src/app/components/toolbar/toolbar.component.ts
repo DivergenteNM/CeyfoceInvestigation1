@@ -21,6 +21,24 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class ToolbarComponent implements OnInit {
 
+  //----------------------------
+  images = [
+    { src: 'https://cdn.pixabay.com/photo/2024/02/22/05/40/natural-scenery-8589165_640.jpg', type: 'FLOWER', description: 'Lorem ipsum dolor sit amet...' },
+    { src: 'https://cdn.pixabay.com/photo/2016/02/10/21/59/landscape-1192669_640.jpg', type: 'NATURE', description: 'Lorem ipsum dolor sit amet...' },
+    { src: 'https://images.pexels.com/photos/1619317/pexels-photo-1619317.jpeg?cs=srgb&dl=pexels-souvenirpixels-1619317.jpg&fm=jpg', type: 'PLANT', description: 'Lorem ipsum dolor sit amet...' },
+    { src: 'https://i.blogs.es/3fd5a4/jumpstory-download20220511-143520/1366_2000.jpg', type: 'NATURE', description: 'Lorem ipsum dolor sit amet...' }
+  ];
+
+
+  moveSlider(direction: string) {
+    if (direction === 'next') {
+      this.images.push(this.images.shift()!);  // Mueve la primera imagen al final
+    } else {
+      this.images.unshift(this.images.pop()!);  // Mueve la última imagen al inicio
+    }
+  }
+  //------------------------------
+
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   affairFormControl = new FormControl('', [Validators.required]);
   messageFormControl = new FormControl('', [Validators.required]);

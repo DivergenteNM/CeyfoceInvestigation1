@@ -141,3 +141,33 @@
 <div *ngIf="loading" class="floating-messaje">
     <mat-spinner></mat-spinner>
 </div>
+
+
+<div class="body">
+    <div class="slider">
+        <div class="list">
+          <div class="item" *ngFor="let img of images">
+            <img [src]="img.src" alt="">
+            <div class="content">
+              <div class="title">MAGIC SLIDER</div>
+              <div class="type">{{ img.type }}</div>
+              <div class="description">{{ img.description }}</div>
+              <div class="button">
+                <button>SEE MORE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="thumbnail">
+          <div class="item" *ngFor="let img of images">
+            <img [src]="img.src" alt="">
+          </div>
+        </div>
+      
+        <div class="nextPrevArrows">
+          <button class="prev" (click)="moveSlider('prev')"> < </button>
+          <button class="next" (click)="moveSlider('next')"> > </button>
+        </div>
+      </div>
+</div>      

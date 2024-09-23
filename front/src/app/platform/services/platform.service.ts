@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -27,11 +28,17 @@ export class PlatformService {
     return this.http.get<any>(`${environment.baseURL}/platform/scale/${code}`,{headers});
   }
 
-  deleteScale(code: string) {
+  deleteScale(scaleCode: string): Observable<any> {
     const auth = localStorage.getItem("auth");
-    const headers = new HttpHeaders({"auth": auth});
-    return this.http.delete<any>(`${environment.baseURL}/platform/scale/${code}`, { headers });
+    const headers = new HttpHeaders({ "auth": auth });
+    return this.http.delete<any>(`${environment.baseURL}/scale/${scaleCode}`, { headers });
   }
+
+  // deleteScale(code: string) {
+  //   const auth = localStorage.getItem("auth");
+  //   const headers = new HttpHeaders({"auth": auth});
+  //   return this.http.delete<any>(`${environment.baseURL}/platform/scale/${code}`, { headers });
+  // }
 
   getResults(data:any){
     const auth = localStorage.getItem("auth");

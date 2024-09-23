@@ -1,21 +1,20 @@
+body{
+ background-color: #F4F1EB;
+}
+
 .info-box {
     width: 100%;
     max-width: 100%;
     padding: 20px;
-    margin: 10px auto;
-    background-color: #849DA2; /* Color de fondo suave */
+    margin-bottom: 10px auto;
+    background-color: #76A5AF; /* Color de fondo suave */
     border: 1px solid #ccc; /* Borde gris claro */
-    border-radius: 8px; /* Bordes redondeados */
+    border-radius: 2px; /* Bordes redondeados */
     text-align: center; /* Centrar el texto */
     font-size: 18px; /* Tamaño de fuente */
-    font-weight: bold; /* Negrita */
-    color: #333; /* Color del texto */
+    color: #ffffff; /* Color del texto */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
     transition: transform 0.3s ease; /* Transición para el efecto hover */
-}
-
-.info-box:hover {
-    transform: scale(1.02); /* Pequeño efecto de aumento al pasar el cursor */
 }
 
 .semaforo-info {
@@ -23,19 +22,14 @@
     max-width: 100%;
     padding: 20px;
     margin: 10px auto;
-    background-color: #849DA2; /* Color de fondo suave */
+    background-color: #76A5AF; /* Color de fondo suave */
     border: 1px solid #ccc; /* Borde gris claro */
     border-radius: 8px; /* Bordes redondeados */
     text-align: center; /* Centrar el texto */
     font-size: 18px; /* Tamaño de fuente */
-    font-weight: bold; /* Negrita */
-    color: #333; /* Color del texto */
+    color: #ffffff; /* Color del texto */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
     transition: transform 0.3s ease; /* Transición para el efecto hover */
-}
-
-.info-box:hover {
-    transform: scale(1.02); /* Pequeño efecto de aumento al pasar el cursor */
 }
 
 
@@ -79,26 +73,53 @@
 .student-result {
     width: 100%;
 }
-
-.button-send {
-    position: fixed;
+.btn-1 {
     right: 20px;
     bottom: 20px;
-    width: 40px;
-    height: 40px;
-    background-color: var(--warn);
+    width: 200px;
+    height: 45px;
+    background-color: #78bd91;
     color: white;
-    font-size: 2em;
-    border-radius: 50%;
+    font-size: 1.1em;
+    border-radius: 20px;
     border: none;
     /* padding: 20px; */
     cursor: pointer;
     line-height: 0;
     user-select: none;
+    box-shadow: 0 0 20px #4d8f81;
+    transition: filter 0.3s, scale 0.8s;
+}
+
+.btn-1:hover {
+    filter: saturate(80%);
+    scale: 1.2;
+    color: #000;
+}
+
+.button-send {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 125px;
+    height: 45px;
+    background-color: #78bd91;
+    color: white;
+    font-size: 1.1em;
+    border-radius: 20px;
+    border: none;
+    /* padding: 20px; */
+    cursor: pointer;
+    line-height: 0;
+    user-select: none;
+    box-shadow: 0 0 20px #4d8f81;
+    transition: filter 0.3s, scale 0.8s;
 }
 
 .button-send:hover {
-    filter: saturate(60%);
+    filter: saturate(80%);
+    scale: 1.2;
+    color: #000;
 }
 
 .graph {

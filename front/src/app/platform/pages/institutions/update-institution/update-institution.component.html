@@ -1,13 +1,16 @@
-<div class="container-prop-institution-edit" *ngIf="activate">
+<body>
     <div class="info-box">
         Selecciones la institución que desee editar
     </div>
-    <select class="size-input-institution" [(ngModel)]="institutionSelect">
-        <option >-- Seleccione una institución --</option>
-        <option [value]="institution.code" *ngFor="let institution of listInstitutions">{{institution.name}}</option>
-    </select>
-    <div class="container-prop-button-institution-edit">
-        <button class="button-primary button-secundary color-blue" (click)="update()">Editar</button>
+    <div class="container-prop-institution-edit" *ngIf="activate">
+        
+        <select class="size-input-institution" [(ngModel)]="institutionSelect">
+            <option >-- Seleccione una institución --</option>
+            <option [value]="institution.code" *ngFor="let institution of listInstitutions">{{institution.name}}</option>
+        </select>
+        <div class="container-prop-button-institution-edit">
+            <button class="button-primary button-secundary color-blue" (click)="update()">Editar</button>
+        </div>
     </div>
-</div>
-<app-institutions *ngIf="!activate" [institutionSend]="institution"></app-institutions>
+    <app-institutions *ngIf="!activate" [institutionSend]="institution"></app-institutions>
+</body>

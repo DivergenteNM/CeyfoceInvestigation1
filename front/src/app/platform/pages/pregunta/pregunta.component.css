@@ -1,7 +1,7 @@
 .container-prop-question {
     display: flex;
     flex-direction: column;
-    background-color: var(--color-background-light-green);
+    background-color: #b8aa95;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -29,7 +29,7 @@
 
 .select-question-direct:focus {
     outline: none;
-    border-color: var(--warn);
+    border-color: #5e5a54;
 }
 
 .input-question {
@@ -43,7 +43,7 @@
 
 .input-question:focus {
     outline: none;
-    border-color: var(--warn);
+    border-color: #5e5a54;
 }
 
 .container-prop-response-type-item {

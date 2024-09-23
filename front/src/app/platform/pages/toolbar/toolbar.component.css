@@ -1,6 +1,10 @@
+.body {
+    border-radius: 4px;
+}
+
 .container-prop-items-toolbar {
     display: flex;
-    background-color: var(--color-background-toolbar);
+    background-color: #b8aa95;
     align-items: center;
     justify-content: center;
     margin: 0;
@@ -15,7 +19,7 @@
     border-radius: 10px;
     cursor: pointer;
     /* background-color: red; */
-    color: var(--color-icons);
+    color: #5e5a54;
     user-select: none;
     justify-content: center;
     align-items: center;
@@ -24,6 +28,8 @@
 .item-toobal:hover {
     background-color: var(--color-button-hover);
 }
+
+
 
 .mat-icon-toolbar {
     position: relative;
@@ -48,7 +54,7 @@
 .floating-element {
     display: flex;
     flex-direction: column;
-    background-color: var(--color-background-toolbar);
+    background-color: #b8aa95;
     position: absolute;
     top: 39px;
     /* bottom: 0; */
@@ -74,11 +80,17 @@
     font-family: var(--font-robot);
     font-size: 14px;
     /* background-color: yellow; */
+    cursor: pointer;
+    
 }
 
-/* .item-list-floating-element:hover {
-    background-color: var(--color-background-toolbar);
-} */
+.item-list-floating-element:hover {
+    background: #f0f0f0;
+}
+
+.active-link {
+    background-color: #a8957f; /* Color de fondo para el enlace activo */
+}
 
 @media only screen and (max-width: 600px) {
     .form-responsive {

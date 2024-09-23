@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PlatformService } from '../../services/platform.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-scales-results',
@@ -8,6 +9,8 @@ import { PlatformService } from '../../services/platform.service';
 })
 export class ScalesResultsComponent implements OnInit {
   //-----------------------------------------------------------yo
+  // Array para almacenar los estudiantes
+  studentsForExcel: any[] = [];
 
   @Input() data = [];  // Lista de estudiantes
   //
@@ -69,6 +72,7 @@ export class ScalesResultsComponent implements OnInit {
   activateButtons: boolean = false;
   activateGraph: boolean = false;
   activateExcel: boolean = true;//
+  visibleActivate: boolean = false;
   activateResume: boolean = true;
   loading: boolean = false;
   activateAverageScaleInstitutions: boolean = false;
@@ -129,6 +133,7 @@ export class ScalesResultsComponent implements OnInit {
   }
 
   buttonSend() {
+    this.visibleActivate = true;
     this.activateButtons = false;
     this.activateGraph = false;
     this.activateExcel = true;
@@ -285,7 +290,88 @@ export class ScalesResultsComponent implements OnInit {
           }
         })
     }
+    //-----------------------------------------------------------yo
+    this.platformService.getResults(filterElements).subscribe(res => {
+      this.studentResults = res.studentResults;
+  
+      // Guardar cada estudiante en el array para exportar a Excel
+      this.studentsForExcel = res.studentResults.map(student => {
+        let studentRow = {
+          'Nombre': student.name,
+          'Edad': student.age,
+          'Sexo': student.sex,
+          'Institución': student.institution[0],
+          'Tipo de Institución': student.type[0],
+          'Zona de Residencia': student.residenceSector
+        };
+  
+        for (let m = 0; m < student.resultsCodeScale.length; m++) {
+          const scaleWithCode = this.getIndexScale(student.resultsCodeScale[m]);
+  
+          // Validar si se encontró la escala
+          if (scaleWithCode === null || !this.scales[scaleWithCode]) {
+            console.error(`Error: Escala no encontrada para el código: ${student.resultsCodeScale[m]}`);
+            continue;  // Salta al siguiente ciclo si no se encuentra la escala
+          }
+  
+          const answerForm = parseInt(this.scales[scaleWithCode].answerForm);
+          let indexCodeType;
+  
+          for (let p = 0; p < this.typesOfQUalification.length; p++) {
+            if (parseInt(this.typesOfQUalification[p].codeType) === answerForm) {
+              indexCodeType = p;
+            }
+          }
+  
+          // Agregar preguntas y respuestas
+          for (let j = 0; j < this.scales[scaleWithCode].questions.length; j++) {
+            const valueQuestionsASCII = parseInt(student.resultsScale[m][j].charCodeAt(0));
+            if (this.scales[scaleWithCode].questions[j].typeOfQuestion === 'D') {
+              studentRow[(j + 1) + '.' + this.scales[scaleWithCode].questions[j].textQuestion] = valueQuestionsASCII - 97;
+            } else {
+              studentRow[(j + 1) + '.' + this.scales[scaleWithCode].questions[j].textQuestion] = parseInt(this.typesOfQUalification[indexCodeType].value) - valueQuestionsASCII + 97;
+            }
+          }
+  
+          // Agregar factores y resultados
+          for (let l = 0; l < this.scales[scaleWithCode].factors.length; l++) {
+            studentRow[this.scales[scaleWithCode].factors[l]] = student.resultsPhases[m][l];
+          }
+  
+          // Agregar el nombre de la escala y el resultado total
+          studentRow[`Escala: ${this.scales[scaleWithCode].title}`] = student.resultsOverallResult[m];
+        }
+  
+        return studentRow;
+      });
+  
+      // Aquí ya no generamos el archivo Excel directamente
+      console.log("Información de los estudiantes almacenada correctamente.");
+    });
   }
+
+  getIndexScale(codeScale) {
+    for (let i = 0; i < this.scales.length; i++) {
+      if (codeScale === this.scales[i].codeScale) {
+        return i;
+      }
+    }
+  }
+
+  generateExcel() {
+    if (!this.studentsForExcel || this.studentsForExcel.length === 0) {
+      console.error('No hay datos disponibles para exportar.');
+      return;
+    }
+  
+    const worksheet = XLSX.utils.json_to_sheet(this.studentsForExcel);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Students Results');
+  
+    // Exportar el archivo
+    XLSX.writeFile(workbook, 'students_results.xlsx');
+  }
+  
 
   verifyScaleFilter(nameInstitution) {
     for (let i = 0; i < this.scalesFilter.length; i++) {
