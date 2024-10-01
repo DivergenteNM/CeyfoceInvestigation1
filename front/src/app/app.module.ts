@@ -11,6 +11,8 @@ import { DialogContent, ToolbarComponent } from './components/toolbar/toolbar.co
 import { ProfileComponent } from './components/profile/profile.component';
 import { MaterialModule } from './material/material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { HeaderPrincipalComponent } from './components/carousel/header-principal/header-principal.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ToolbarComponent,
     HomePrincipalComponent,
     ProfileComponent,
-    DialogContent
+    DialogContent,
+    CarouselComponent, 
+    HeaderPrincipalComponent
   ],
   imports: [
     BrowserModule,

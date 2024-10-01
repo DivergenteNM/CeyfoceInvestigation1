@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.parallax {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#text {
+    position: absolute;
+    font-size: 5em;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
+}
+
+.parallax img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+}
+
+.sec {
+    position: relative;
+    background: #003329;
+    padding: 100px;
+}
+
+.sec h2 {
+    font-size: 3em;
+    color: #fff;
+    margin-bottom: 50px;
+}
+
+.sec p {
+    font-size: 1em;
+    color: #fff;
+    font-weight: 300;
+}
+
+
+/* investigadores */
+
+.investigadores-container {
+    display: flex;
+    justify-content: space-around; /* Distribuye los elementos con espacio alrededor */
+    align-items: center; /* Alinea los elementos verticalmente al centro */
+    flex-wrap: nowrap; /* Evita que los elementos se envuelvan a la siguiente línea */
+    position: relative;
+    margin-bottom: 80px;
+}
+
+.investigadores {
+    border: 15px solid #76877d;
+    border-radius: 50%;
+    width: 250px;
+    height: auto; /* Mantiene la proporción de las imágenes */
+}
+
+.card-inv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    flex: 1; /* Permite que los elementos crezcan igualmente */
+    padding: 30px 50px;
+    gap: 20px;
+    cursor: pointer;
+    position: relative;
+}
+
+.name-inv {
+    margin-top: 10px; /* Añade un margen superior al nombre */
+    font-weight: bold; /* Hace que el nombre sea negrita */
+    display: flex; /* Alinea el texto y el icono en una fila */
+    align-items: center; /* Centra verticalmente el texto y el icono */
+    justify-content: center; /* Centra horizontalmente el texto y el icono */
+}
+
+.info-inv {
+    position: absolute; /* Posiciona el recuadro de información de manera absoluta */
+    top: 100%; /* Coloca el recuadro justo debajo de la tarjeta */
+    left: 50%; /* Centra el recuadro horizontalmente */
+    transform: translateX(-50%); /* Ajusta la posición para centrar el recuadro */
+    width: 330px; /* Ancho fijo para el recuadro */
+    margin-top: 10px; /* Añade un margen superior al recuadro */
+    background-color: #f9f9f9; /* Fondo claro para la información adicional */
+    padding: 10px; /* Padding alrededor de la información adicional */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    z-index: 10; /* Asegura que el recuadro esté por encima de otros elementos */
+    transition: 0.5s;
+}
+
+.info-inv p {
+    margin: 0; /* Elimina el margen por defecto del párrafo */
+    font-size: 0.8em; /* Tamaño de fuente más pequeño */
+    color: #333; /* Color de texto oscuro */
+}
+
+.toggle-icon {
+    margin-left: 10px; /* Añade un margen izquierdo al icono */
+    transition: transform 0.3s; /* Añade una transición suave para la rotación */
+}
+
+.toggle-icon:hover {
+    color: #76877d; /* Cambia el color del icono al pasar el ratón por encima */
+    scale: 1.1;
+}
+  
+.toggle-icon.expanded {
+    transform: rotate(180deg); /* Rota el icono 180 grados cuando está expandido */
+}
+
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    .parallax {
+        padding-top: 100px;
+        padding-bottom: 100px;
+        height: auto; /* Ajusta la altura para dispositivos móviles */
+        background: #1e3c72; /* Fondo de color estático */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .parallax img {
+        display: none; /* Oculta las imágenes en dispositivos móviles */
+    }
+
+    #text {
+        position: relative; /* Hace que el texto se quede quieto */
+        font-size: 2em; /* Ajusta el tamaño del texto para dispositivos móviles */
+        margin: 20px 0; /* Añade margen alrededor del texto */
+        color: #fff; /* Mantiene el color del texto */
+        text-align: center; /* Centra el texto */
+    }
+
+    .investigadores-container {
+        flex-direction: column; /* Cambia la dirección de los elementos a columna */
+        align-items: stretch; /* Alinea los elementos para que ocupen todo el ancho */
+    }
+
+    .card-inv {
+        flex: 1 1 auto; /* Permite que los elementos crezcan y se encojan automáticamente */
+        width: 100%; /* Asegura que las tarjetas ocupen todo el ancho en dispositivos móviles */
+        margin-bottom: 20px; /* Añade un margen inferior para separar las tarjetas */
+    }
+
+    .info-inv {
+        width: 90%; /* Ajusta el ancho del recuadro de información en dispositivos móviles */
+    }
+}

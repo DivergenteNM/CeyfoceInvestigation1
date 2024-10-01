@@ -41,7 +41,7 @@ import { MatInputModule } from '@angular/material/input';
     GraphComponent,
     IndividualGraphComponent,
     IndividualResultsComponent,
-    LoginAlertComponent
+    LoginAlertComponent,
   ],
   exports: [
     ToolbarComponent

@@ -29,14 +29,14 @@
 
 .one {
     display: flex;
-    min-width: 200px;
+    min-width: 250px;
     align-items: center;
 }
 
 .two {
     display: flex;
     min-width: 200px;
-    width: 400px;
+    width: 350px;
     justify-content: center;
 }
 

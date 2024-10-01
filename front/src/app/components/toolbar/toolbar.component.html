@@ -1,173 +1,181 @@
-<div class="container-prop">
-    <header class="toolbar-login">
-        <div class="title-icon">
-            <!-- <img class="text-name" src="assets/images/librespensadorescirculo.png" width="50px" alt="libres pensadores"> -->
-            <h3 class="text-name">CEYFOCE</h3>
-        </div>
+<body>
+  <div class="container-prop">
+    <!-- header  -->
+    <!-- <header class="toolbar-login">
+      <div class="title-icon">
+        <h3 class="text-name">CEYFOCE</h3>
+      </div>
+      <div *ngIf="!isLoggedIn">
         <ul class="menu-inicio">
-            <div *ngFor="let item of itemsMenu">
-                <button mat-button [matMenuTriggerFor]="belowMenu" [routerLink]="[item.link]" class="menu-inicio-item">{{item.title}}</button>
-                <mat-menu #belowMenu="matMenu" yPosition="below">
-                    <button mat-menu-item (click)="openDialog(submenu.title)" *ngFor="let submenu of item.subMenu">{{submenu.title}}</button>
-                </mat-menu>
-            </div>
+          <div *ngFor="let item of itemsMenu">
+            <button mat-button [matMenuTriggerFor]="belowMenu" [routerLink]="[item.link]"
+              class="menu-inicio-item">{{item.title}}</button>
+            <mat-menu #belowMenu="matMenu" yPosition="below">
+              <button mat-menu-item (click)="openDialog(submenu.title)"
+                *ngFor="let submenu of item.subMenu">{{submenu.title}}</button>
+            </mat-menu>
+          </div>
         </ul>
-        <div (click)="redirect()" style="color:var(--color-icons)" [class]="name!==''?'button-prop icon-toolbar':''">
-            <mat-icon aria-hidden="false" aria-label="Example home icon" [class]="name===''?'button-prop':''">perm_identity</mat-icon>
-            <p class="nameUser">{{name}}</p>
-        </div>
+      </div>
+      <a *ngIf="!isLoggedIn" href="/account/register">registroo2</a>
+      <div (click)="redirect()" style="color:var(--color-icons)" [class]="name!==''?'button-prop icon-toolbar':''">
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          [class]="name===''?'button-prop':''">perm_identity</mat-icon>
+        <p class="nameUser">{{name}}</p>
+      </div>
+    </header> -->
+
+    <!-- header -->
+    <header>
+      <h2 class="logo">Ceyfoce</h2>
+      <button class="menu-toggle" (click)="toggleMenu()">☰</button>
+      <nav class="navigation" [class.active]="menuActive">
+        <a href="#">Servicios</a>
+        <a href="#">Instrumentos de medición</a>
+        <a href="#">Proyectos</a>
+        <a href="#">Repositorios de investigación</a>
+        <a *ngIf="!isLoggedIn" href="/account/register">registro</a>
+        <a href="/account/login" (click)="redirect()" [class]="name!==''?'button-prop icon-toolbar':''">
+          {{ name }}
+        </a>
+      </nav>
+
     </header>
-    <div class="carusel">
-        <ngb-carousel>
-            <ng-template ngbSlide *ngFor="let itemCarusel of carrusel">
-                <img class="img-carusel" [src]="itemCarusel.image">
-                <div class="carousel-caption">
-                  <h3 class="title-carrusel">{{itemCarusel.title}}</h3>
-                  <p class="text-carrusel">{{itemCarusel.content}}</p>
-                </div>
-            </ng-template>
-        </ngb-carousel>
-    </div>
 
-    <div class="container-prop-items-center">
-        <div class="horizontal-type">
-            <div class="vertical-content border">
-                <h2 class="title-item">¿Quiénes somos?</h2>
-                <img class="size-img" src="assets/images/612f44c.webp" alt="">
-                <p class="size-text-center size-text-resp">
-                    Somos un equipo de investigadores y gestores psicosociales preocupados 
-                    por el acontecer social y comunitario de niños, niñas, adolescentes y 
-                    adultos inmersos en escenarios de pobreza material, violencia y segregación 
-                    espacial, quienes mediante escenarios de investigación-intervención promueven 
-                    la apropiación social y democratización del conocimiento en aras de facilitar 
-                    el cambio social y la  transformación educativa desde un enfoque humano multidimensional.
-                </p>
-            </div>
-            <div class="vertical-content reverse border">
-                <h2 class="title-item">¿Qué buscamos?</h2>
-                <p class="size-text size-text-left size-text-resp">
-                    La apropiación social y democratización del conocimiento como escenario de 
-                    transformación socioestructural de ambientes permeados por factores de 
-                    desventaja social y exclusión sociopolítica.
-                </p>
-                <img class="size-img" src="assets/images/5187699.jpg" alt="">
-            </div>
-            <div class="vertical-content border">
-                <h2 class="title-item">¿A qué contribuimos?</h2>
-                <img class="size-img" src="assets/images/3304458.jpg" alt="">
-                <p class="size-text-center size-text-resp">
-                    En procesos de medición y evaluación psicológica.
-                    En el desarrollo de intervenciones psicoeducativas.
-                    En la ejecución y asesoramiento de proyectos de investigación  socioeducativa.
-                </p>
-            </div>
+    <!-- principal -->
+    <app-header-principal></app-header-principal>
+    <!-- Quienes somos-->
+    <div id="somos" class="container-prop-items-center">
+      <div class="horizontal-type">
+        <div class="vertical-content border info-item">
+          <h2 class="title-item">¿Quiénes somos?</h2>
+          <img class="size-img" src="assets/images/612f44c.webp" alt="">
+          <p class="size-text-center size-text-resp">
+            Somos un equipo de investigadores y gestores psicosociales preocupados
+            por el acontecer social y comunitario de niños, niñas, adolescentes y
+            adultos inmersos en escenarios de pobreza material, violencia y segregación
+            espacial, quienes mediante escenarios de investigación-intervención promueven
+            la apropiación social y democratización del conocimiento en aras de facilitar
+            el cambio social y la transformación educativa desde un enfoque humano multidimensional.
+          </p>
         </div>
-    </div>
-
-    <div id="investigadores" class="container-prop-items-center background-three">
-        <h2 class="title-item">Investigadores</h2>
-        <div class="horizontal-content aling-top">
-            <div *ngFor="let investigador of investigadores" class="card-inv">
-                <img class="investigadores" [style]="investigador.color" [src]="investigador.image" [alt]="investigador.name">
-                <p class="name-inv">
-                    {{investigador.name}}
-                </p>
-                <p class="profile-inv" *ngIf="investigador.profile">
-                    {{investigador.title}} {{investigador.moreInfo?investigador.profile:''}} <mat-icon class="more" (click)="investigador.moreInfo=!investigador.moreInfo">{{investigador.moreInfo?'expand_less':'expand_more'}}</mat-icon>
-                </p>
-            </div>
+        <div class="vertical-content reverse border info-item">
+          <h2 class="title-item">¿Qué buscamos?</h2>
+          <p class="size-text size-text-left size-text-resp">
+            La apropiación social y democratización del conocimiento como escenario de
+            transformación socioestructural de ambientes permeados por factores de
+            desventaja social y exclusión sociopolítica.
+          </p>
+          <img class="size-img" src="assets/images/5187699.jpg" alt="">
         </div>
-    </div>
-
-    <div id="contactanos" class="container-prop-items-center background-five">
-        <h2 class="title-item">Contáctanos</h2>
-        <div class="horizontal-content">
-            <div class="card-contact">
-                <mat-icon class="icon-contact mat-icon-contact" aria-hidden="false" aria-label="Example home icon">phone</mat-icon>
-                <h3>Llámanos</h3>
-                <p class="size-text-center size-text-resp">
-                    <a class="linkContact" href="tel:3217671889">321 767 1889</a>
-                </p>
-                <p class="size-text-center size-text-resp">
-                    <a class="linkContact" href="tel:3165737000">316 573 7000</a>
-                </p>
-            </div>
-            <div class="card-contact">
-                <mat-icon class="icon-contact mat-icon-contact" aria-hidden="false" aria-label="Example home icon">email</mat-icon>
-                <h3>Escríbenos</h3>
-                <p class="size-text-center size-text-resp">
-                    <a class="linkContact" href="mailto:investigador1@udenar.edu.co">investigador1&#64;udenar.edu.co</a>
-                </p>
-                <p class="size-text-center size-text-resp">
-                    <a class="linkContact" href="mailto:investigador2@udenar.edu.co">investigador2&#64;udenar.edu.co</a>
-                </p>
-            </div>
-        </div>
-        <div class="horizontal-content">
-            <div class="card-contact-message">
-                <h3 style="text-align: center;">Mensaje directo</h3>
-                <mat-form-field class="message" appearance="fill">
-                    <mat-label>Email</mat-label>
-                    <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-                           placeholder="Ex. pat@example.com">
-                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                      Por favor ingrese un email válido
-                    </mat-error>
-                    <mat-error *ngIf="emailFormControl.hasError('required')">
-                      El email es <strong>requerido</strong>
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field class="message" appearance="fill">
-                    <mat-label>Asunto</mat-label>
-                    <input type="text" matInput [formControl]="affairFormControl" [errorStateMatcher]="matcher"
-                           placeholder="Asunto">
-                    <mat-error *ngIf="affairFormControl.hasError('required')">
-                      El asunto es <strong>requerido</strong>
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field class="message" appearance="fill">
-                    <mat-label>Asunto</mat-label>
-                    <textarea matInput placeholder="Mensaje" [formControl]="messageFormControl" [errorStateMatcher]="matcher"></textarea>
-                    <mat-error *ngIf="messageFormControl.hasError('required')">
-                      El mensaje es <strong>requerido</strong>
-                    </mat-error>
-                </mat-form-field>
-                <input class="button-send-message" type="button" value="Enviar" (click)="sendMessage()">
-            </div>
-        </div>
-    </div>
-</div>
-
-<div *ngIf="loading" class="floating-messaje">
-    <mat-spinner></mat-spinner>
-</div>
-
-
-<div class="body">
-    <div class="slider">
-        <div class="list">
-          <div class="item" *ngFor="let img of images">
-            <img [src]="img.src" alt="">
-            <div class="content">
-              <div class="title">MAGIC SLIDER</div>
-              <div class="type">{{ img.type }}</div>
-              <div class="description">{{ img.description }}</div>
-              <div class="button">
-                <button>SEE MORE</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      
-        <div class="thumbnail">
-          <div class="item" *ngFor="let img of images">
-            <img [src]="img.src" alt="">
-          </div>
-        </div>
-      
-        <div class="nextPrevArrows">
-          <button class="prev" (click)="moveSlider('prev')"> < </button>
-          <button class="next" (click)="moveSlider('next')"> > </button>
+        <div class="vertical-content border info-item">
+          <h2 class="title-item">¿A qué contribuimos?</h2>
+          <img class="size-img" src="assets/images/3304458.jpg" alt="">
+          <p class="size-text-center size-text-resp">
+            En procesos de medición y evaluación psicológica.
+            En el desarrollo de intervenciones psicoeducativas.
+            En la ejecución y asesoramiento de proyectos de investigación socioeducativa.
+          </p>
         </div>
       </div>
-</div>      
+    </div>
+    <!--  -->
+
+    <!-- Servicios -->
+    <section class="servicios-container">
+
+    </section>
+    <!--  -->
+
+    <!-- Instrumentos de medición -->
+    <section class="instrumentos-container">
+
+    </section>
+    <!--  -->
+
+    <!-- Proyectos -->
+    <section class="proyectos-container">
+
+    </section>
+    <!--  -->
+
+    <!-- Repositorios de investigación -->
+    <section class="repositorios-container">
+
+    </section>
+    <!--  -->
+
+    <!-- carousel  -->
+    <app-carousel></app-carousel>
+    <div id="carousel"></div>
+
+    <!-- formulario de contacto -->
+    <div id="contactanos" class="container-prop-items-center background-five">
+      <h2 class="title-item">Contáctanos</h2>
+      <div class="horizontal-content">
+        <div class="card-contact">
+          <mat-icon class="icon-contact mat-icon-contact" aria-hidden="false"
+            aria-label="Example home icon">phone</mat-icon>
+          <h3>Llámanos</h3>
+          <p class="size-text-center size-text-resp">
+            <a class="linkContact" href="tel:3217671889">321 767 1889</a>
+          </p>
+          <p class="size-text-center size-text-resp">
+            <a class="linkContact" href="tel:3165737000">316 573 7000</a>
+          </p>
+        </div>
+        <div class="card-contact">
+          <mat-icon class="icon-contact mat-icon-contact" aria-hidden="false"
+            aria-label="Example home icon">email</mat-icon>
+          <h3>Escríbenos</h3>
+          <p class="size-text-center size-text-resp">
+            <a class="linkContact" href="mailto:investigador1@udenar.edu.co">investigador1&#64;udenar.edu.co</a>
+          </p>
+          <p class="size-text-center size-text-resp">
+            <a class="linkContact" href="mailto:investigador2@udenar.edu.co">investigador2&#64;udenar.edu.co</a>
+          </p>
+        </div>
+      </div>
+      <div class="horizontal-content">
+        <div class="card-contact-message">
+          <h3 style="text-align: center;">Mensaje directo</h3>
+          <mat-form-field class="message" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+              placeholder="Ex. pat@example.com">
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+              Por favor ingrese un email válido
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+              El email es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="message" appearance="fill">
+            <mat-label>Asunto</mat-label>
+            <input type="text" matInput [formControl]="affairFormControl" [errorStateMatcher]="matcher"
+              placeholder="Asunto">
+            <mat-error *ngIf="affairFormControl.hasError('required')">
+              El asunto es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="message" appearance="fill">
+            <mat-label>Asunto</mat-label>
+            <textarea matInput placeholder="Mensaje" [formControl]="messageFormControl"
+              [errorStateMatcher]="matcher"></textarea>
+            <mat-error *ngIf="messageFormControl.hasError('required')">
+              El mensaje es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+          <input class="button-send-message" type="button" value="Enviar" (click)="sendMessage()">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- cargando -->
+  <div *ngIf="loading" class="floating-messaje">
+    <mat-spinner></mat-spinner>
+  </div>
+
+
+</body>

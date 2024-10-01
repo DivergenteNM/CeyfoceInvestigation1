@@ -24,6 +24,11 @@ export class RegisterHomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onButtonClick(): void {
+    // Lógica para manejar el clic del botón
+    document.location.href = './home';
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogContent, {
       width: '90vw',

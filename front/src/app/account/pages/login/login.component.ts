@@ -26,6 +26,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onButtonClick(): void {
+    // Lógica para manejar el clic del botón
+    document.location.href = './home';
+  }
+
   sendData() {
     this.loading = true;
     this.error = '';
