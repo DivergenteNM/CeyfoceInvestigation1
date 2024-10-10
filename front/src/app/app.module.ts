@@ -13,6 +13,10 @@ import { MaterialModule } from './material/material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { HeaderPrincipalComponent } from './components/carousel/header-principal/header-principal.component';
+import { InstrumentosMedicionComponent } from './components/carousel/instrumentos-medicion/instrumentos-medicion.component';
+import { RepositorioDigitalComponent } from './components/carousel/repositorio-digital/repositorio-digital.component';
+import { ServiciosComponent } from './components/carousel/servicios/servicios.component';
+import { ProyectosComponent } from './components/carousel/proyectos/proyectos.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import { HeaderPrincipalComponent } from './components/carousel/header-principal
     ProfileComponent,
     DialogContent,
     CarouselComponent, 
-    HeaderPrincipalComponent
+    HeaderPrincipalComponent,
+    InstrumentosMedicionComponent,
+    RepositorioDigitalComponent,
+    ServiciosComponent,
+    ProyectosComponent
   ],
   imports: [
     BrowserModule,

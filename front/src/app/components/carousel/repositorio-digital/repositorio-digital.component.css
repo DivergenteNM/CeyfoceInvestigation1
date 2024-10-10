@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(to bottom right, #000, #333333);
+    padding: 2rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #7DD3C8;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+    padding: 1rem;
+    justify-items: center;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+.articulo {
+    background: #D1C4E9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 100%;
+    max-width: 320px;
+}
+
+.articulo:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.articulo a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.articulo h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #484848;
+}
+
+.articulo p {
+    margin: 5px 0;
+    color: #6b7280;
+}
+
+.progress-bar {
+    height: 5px;
+    background-color: #007bff;
+    width: 0;
+    transition: width 0.3s;
+}
+
+.articulo:hover .progress-bar {
+    width: 100%;
+}

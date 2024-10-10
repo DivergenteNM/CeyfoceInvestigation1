@@ -30,10 +30,10 @@
       <h2 class="logo">Ceyfoce</h2>
       <button class="menu-toggle" (click)="toggleMenu()">☰</button>
       <nav class="navigation" [class.active]="menuActive">
-        <a href="#">Servicios</a>
-        <a href="#">Instrumentos de medición</a>
-        <a href="#">Proyectos</a>
-        <a href="#">Repositorios de investigación</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#instrumentos">Instrumentos de medición</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#repositorio">Repositorios de investigación</a>
         <a *ngIf="!isLoggedIn" href="/account/register">registro</a>
         <a href="/account/login" (click)="redirect()" [class]="name!==''?'button-prop icon-toolbar':''">
           {{ name }}
@@ -44,6 +44,11 @@
 
     <!-- principal -->
     <app-header-principal></app-header-principal>
+
+    <!-- carousel  -->
+    <app-carousel></app-carousel>
+    <div id="carousel"></div>
+
     <!-- Quienes somos-->
     <div id="somos" class="container-prop-items-center">
       <div class="horizontal-type">
@@ -82,32 +87,31 @@
     <!--  -->
 
     <!-- Servicios -->
-    <section class="servicios-container">
-
+    <section id="servicios" class="servicios-container">
+      <app-servicios></app-servicios>
     </section>
     <!--  -->
 
     <!-- Instrumentos de medición -->
-    <section class="instrumentos-container">
-
+    <section id="instrumentos" class="instrumentos-container">
+      <app-instrumentos-medicion></app-instrumentos-medicion>
     </section>
     <!--  -->
 
     <!-- Proyectos -->
-    <section class="proyectos-container">
-
+    <section id="proyectos" class="proyectos-container">
+      <app-proyectos></app-proyectos>
     </section>
     <!--  -->
 
     <!-- Repositorios de investigación -->
-    <section class="repositorios-container">
+    <section id="repositorio" class="repositorios-container">
+      <app-repositorio-digital></app-repositorio-digital>
 
     </section>
     <!--  -->
 
-    <!-- carousel  -->
-    <app-carousel></app-carousel>
-    <div id="carousel"></div>
+
 
     <!-- formulario de contacto -->
     <div id="contactanos" class="container-prop-items-center background-five">

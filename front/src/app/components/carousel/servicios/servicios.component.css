@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(to bottom right, #e0cffc, #c7d2fe);
+    padding: 2rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 2rem;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+    padding: 1rem;
+}
+
+.titulo-asesorias {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 2rem;
+    color: #3730a3;
+    opacity: 0;
+    animation: fadeInSlideDown 1s ease-out forwards;
+}
+
+@keyframes fadeInSlideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+.asesoria-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.8s, box-shadow 0.3s, border-radius 0.8s;
+    width: 100%;
+    max-width: 410px;
+    margin: 0 auto;
+}
+
+.asesoria-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 30px;
+}
+
+.asesoria-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.asesoria-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+.asesoria-username {
+    font-weight: bold;
+    color: #3730a3;
+    text-decoration: none;
+}
+
+.asesoria-image {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.asesoria-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.action-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.like-button.liked {
+    color: red;
+}
+
+.asesoria-likes {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 1rem;
+}
+
+.asesoria-description {
+    font-size: 0.9rem;
+    color: #6b7280;
+}

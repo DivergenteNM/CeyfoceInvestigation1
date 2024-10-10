@@ -1,0 +1,11 @@
+<section class="instrumentos-medicion">
+  <div class="container">
+    <h2 class="title">Instrumentos de Medición</h2>
+    <div class="escalas-grid" [@staggerAnimation]="escalas.length">
+      <div class="escala-card" *ngFor="let escala of escalas">
+        <h3 class="escala-title">{{ escala.titulo }}</h3>
+        <p class="escala-description">{{ escala.explicacion }}</p>
+      </div>
+    </div>
+  </div>
+</section>

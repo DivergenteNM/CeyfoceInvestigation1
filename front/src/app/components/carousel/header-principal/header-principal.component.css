@@ -43,6 +43,12 @@ body {
     padding: 100px;
 }
 
+.sec h4 {
+    font-size: 1.5em;
+    color: #fff;
+    margin-bottom: 60px;
+}
+
 .sec h2 {
     font-size: 3em;
     color: #fff;
@@ -128,6 +134,19 @@ body {
 .toggle-icon.expanded {
     transform: rotate(180deg); /* Rota el icono 180 grados cuando está expandido */
 }
+
+
+.info-item {
+    transition: all 0.8s ease;
+}
+
+.info-item:hover {
+    transform: translateY(-10px);
+    border-radius: 150px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+
 
 
 /* Estilos para dispositivos móviles */

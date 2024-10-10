@@ -1,0 +1,12 @@
+<body>
+    <h1>Repositorio de Investigación</h1>
+        <div class="grid">
+      <div *ngFor="let articulo of articulos" class="articulo">
+        <a [href]="articulo.url" target="_blank" rel="noopener noreferrer">
+          <h2>{{ articulo.titulo }}</h2>
+          <p>Año: {{ articulo.anio }}</p>
+          <div class="progress-bar"></div>
+        </a>
+      </div>
+    </div>
+</body>

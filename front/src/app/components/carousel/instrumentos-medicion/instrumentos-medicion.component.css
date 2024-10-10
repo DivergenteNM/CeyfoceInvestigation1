@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Animación de desvanecimiento para el contenedor principal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Animación de desplazamiento para las tarjetas */
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Animación de escalado para el título */
+@keyframes scaleUp {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+.instrumentos-medicion {
+  padding: 3rem 0;
+  background: linear-gradient(to bottom, #fff, #000);
+  animation: fadeIn 1s ease-in-out; /* Aplica la animación de desvanecimiento */
+}
+
+.instrumentos-medicion .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  transition: all 0.8s ease;
+
+}
+
+.instrumentos-medicion .title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+  animation: scaleUp 0.5s ease-in-out; /* Aplica la animación de escalado */
+}
+
+.instrumentos-medicion .escalas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.instrumentos-medicion .escala-card {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.5s ease-in-out; /* Aplica la animación de desplazamiento */
+}
+
+.instrumentos-medicion .escala-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.instrumentos-medicion .escala-description {
+  font-size: 1rem;
+  color: #666;
+}
+
+.escalas-card {
+  transition: all 0.8s ease;
+}
+
+.escalas-card:hover {
+  transform: translateY(-10px);
+  border-radius: 150px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}

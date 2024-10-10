@@ -1,0 +1,18 @@
+<h1 class="titulo-asesorias">Servicios</h1>
+<div id="asesorias-container" class="grid">
+  <div *ngFor="let asesoria of asesorias; let i = index" class="asesoria-card fade-in-up" [style.animationDelay]="i * 0.1 + 's'">
+    <div class="asesoria-header">
+      <div class="asesoria-avatar">{{ asesoria.titulo[0] }}</div>
+      <a href="#" class="asesoria-username">{{ asesoria.titulo }}</a>
+    </div>
+    <div class="asesoria-image" [style.backgroundImage]="'url(' + asesoria.imagen + ')'"></div>
+    <div class="asesoria-actions">
+      <button class="action-button like-button" (click)="toggleLike(asesoria)">{{ asesoria.isLiked ? '♥' : '♡' }}</button>
+      <button class="action-button share-button" (click)="animateShareButton($event)">🚀</button>
+    </div>
+    <div class="asesoria-likes">{{ asesoria.likes || 0 }} {{ (asesoria.likes || 0) === 1 ? 'like' : 'likes' }}</div>
+    <div class="asesoria-description">
+      <strong>{{ asesoria.titulo }}</strong> {{ asesoria.descripcion }}
+    </div>
+  </div>
+</div>
