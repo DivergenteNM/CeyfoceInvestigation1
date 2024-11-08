@@ -11,6 +11,8 @@ const processFilters = require('./filterText');
 const TypeQualification = require('../models/typesOfQualification');
 
 /* GET home page. */
+// este es el endpoint que se encarga de guardar los resultados de los estudiantes
+// en la base de datos
 router.post('/students', verifyToken, async function (req, res, next) {
   const student = req.userId;
   const { codeScale, resultsScale } = req.body;
@@ -76,6 +78,8 @@ router.post('/students', verifyToken, async function (req, res, next) {
   }
 });
 
+// este endpoint se encarga de obtener los resultados de los estudiantes
+// de acuerdo a los filtros que se le pasen
 router.post('/filter', verifyToken, processFilters, async function (req, res, next) {
   const idUser = req.userId;
   const arrayPipeline = req.filter;
@@ -204,6 +208,9 @@ router.post('/filter', verifyToken, processFilters, async function (req, res, ne
   }
 });
 
+
+// este endpoint se encarga de obtener las escalas que se encuentran en la base de datos
+// para que el usuario pueda seleccionarlas y filtrar los resultados
 router.get('/scales', verifyToken, processFilters, async function (req, res, next) {
   const idUser = req.userId;
 
@@ -219,7 +226,7 @@ router.get('/scales', verifyToken, processFilters, async function (req, res, nex
         answerForm: 1,
         baremosMnIg25: 1,
         baremosMyIg75: 1,
-        baremosNegativo: 1, // Agregamos el campo baremosNegativo aquí
+        baremosNegativo: 1,
         cualitativoNegativo: 1,
         cualitativoIntermedio: 1,
         cualitativoPositivo: 1,

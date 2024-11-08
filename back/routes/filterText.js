@@ -1,8 +1,23 @@
 var express = require('express');
 const scaleUnique = require('../models/scaleUnique');
 
-async function processFilters(req,res,next){
-//     return new Promise((resolve, reject)=>{
+
+// esta funcion recibe un array de objetos con los filtros seleccionados por el usuario
+// y los procesa para devolver un objeto con los filtros que se deben aplicar a la base de datos
+// los filtros que se pueden seleccionar son:
+// Sexo
+// Sector
+// Instituciones
+// Edad
+// Grados
+// Escalas
+// Rangos
+// Tipo de colegio
+// la funcion devuelve un objeto con los filtros que se deben aplicar a la base de datos
+// ademas, se le agrega un filtro para que solo se muestren los estudiantes
+// si no se selecciona ningun filtro, se devolvera un objeto vacio
+async function processFilters(req, res, next) {
+    //     return new Promise((resolve, reject)=>{
     var sex = [];
     var residenceSector = [];
     var institution = [];
@@ -13,47 +28,47 @@ async function processFilters(req,res,next){
     var typeOfSchool = [];
     var andd = [];
     for (let i = 0; i < req.body.length; i++) {
-        switch(req.body[i].name){
+        switch (req.body[i].name) {
             case 'Sexo':
                 for (let j = 0; j < req.body[i].options.length; j++) {
-                    if(req.body[i].options[j].checked===true){
+                    if (req.body[i].options[j].checked === true) {
                         // filtersRequired['sex'] = req.body[i].options[j].name};
-                        sex.push({sex:req.body[i].options[j].name})
+                        sex.push({ sex: req.body[i].options[j].name })
                     }
                 }
                 break;
             case 'Sector':
                 for (let j = 0; j < req.body[i].options.length; j++) {
-                    if(req.body[i].options[j].checked===true){
-                        residenceSector.push({residenceSector:req.body[i].options[j].name})
+                    if (req.body[i].options[j].checked === true) {
+                        residenceSector.push({ residenceSector: req.body[i].options[j].name })
                     }
                 }
                 break;
             case 'Instituciones':
                 for (let j = 0; j < req.body[i].options.length; j++) {
-                    if(req.body[i].options[j].checked===true){
-                        institution.push({institution:req.body[i].options[j].name})
+                    if (req.body[i].options[j].checked === true) {
+                        institution.push({ institution: req.body[i].options[j].name })
                     }
                 }
                 break;
             case 'Edad':
                 for (let j = 0; j < req.body[i].options.length; j++) {
-                    if(req.body[i].options[j].checked===true){
-                        age.push({age:req.body[i].options[j].name})
+                    if (req.body[i].options[j].checked === true) {
+                        age.push({ age: req.body[i].options[j].name })
                     }
                 }
                 break;
             case 'Grados':
                 for (let j = 0; j < req.body[i].options.length; j++) {
-                    if(req.body[i].options[j].checked===true){
-                        course.push({course:{$regex:`${req.body[i].options[j].name}`}})
+                    if (req.body[i].options[j].checked === true) {
+                        course.push({ course: { $regex: `${req.body[i].options[j].name}` } })
                     }
                 }
                 break;
             case 'Escalas':
                 for (let j = 0; j < req.body[i].options.length; j++) {
-                    if(req.body[i].options[j].checked===true){
-                        scale.push({resultsTitleScale:req.body[i].options[j].name})
+                    if (req.body[i].options[j].checked === true) {
+                        scale.push({ resultsTitleScale: req.body[i].options[j].name })
                     }
                 }
                 break;
@@ -61,35 +76,35 @@ async function processFilters(req,res,next){
                 break;
             case 'Tipo de colegio':
                 for (let j = 0; j < req.body[i].options.length; j++) {
-                    if(req.body[i].options[j].checked===true){
-                        typeOfSchool.push({type:req.body[i].options[j].name})
+                    if (req.body[i].options[j].checked === true) {
+                        typeOfSchool.push({ type: req.body[i].options[j].name })
                     }
                 }
                 break;
         }
     }
-    andd.push({role:"student"})
-    if(sex.length!==0){
+    andd.push({ role: "student" })
+    if (sex.length !== 0) {
         andd.push({
             "$or": sex,
         });
     }
-    if(residenceSector.length!==0){
+    if (residenceSector.length !== 0) {
         andd.push({
             "$or": residenceSector,
         });
     }
-    if(institution.length!==0){
+    if (institution.length !== 0) {
         andd.push({
             "$or": institution,
         });
     }
-    if(age.length!==0){
+    if (age.length !== 0) {
         andd.push({
             "$or": age,
         });
     }
-    if(course.length!==0){
+    if (course.length !== 0) {
         andd.push({
             "$or": course,
         });
@@ -99,17 +114,17 @@ async function processFilters(req,res,next){
     //         "$and": scale,
     //     });
     // }
-    if(range.length!==0){
+    if (range.length !== 0) {
         andd.push({
             "$or": range,
         });
     }
-    if(typeOfSchool.length!==0){
+    if (typeOfSchool.length !== 0) {
         andd.push({
             "$or": typeOfSchool
         });
     }
-    const filtersRequired = {"$and": andd};
+    const filtersRequired = { "$and": andd };
     req.filter = filtersRequired;
     next();
 }

@@ -1,5 +1,15 @@
 const nodemailer = require('nodemailer');
 
+// en este caso, se envía un correo electrónico con un código de verificación
+// para el registro de un usuario
+// el código de verificación es un número aleatorio de 6 dígitos
+// el correo electrónico es el correo del usuario que se está registrando
+// el tipo de correo es 'code'
+// el tipo de correo puede ser 'code' o 'message'
+// si el tipo de correo es 'message', se envía un correo electrónico con el mensaje
+// de solicitud de información
+// el mensaje de solicitud de información contiene el correo del usuario que envía
+// el mensaje, el asunto del mensaje y el mensaje
 function sendEmailCode(email, code, type) {
     var mailOptions = {
         from: "ceyfoce@gmail.com",

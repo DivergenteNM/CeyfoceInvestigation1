@@ -9,6 +9,13 @@ const verifyToken = require('../token/verifyToken');
 const TypeQualification = require('../models/typesOfQualification');
 
 /* GET home page. */
+// esta ruta se encarga de obtener las escalas que el estudiante puede responder
+// se verifica el token del estudiante
+// se obtiene el id del estudiante
+// se busca el estudiante en la base de datos
+// si el estudiante existe, se verifica si es estudiante
+// si es estudiante, se verifica si tiene una institución asignada
+// si tiene una institución asignada, se busca las escalas permitidas por la institución
 router.get('/scales', verifyToken, async function(req, res, next) {
   const idUser = req.userId;
 
@@ -53,6 +60,17 @@ router.get('/scales', verifyToken, async function(req, res, next) {
   }
 });
 
+// esta ruta se encarga de obtener una escala en particular
+// se verifica el token del estudiante
+// se obtiene el id del estudiante
+// se busca el estudiante en la base de datos
+// si el estudiante existe, se verifica si es estudiante
+// si es estudiante, se verifica si tiene una institución asignada
+// si tiene una institución asignada, se busca las escalas permitidas por la institución
+// se busca las escalas realizadas por el estudiante
+// se verifica si la escala solicitada es permitida
+// si es permitida, se busca la escala en la base de datos
+// se envía la escala
 router.get('/scale/:idScale', verifyToken, async function(req, res, next) {
   const idUser = req.userId;
   const idScale = req.params.idScale;
@@ -133,6 +151,14 @@ router.get('/scale/:idScale', verifyToken, async function(req, res, next) {
 
 
 
+// esta ruta se encarga de enviar las respuestas de una escala
+// se verifica el token del estudiante
+// se obtiene el id del estudiante
+// se busca el estudiante en la base de datos
+// si el estudiante existe, se verifica si es estudiante
+// si es estudiante, se verifica si la escala existe
+// se calcula el resultado general y por fases
+// se guarda el resultado en la base de datos
 router.post('/students', verifyToken, async function(req, res, next) {
   const student = req.userId;
   //Code: código de la escala. resultsScale: resultados del estudiante

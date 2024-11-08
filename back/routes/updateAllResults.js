@@ -1,6 +1,12 @@
 const Results = require('../models/results');
 const TypeQualification = require('../models/typesOfQualification');
 
+
+// Función que actualiza los resultados de todos los usuarios que han realizado un test de una escala en concreto
+// Recibe como parámetros el código de la escala y la escala en cuestión
+// Actualiza el resultado global y las fases de cada usuario
+// Devuelve un error si no se ha podido actualizar
+// Devuelve un mensaje de éxito si se ha podido actualizar
 async function updateAllResults(codeScale,scale){
     const allResultsScale = await Results.find({codeScale});
     var valueQualification = await TypeQualification.findOne({codeType:scale.answerForm});

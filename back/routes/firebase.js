@@ -1,6 +1,9 @@
+
+// Importar librerías
 const admin = require('firebase-admin')
 var serviceAccount = require('../token/investigacion-d003b-4d12b05b5845.json');
 
+// Inicializar Firebase
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   storageBucket:  'investigacion-d003b.appspot.com'
